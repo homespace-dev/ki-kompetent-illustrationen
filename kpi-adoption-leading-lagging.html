@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>KPIs für KI-Adoption · Attio-Tabelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --ink: #16171D; --paper: #FBFBFD;
+    --border: #e9eaee; --border-strong: #e2e3e8; --header-bg: #fbfbfd;
+    --text: #16171D; --text-soft: #3a3b44; --text-muted: #74757f; --chip-border: #e7e8ec;
+    --page-bg: #eceef3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .toolbar { display: flex; justify-content: center; padding: 26px 16px 0; }
+  .btn { display: inline-flex; align-items: center; font-family: inherit; font-size: 14px; font-weight: 500;
+    color: #fff; background: var(--ink); border: none; border-radius: 9px; padding: 10px 16px; cursor: pointer; }
+  .btn:hover { background: #000; }
+  .btn svg { width: 16px; height: 16px; margin-right: 8px; }
+
+  /* Verlauf auf .wrap (Vorfahre von #capture) – im transparenten PNG-Export nicht enthalten */
+  .wrap { display: flex; justify-content: center; padding: 34px 24px 60px; min-height: 100vh;
+    background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%); }
+
+  /* Capture target — transparent: nur die Tabelle behält ihren Hintergrund */
+  .card { background: transparent; padding: 16px; max-width: 900px; width: 100%; }
+  .card-head { margin: 0 0 5px; font-size: 20px; font-weight: 600; letter-spacing: -0.015em; }
+  .card-sub { margin: 0 0 24px; font-size: 14px; color: var(--text-muted); font-weight: 400; letter-spacing: -0.005em; }
+
+  table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    background: #ffffff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  thead th {
+    text-align: left; background: var(--header-bg);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.045em; text-transform: uppercase;
+    color: var(--text-muted); padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap;
+  }
+  thead th:not(:last-child) { border-right: 1px solid var(--border); }
+  .th-inner { display: inline-flex; align-items: center; }
+  .th-inner svg { width: 14px; height: 14px; color: #a0a0a6; flex: none; margin-right: 8px; }
+
+  tbody td {
+    padding: 16px; font-size: 14px; line-height: 1.55; vertical-align: middle;
+    border-bottom: 1px solid var(--border); color: var(--text-soft);
+  }
+  tbody td:not(:last-child) { border-right: 1px solid var(--border); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.group-end td { border-bottom: 2px solid var(--border-strong); }
+
+  .chip {
+    display: inline-block; background: var(--acc-soft); color: var(--acc-deep);
+    font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 7px; line-height: 1.3;
+    border: 1px solid var(--acc-line);
+  }
+  .chip .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-right: 7px; vertical-align: middle; }
+
+  .kpi { white-space: nowrap; }
+  .kpi .dico { width: 36px; height: 36px; vertical-align: middle; margin-right: 12px; }
+  .kpi .name { display: inline-block; vertical-align: middle; font-weight: 600; color: var(--text); font-size: 14.5px; letter-spacing: -0.01em; }
+
+  .shows { color: var(--text-soft); }
+  .shows .ic { display: inline-flex; vertical-align: -2px; margin-right: 8px; color: var(--accent); }
+  .shows .ic svg { width: 15px; height: 15px; }
+
+  .footnote { margin: 16px 2px 0; font-size: 11.5px; color: #9a9aa0; letter-spacing: .01em; }
+  .footnote b { color: #7a7a82; font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h2 class="card-head">Leading vs. Lagging: Adoption &amp; Wirkung von KI</h2>
+      <p class="card-sub">Frühindikatoren zeigen, ob die KI angenommen wird – Ergebniskennzahlen belegen, was sie bewirkt.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/></svg>Typ</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>Kennzahl / KPI</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg>Was es zeigt</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- LEADING -->
+          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td><span class="chip"><span class="dot"></span>Leading</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></g></svg><span class="name">Adoptionsrate</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Anteil der Mitarbeitenden, die das Tool wöchentlich nutzen</span></td>
+          </tr>
+          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td><span class="chip"><span class="dot"></span>Leading</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></svg><span class="name">Nutzungsrate</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Täglich / monatlich aktive Nutzer des KI-Tools</span></td>
+          </tr>
+          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td><span class="chip"><span class="dot"></span>Leading</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9l5 12 1.8-5.2L21 14Z"/><path d="M7.2 2.2 8 5.1"/><path d="m5.1 7.2-2.9-.8"/><path d="M14 4.1 12 6"/><path d="m6 12-1.9 2"/></g></svg><span class="name">Nutzungstiefe</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Interaktionen pro Nutzer und Tag</span></td>
+          </tr>
+          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td><span class="chip"><span class="dot"></span>Leading</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></g></svg><span class="name">Trainings-Teilnehmende</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Wie viele wurden aktiv befähigt?</span></td>
+          </tr>
+          <tr class="group-end" style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td><span class="chip"><span class="dot"></span>Leading</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></g></svg><span class="name">Tool-NPS</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Würden Mitarbeitende das Tool weiterempfehlen?</span></td>
+          </tr>
+
+          <!-- LAGGING -->
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td><span class="chip"><span class="dot"></span>Lagging</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g></svg><span class="name">Zeitersparnis</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Selbstberichtete Stunden/Woche – aus Mitarbeiterbefragung</span></td>
+          </tr>
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td><span class="chip"><span class="dot"></span>Lagging</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></g></svg><span class="name">Mitarbeiterzufriedenheit</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Engagement-Score im Vergleich zur Baseline</span></td>
+          </tr>
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td><span class="chip"><span class="dot"></span>Lagging</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></g></svg><span class="name">Output-Qualität</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Qualitätsbewertung durch Feedback (intern oder Kunden)</span></td>
+          </tr>
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td><span class="chip"><span class="dot"></span>Lagging</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></g></svg><span class="name">Innovations-Output</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Ideen und Verbesserungsvorschläge – Frequenz und Qualität</span></td>
+          </tr>
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td><span class="chip"><span class="dot"></span>Lagging</span></td>
+            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="22" x2="16" y1="11" y2="11"/></g></svg><span class="name">Fluktuation</span></div></td>
+            <td><span class="shows"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg></span>Bleiben KI-fähige Mitarbeitende im Unternehmen?</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="footnote"><b>Leading</b> = Frühindikator, vorausschauend und steuerbar &nbsp;·&nbsp; <b>Lagging</b> = Ergebniskennzahl, rückblickend und belegend.</p>
+    </div>
+  </div>
+
+  
+
+
+
+
+<script src="illu-export.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>KI-Datenarten · Attio-Tabelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    /* Aura-Farbsystem */
+    --aura-cyan:   #78C7F3;
+    --aura-blue:   #5D86C9;
+    --aura-indigo: #6C6FBE;
+    --aura-violet: #8D72B4;
+    --aura-lilac:  #C79EDB;
+    --aura-gradient: linear-gradient(90deg, #78C7F3 0%, #5D86C9 28%, #6C6FBE 55%, #8D72B4 80%, #C79EDB 100%);
+
+    --ink: #16171D;
+    --paper: #FBFBFD;
+
+    --border: #e9eaee;
+    --border-strong: #e2e3e8;
+    --header-bg: #fbfbfd;
+    --row-hover: #fafbfc;
+    --text: #16171D;
+    --text-soft: #3a3b44;
+    --text-muted: #74757f;
+    --chip-border: #e7e8ec;
+    --page-bg: #eceef3;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 26px 16px 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: var(--ink);
+    border: none;
+    border-radius: 9px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background .15s ease, transform .05s ease;
+  }
+  .btn:hover { background: #000; }
+  .btn:active { transform: translateY(1px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  .wrap {
+    display: flex;
+    justify-content: center;
+    padding: 34px 24px 60px;
+  }
+
+  /* Capture target — transparent: nur die Tabelle behält ihren Hintergrund */
+  .card {
+    position: relative;
+    background: transparent;
+    padding: 16px;
+    max-width: 1160px;
+    width: 100%;
+  }
+
+  .card-head {
+    margin: 0 0 5px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .card-sub {
+    margin: 0 0 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  thead th {
+    text-align: left;
+    background: var(--header-bg);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  thead th:not(:last-child) { border-right: 1px solid var(--border); }
+  .th-inner { display: inline-flex; align-items: center; }
+  .th-inner svg { width: 14px; height: 14px; color: #a0a0a6; flex: none; margin-right: 8px; }
+
+  tbody td {
+    padding: 18px 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-soft);
+  }
+  tbody td:not(:last-child) { border-right: 1px solid var(--border); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background .12s ease; }
+  tbody tr:hover { background: var(--row-hover); }
+
+  /* Entity cell: icon-chip + name */
+  .entity {
+    white-space: nowrap;
+  }
+  /* Icon-Kästchen als in sich geschlossenes SVG (Rechteck + Icon, feste Farben):
+     html2canvas rendert inline-SVG mit CSS-Hintergrund in einer <td> nicht zuverlässig. */
+  .entity .dico { width: 36px; height: 36px; vertical-align: middle; margin-right: 12px; }
+  .entity .name {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 600; color: var(--text); font-size: 14.5px; letter-spacing: -0.01em;
+  }
+
+  /* Examples as soft inline keywords */
+  .examples { color: var(--text-soft); }
+
+  /* "Was KI macht" — verb-forward, with a leading spark */
+  .does {
+    color: var(--text-soft);
+  }
+  .does .ic {
+    display: inline-flex;
+    vertical-align: -2px;
+    margin-right: 8px;
+    color: var(--accent);
+  }
+  .does .ic svg { width: 15px; height: 15px; }
+
+  /* Begriff chip, tinted to row accent */
+  .chip {
+    display: inline-block;
+    background: var(--acc-soft);
+    color: var(--acc-deep);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border-radius: 8px;
+    line-height: 1.4;
+    border: 1px solid var(--acc-line);
+    max-width: 16em;
+  }
+  .chip .dot {
+    display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* Produkte as soft tags */
+  .tags { margin: -3px; }
+  .tag {
+    display: inline-block;
+    margin: 3px;
+    background: #fff;
+    border: 1px solid var(--chip-border);
+    border-radius: 7px;
+    padding: 4px 10px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #44444a;
+    white-space: nowrap;
+    box-shadow: 0 1px 1px rgba(17,17,19,.03);
+  }
+
+  .footnote {
+    margin: 18px 2px 0;
+    font-size: 11.5px;
+    color: #9a9aa0;
+    letter-spacing: .01em;
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h2 class="card-head">Welche Daten, welche KI? Die vier Bausteine</h2>
+      <p class="card-sub">Jede KI-Anwendung baut auf einer Datenart auf. Was hineingeht, was die KI daraus macht – und welche Werkzeuge dahinterstehen.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>Datenart</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>Beispiele aus dem Alltag</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/><path d="M12 2l1.9 5.1L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9z"/></svg>Was die KI daraus macht</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/></svg>Fachbegriff</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>Bekannte Produkte</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+            <td>
+              <div class="entity">
+                <svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(9 9) scale(0.75)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></g></svg>
+                <span class="name">Texte</span>
+              </div>
+            </td>
+            <td class="examples">E-Mails, Verträge, Berichte und Protokolle</td>
+            <td><span class="does"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>Versteht, fasst zusammen, formuliert und übersetzt</span></td>
+            <td><span class="chip"><span class="dot"></span>Large Language Models&nbsp;(LLMs)</span></td>
+            <td>
+              <div class="tags">
+                <span class="tag">ChatGPT</span>
+                <span class="tag">Claude</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Microsoft Copilot</span>
+              </div>
+            </td>
+          </tr>
+          <tr style="--accent:#7674C3; --acc-soft:#f0f0fb; --acc-line:#dbdbf4; --acc-deep:#504fad">
+            <td>
+              <div class="entity">
+                <svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f0f0fb" stroke="#dbdbf4"/><g transform="translate(9 9) scale(0.75)" stroke="#7674C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></g></svg>
+                <span class="name">Bilder</span>
+              </div>
+            </td>
+            <td class="examples">Fotos, Scans, Dokumente und Zeichnungen</td>
+            <td><span class="does"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>Erkennt, klassifiziert, generiert und bearbeitet</span></td>
+            <td><span class="chip"><span style="white-space:nowrap"><span class="dot"></span>Computer Vision&nbsp;&amp;</span> Bildgenerierung</span></td>
+            <td>
+              <div class="tags">
+                <span class="tag">Midjourney</span>
+                <span class="tag">DALL·E (in ChatGPT)</span>
+                <span class="tag">Nano Banana (Google)</span>
+              </div>
+            </td>
+          </tr>
+          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+            <td>
+              <div class="entity">
+                <svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(9 9) scale(0.75)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></g></svg>
+                <span class="name">Zahlen</span>
+              </div>
+            </td>
+            <td class="examples">Umsatzzahlen, Temperaturen und Lieferzeiten</td>
+            <td><span class="does"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>Prognostiziert, erkennt Auffälligkeiten und optimiert</span></td>
+            <td><span class="chip"><span class="dot"></span>Predictive Analytics</span></td>
+            <td>
+              <div class="tags">
+                <span class="tag">Microsoft Fabric</span>
+                <span class="tag">Salesforce Einstein</span>
+                <span class="tag">SAP AI</span>
+              </div>
+            </td>
+          </tr>
+          <tr style="--accent:#BD6C85; --acc-soft:#fbeef2; --acc-line:#f3d7e0; --acc-deep:#9d3f60">
+            <td>
+              <div class="entity">
+                <svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#fbeef2" stroke="#f3d7e0"/><g transform="translate(9 9) scale(0.75)" stroke="#BD6C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g></svg>
+                <span class="name">Strukturierte Daten</span>
+              </div>
+            </td>
+            <td class="examples">Datenbanken, ERP-Einträge und CRM-Daten</td>
+            <td><span class="does"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>Findet Muster, bildet Segmente und gibt Empfehlungen</span></td>
+            <td><span class="chip"><span class="dot"></span>Machine Learning</span></td>
+            <td>
+              <div class="tags">
+                <span class="tag">SAP AI</span>
+                <span class="tag">Salesforce Einstein</span>
+                <span class="tag">Google BigQuery ML</span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="footnote">Produktnamen dienen als Beispiele und sind Marken der jeweiligen Anbieter.</p>
+    </div>
+  </div>
+
+  
+
+
+
+
+<script src="illu-export.js"></script>
+</body>
+</html>

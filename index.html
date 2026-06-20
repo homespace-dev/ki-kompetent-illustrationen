@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Illustrationen – Galerie</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#16171D; --muted:#74757f; --border:#e7e8ec; --bg:#f4f5f7; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;}
+  header{max-width:1180px;margin:0 auto;padding:46px 24px 8px;}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;}
+  h1{margin:0 0 8px;font-size:30px;font-weight:800;letter-spacing:-0.03em;}
+  .lead{margin:0 0 6px;font-size:15px;color:#3a3b44;max-width:820px;line-height:1.55;}
+  .note{margin:14px 0 0;font-size:12.5px;color:var(--muted);max-width:860px;line-height:1.6;
+    background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .note b{color:#3a3b44;}
+
+  /* Farbschema */
+  .palette{max-width:1180px;margin:22px auto 0;padding:0 24px;}
+  .pal-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+  .pal-h{font-size:13px;font-weight:700;letter-spacing:.02em;margin:0 0 2px;}
+  .pal-sub{font-size:12px;color:var(--muted);margin:0 0 14px;}
+  .pal-group{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9a9aa2;margin:14px 0 8px;}
+  .pal-note{font-size:11.5px;color:#9a6a3a;background:#fdf6ed;border:1px solid #f0e2cf;border-radius:9px;padding:8px 11px;margin:10px 0 2px;line-height:1.5;}
+  .sw-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .sw{display:flex;align-items:center;gap:9px;border:1px solid var(--border);border-radius:10px;padding:7px 11px 7px 8px;
+    background:#fbfbfd;cursor:pointer;}
+  .sw:hover{background:#f1f2f5;}
+  .sw .chip{width:26px;height:26px;border-radius:7px;border:1px solid rgba(0,0,0,.06);flex:none;}
+  .sw .nm{font-size:12px;font-weight:600;line-height:1.1;}
+  .sw .hx{font-size:11px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.1;margin-top:1px;}
+  .copied{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#16171D;color:#fff;font-size:12.5px;
+    font-weight:600;padding:9px 14px;border-radius:9px;opacity:0;transition:opacity .15s;pointer-events:none;z-index:50;}
+  .copied.show{opacity:1;}
+
+  /* zentraler Hintergrund-Umschalter */
+  .toolbar{position:sticky;top:0;z-index:20;background:rgba(244,245,247,.86);backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--border);margin-top:22px;}
+  .toolbar-in{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .toolbar .lbl{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em;}
+  .seg{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:10px;padding:3px;gap:2px;}
+  .seg button{font-family:inherit;font-size:13px;font-weight:600;color:#3a3b44;background:transparent;border:none;
+    border-radius:7px;padding:7px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;}
+  .seg button .sw2{width:14px;height:14px;border-radius:4px;border:1px solid #d7d8de;}
+  .seg button[aria-selected="true"]{background:#16171D;color:#fff;}
+  .hint{font-size:12px;color:var(--muted);}
+
+  .grid{max-width:1180px;margin:24px auto 80px;padding:0 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  @media (max-width:760px){ .grid{grid-template-columns:1fr} }
+  .item{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(17,17,19,.04),0 10px 24px rgba(17,17,19,.04);display:flex;flex-direction:column;}
+  .thumb{height:300px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:16px;}
+  .thumb img{max-width:100%;max-height:100%;object-fit:contain;}
+  body[data-bg="white"] .thumb{ background:#fff; }
+  body[data-bg="grid"] .thumb{ background-color:#fff;
+    background-image:radial-gradient(circle, #d9dae1 1px, transparent 1.5px);
+    background-size:16px 16px; background-position:8px 8px; }
+  body[data-bg="transparent"] .thumb{ background-color:#fff;
+    background-image:linear-gradient(45deg,#eceef2 25%,transparent 25%),linear-gradient(-45deg,#eceef2 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#eceef2 75%),linear-gradient(-45deg,transparent 75%,#eceef2 75%);
+    background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0; }
+  /* S/W-Vorschau: desaturiert die Grafik live (1:1 wie der Graustufen-Druck) */
+  body[data-tone="sw"] .thumb img{ filter:grayscale(1); }
+
+  .meta{display:flex;align-items:flex-start;gap:13px;padding:16px 18px 4px;}
+  .num{flex:none;min-width:52px;height:34px;border-radius:9px;background:#16171D;color:#fff;font-weight:700;font-size:12px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;letter-spacing:.02em;line-height:1;padding:0 8px;}
+  .num small{font-size:8px;font-weight:600;opacity:.7;letter-spacing:.08em;}
+  .info .t{font-size:15.5px;font-weight:700;letter-spacing:-0.01em;}
+  .info .f{font-size:12px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;}
+  .dl{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px 18px;}
+  .dl a{font-size:12.5px;font-weight:600;text-decoration:none;border-radius:8px;padding:7px 11px;border:1px solid var(--border);
+    color:#2f3036;background:#fbfbfd;}
+  .dl a:hover{background:#f1f2f5;}
+  .dl a.open{margin-left:auto;color:#16171D;border-color:#d7d8de;}
+  .dl a.big{background:#16171D;color:#fff;border-color:#16171D;}
+  .section-h{max-width:1180px;margin:42px auto 0;padding:0 24px;}
+  .section-h h2{margin:0 0 4px;font-size:21px;font-weight:800;letter-spacing:-0.02em;}
+  .section-h p{margin:0;font-size:13px;color:var(--muted);max-width:760px;line-height:1.5;}
+  .thumb{cursor:zoom-in;}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;z-index:100;display:none;}
+  .lb.open{display:block;}
+  .lb-back{position:absolute;inset:0;background:rgba(16,17,21,.84);backdrop-filter:blur(4px);}
+  .lb-stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:54px 78px 26px;pointer-events:none;}
+  .lb-imgwrap{pointer-events:auto;max-width:min(1080px,90vw);max-height:72vh;border-radius:14px;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;padding:18px;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.55);}
+  .lb-imgwrap img{max-width:100%;max-height:68vh;object-fit:contain;display:block;}
+  body[data-bg="white"] .lb-imgwrap{ background:#fff; }
+  body[data-bg="grid"] .lb-imgwrap{ background-color:#fff;
+    background-image:radial-gradient(circle,#d9dae1 1px,transparent 1.5px);background-size:16px 16px;background-position:8px 8px; }
+  body[data-bg="transparent"] .lb-imgwrap{ background-color:#fff;
+    background-image:linear-gradient(45deg,#eceef2 25%,transparent 25%),linear-gradient(-45deg,#eceef2 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#eceef2 75%),linear-gradient(-45deg,transparent 75%,#eceef2 75%);
+    background-size:18px 18px;background-position:0 0,0 9px,9px -9px,-9px 0; }
+  body[data-tone="sw"] #lbImg{ filter:grayscale(1); }
+  .lb-bar{pointer-events:auto;margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:13px;max-width:92vw;}
+  .lb-cap{color:#fff;font-size:14.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .lb-badge{background:#fff;color:#16171D;font-weight:700;font-size:11.5px;border-radius:7px;padding:4px 10px;letter-spacing:.02em;}
+  .lb-cap .ti{font-weight:600;}
+  .lb-count{color:rgba(255,255,255,.55);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;}
+  .lb-dl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+  .lb-dl a{font-size:12.5px;font-weight:600;border-radius:9px;padding:9px 13px;border:1px solid rgba(255,255,255,.22);
+    color:#fff;background:rgba(255,255,255,.09);text-decoration:none;}
+  .lb-dl a:hover{background:rgba(255,255,255,.18);}
+  .lb-dl a.big{background:#fff;color:#16171D;border-color:#fff;}
+  .lb-x{position:absolute;top:18px;right:20px;z-index:3;width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,255,.22);
+    background:rgba(255,255,255,.09);color:#fff;font-size:17px;cursor:pointer;}
+  .lb-x:hover{background:rgba(255,255,255,.18);}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);color:#fff;font-size:26px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;line-height:1;}
+  .lb-nav:hover{background:rgba(255,255,255,.18);}
+  .lb-nav.prev{left:20px;} .lb-nav.next{right:20px;}
+  @media (max-width:600px){ .lb-stage{padding:46px 12px 18px;} .lb-nav{width:40px;height:40px;font-size:22px;} .lb-nav.prev{left:8px;} .lb-nav.next{right:8px;} }
+</style>
+</head>
+<body data-bg="grid" data-tone="color">
+  <header>
+    <p class="eyebrow">Buchprojekt · KI</p>
+    <h1>Illustrationen – Galerie</h1>
+    <p class="lead">Alle Illustrationen an einem Ort – nummeriert nach den <b>Abbildungs-Nummern aus dem PDF</b>. So passt „Abbildung 8" auf der Website zu „Abbildung 8" im Manuskript.</p>
+    <p class="note"><b>Zwei-spurig:</b> <b>Farbe</b> = lebendige Web-Palette (Galerie, Landingpage). <b>S/W</b> = die <b>S/W-sichere Druckpalette</b> (gleiche Farbfamilie, aber Helligkeit so gestuft, dass die Töne im reinen Schwarz-Weiß-Druck klar unterscheidbar bleiben) – entsättigt dargestellt, genau wie der Graustufendruck. Umschalter: <b>Hintergrund</b> (Transparent / Weiß / Raster) und <b>Darstellung (Farbe / S&#8202;/&#8202;W)</b>; der Download folgt der Auswahl. Für die Druckabgabe an Wiley liegen zusätzlich <b>EPS-Vektordateien</b> (85 / 97 / 107&nbsp;mm, Roboto) unter <code>~/dev/eps/</code>. &nbsp;Hinweis: <b>Abbildung 4</b> und <b>Abbildung 11</b> haben keine Grafik.</p>
+  </header>
+
+  <div class="palette">
+    <div class="pal-card">
+      <p class="pal-h">Farbschema (CMYK-sicher, flach)</p>
+      <p class="pal-sub">Jeder Chip zeigt links die Farbe, rechts den Graustufen-Wert (Luminanz <b>L</b>, 0–255). Klick kopiert den HEX-Wert.</p>
+      <div class="pal-group">Akzente · Aura-Reihe (aktuell)</div>
+      <div class="sw-row" id="accents"></div>
+      <div class="pal-note" id="palNote"></div>
+      <div class="pal-group">★ S/W-sichere Reihe (Vorschlag – klar getrennte Graustufen)</div>
+      <div class="sw-row" id="swsafe"></div>
+      <div class="pal-group">Sanfte Flächen (Chips & Icon-Kästchen)</div>
+      <div class="sw-row" id="softs"></div>
+      <div class="pal-group">Neutrale</div>
+      <div class="sw-row" id="neutrals"></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-in">
+      <span class="lbl">Hintergrund für alle</span>
+      <div class="seg" id="seg" role="tablist">
+        <button data-bg="transparent" aria-selected="false"><span class="sw2" style="background:repeating-conic-gradient(#dfe1e6 0% 25%, #fff 0% 50%) 50%/8px 8px"></span>Transparent</button>
+        <button data-bg="white" aria-selected="false"><span class="sw2" style="background:#fff"></span>Weiß</button>
+        <button data-bg="grid" aria-selected="true"><span class="sw2" style="background-color:#fff;background-image:radial-gradient(circle,#c9cad3 .8px,transparent 1.1px);background-size:4px 4px"></span>Raster</button>
+      </div>
+      <span class="lbl" style="margin-left:8px">Darstellung</span>
+      <div class="seg" id="seg-tone" role="tablist">
+        <button data-tone="color" aria-selected="true"><span class="sw2" style="background:linear-gradient(135deg,#5174BC,#BD6C85)"></span>Farbe</button>
+        <button data-tone="sw" aria-selected="false"><span class="sw2" style="background:linear-gradient(135deg,#3a3b44,#cfd0d6)"></span>S/W</button>
+      </div>
+      <span class="hint">S/W = Vorschau &amp; Download in echten Graustufen (Druck)</span>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="section-h">
+    <h2>Kapitel-Titelseiten</h2>
+    <p>Volle Buchseiten zur Kapitel-Trennung – je Kapitelnummer, Titel und thematisches Motiv (Hochformat).</p>
+  </div>
+  <div class="grid" id="chgrid"></div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Großansicht">
+    <div class="lb-back" id="lbBack"></div>
+    <button class="lb-x" id="lbX" aria-label="Schließen">✕</button>
+    <button class="lb-nav prev" id="lbPrev" aria-label="Vorheriges Bild">‹</button>
+    <button class="lb-nav next" id="lbNext" aria-label="Nächstes Bild">›</button>
+    <div class="lb-stage">
+      <div class="lb-imgwrap"><img id="lbImg" src="" alt=""></div>
+      <div class="lb-bar">
+        <div class="lb-cap"><span class="lb-badge" id="lbBadge"></span><span class="ti" id="lbTitle"></span><span class="lb-count" id="lbCount"></span></div>
+        <div class="lb-dl">
+          <a class="big" id="lbDl3" href="#" target="_blank" rel="noopener">↓ Download · Druck</a>
+          <a id="lbDl2" href="#" target="_blank" rel="noopener">2×</a>
+          <a id="lbDl4" href="#" target="_blank" rel="noopener">4×</a>
+          <a class="open" id="lbOpen" href="#" target="_blank" rel="noopener">Öffnen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="copied" id="copied">HEX kopiert</div>
+
+  <script>
+    // [Abbildungsnummer, Datei, Titel]
+    const items = [
+      [1,'ki-hierarchie-treppe','Von der KI zum Chatbot · Schichten'],
+      [2,'ki-datenarten-tabelle','KI-Datenarten · Tabelle'],
+      [3,'prompt-bausteine','Bausteine eines guten Prompts'],
+      [5,'kpi-leading-lagging-tabelle','Leading/Lagging · Wirksamkeit & Qualität'],
+      [6,'kpi-adoption-leading-lagging','Leading/Lagging · Adoption'],
+      [7,'kpi-markt-leading-lagging','Leading/Lagging · Markt & Umsatz'],
+      [8,'kernmodell-dreieck','KI-Kompetenz-Modell · Dreieck'],
+      [9,'vertrauen-dimensionen-tabelle','Vertrauen · vier Dimensionen'],
+      [10,'zuversicht-bluete','Zuversicht · Blüte (PsyCap)'],
+      [12,'ki-zielbild-tempel','Skalierbares Zielbild · Technologie (Kap. 5)'],
+      [13,'datenqualitaet-tabelle','Datenqualität · Dimensionen'],
+    ];
+    // Kapitel-Titelseiten
+    const chapters = [
+      [1,'kapitel-1-titelseite','Kapitel 1 · Orientierung im KI-Dschungel'],
+      [2,'kapitel-2-titelseite','Kapitel 2 · Wie KI echten Mehrwert schafft'],
+      [3,'kapitel-3-titelseite','Kapitel 3 · Erfolgreich mit dem KI-Kompetenz-Modell'],
+      [4,'kapitel-4-titelseite','Kapitel 4 · KI-Erfolgsfaktor Führung'],
+      [5,'kapitel-5-titelseite','Kapitel 5 · Technologie'],
+    ];
+
+    // Gemeinsame Liste – Reihenfolge = Anzeige; Index steuert die Lightbox
+    const allItems = [];
+    items.forEach(([nr,file,title]) => allItems.push({kind:'ABB', nr, file, title}));
+    chapters.forEach(([nr,file,title]) => allItems.push({kind:'KAP', nr, file, title}));
+
+    function cardHTML(it, idx){
+      const badge = (it.kind==='KAP' ? '<small>KAP.</small>' : '<small>ABB.</small>') + it.nr;
+      return '<div class="thumb" data-idx="'+idx+'" title="Großansicht öffnen">'+
+          '<img loading="lazy" data-file="'+it.file+'" src="illu-thumbs/'+it.file+'.png" alt="'+it.title+'"></div>'+
+        '<div class="meta"><div class="num">'+badge+'</div>'+
+          '<div class="info"><div class="t">'+it.title+'</div><div class="f">'+it.file+'.html</div></div></div>'+
+        '<div class="dl">'+
+          '<a class="size big" data-file="'+it.file+'" data-scale="3" href="#">↓ Download · Druck</a>'+
+          '<a class="size" data-file="'+it.file+'" data-scale="2" href="#">2×</a>'+
+          '<a class="size" data-file="'+it.file+'" data-scale="4" href="#">4×</a>'+
+          '<a class="eps" href="eps/'+it.file+'-97mm.eps" download title="Vektor-EPS (CMYK, Roboto) · 97 mm – auch 85/107 mm im eps-Ordner">EPS ↓</a>'+
+          '<a class="open" data-file="'+it.file+'" href="#" target="_blank" rel="noopener">Öffnen ↗</a>'+
+        '</div>';
+    }
+    const grid = document.getElementById('grid');
+    const chgrid = document.getElementById('chgrid');
+    allItems.forEach((it, idx) => {
+      const el = document.createElement('div');
+      el.className = 'item';
+      el.innerHTML = cardHTML(it, idx);
+      (it.kind==='KAP' ? chgrid : grid).appendChild(el);
+    });
+
+    // Farbschema
+    const accents = [
+      ['Blau hell','#5D86C9'],['Blau','#5174BC'],['Indigo','#685DBA'],['Violett','#6A5CB0'],
+      ['Lila','#8F5E9C'],['Orchid','#A172B0'],['Rosé','#BD6C85'],['Beere','#C4627E']
+    ];
+    const softs = [
+      ['Blau soft','#ECF1FB'],['Indigo soft','#EEEFFB'],['Violett soft','#F3EEFA'],
+      ['Lila soft','#F4EDF7'],['Rosé soft','#FBEEF2']
+    ];
+    const neutrals = [
+      ['Ink (Text)','#16171D'],['Text','#3A3B44'],['Sekundär','#74757F'],
+      ['Linien','#E9EAEE'],['Tabellen-Kopf','#FBFBFD'],['Seitenfläche','#ECEEF3'],['Weiß','#FFFFFF']
+    ];
+    function swatch([name,hex]){
+      return '<div class="sw" data-hex="'+hex+'"><span class="chip" style="background:'+hex+'"></span>'+
+        '<span><span class="nm">'+name+'</span><br><span class="hx">'+hex+'</span></span></div>';
+    }
+    // S/W-sichere Reihe: gleiche Aura-Familie, aber bewusst gestufte Helligkeit → im Graustufen-Druck klar trennbar
+    const swsafe = [
+      ['Tiefblau','#34418F'],['Violett','#6A57B0'],['Orchid','#9B6BA8'],['Rosé','#C98AA0'],['Hellrosa','#E3B8C6']
+    ];
+    document.getElementById('accents').innerHTML = accents.map(swatch).join('');
+    document.getElementById('swsafe').innerHTML = swsafe.map(swatch).join('');
+    document.getElementById('softs').innerHTML = softs.map(swatch).join('');
+    document.getElementById('neutrals').innerHTML = neutrals.map(swatch).join('');
+    document.getElementById('palNote').innerHTML =
+      'Die aktuelle Aura-Reihe ist im reinen S/W-Druck kaum unterscheidbar. Die <b>S/W-sichere Reihe</b> unten spreizt dieselbe Farbfamilie weiter auf. Schalte oben auf <b>Darstellung → S/W</b>, um es an jeder Grafik direkt zu sehen.';
+    const copied = document.getElementById('copied');
+    document.querySelectorAll('.sw').forEach(s => s.addEventListener('click', () => {
+      const hex = s.dataset.hex;
+      navigator.clipboard && navigator.clipboard.writeText(hex);
+      copied.textContent = hex + ' kopiert';
+      copied.classList.add('show'); setTimeout(()=>copied.classList.remove('show'), 1100);
+    }));
+
+    // Hintergrund- & Darstellungs-Umschalter
+    function currentBg(){ return document.body.getAttribute('data-bg') || 'transparent'; }
+    function isSW(){ return document.body.getAttribute('data-tone') === 'sw'; }
+    // S/W zeigt die echte Print-Erscheinung: S/W-sichere Palette (illu-thumbs-sw/), entsättigt per CSS
+    function thumbSrc(file){ return (isSW() ? 'illu-thumbs-sw/' : 'illu-thumbs/') + file + '.png'; }
+    function refreshThumbs(){ document.querySelectorAll('.thumb img').forEach(im => { im.src = thumbSrc(im.dataset.file); }); }
+    function refreshLinks(){
+      const bg = currentBg(), g = isSW() ? '&sw=1&gray=1' : '';
+      document.querySelectorAll('a.size').forEach(a => {
+        a.href = a.dataset.file + '.html?export=' + a.dataset.scale + '&bg=' + bg + g;
+        a.target = '_blank'; a.rel = 'noopener';
+      });
+      document.querySelectorAll('a.open').forEach(a => {
+        a.href = a.dataset.file + '.html?bg=' + bg + g;
+      });
+    }
+    document.getElementById('seg').addEventListener('click', e => {
+      const btn = e.target.closest('button'); if(!btn) return;
+      document.querySelectorAll('#seg button').forEach(b => b.setAttribute('aria-selected', b===btn ? 'true':'false'));
+      document.body.setAttribute('data-bg', btn.dataset.bg);
+      refreshLinks();
+    });
+    document.getElementById('seg-tone').addEventListener('click', e => {
+      const btn = e.target.closest('button'); if(!btn) return;
+      document.querySelectorAll('#seg-tone button').forEach(b => b.setAttribute('aria-selected', b===btn ? 'true':'false'));
+      document.body.setAttribute('data-tone', btn.dataset.tone);
+      refreshLinks(); refreshThumbs();
+    });
+    refreshLinks();
+
+    // ---- Lightbox ----
+    const lb = document.getElementById('lb');
+    const lbImg = document.getElementById('lbImg');
+    const lbBadge = document.getElementById('lbBadge');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbCount = document.getElementById('lbCount');
+    const lbDl3 = document.getElementById('lbDl3');
+    const lbDl2 = document.getElementById('lbDl2');
+    const lbDl4 = document.getElementById('lbDl4');
+    const lbOpen = document.getElementById('lbOpen');
+    let cur = 0;
+    function dlHref(file, scale){ return file + '.html?export=' + scale + '&bg=' + currentBg() + (isSW() ? '&sw=1&gray=1' : ''); }
+    function renderLB(){
+      const it = allItems[cur];
+      lbImg.src = thumbSrc(it.file);
+      lbImg.alt = it.title;
+      lbBadge.textContent = (it.kind === 'KAP' ? 'Kapitel ' : 'Abbildung ') + it.nr;
+      lbTitle.textContent = it.title.replace(/^(?:Kapitel|Abbildung)\s*\d+\s*·\s*/, '');
+      lbCount.textContent = (cur + 1) + ' / ' + allItems.length;
+      lbDl3.href = dlHref(it.file, 3);
+      lbDl2.href = dlHref(it.file, 2);
+      lbDl4.href = dlHref(it.file, 4);
+      lbOpen.href = it.file + '.html?bg=' + currentBg() + (isSW() ? '&sw=1&gray=1' : '');
+    }
+    function openLB(i){ cur = i; renderLB(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+    function closeLB(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+    function stepLB(d){ cur = (cur + d + allItems.length) % allItems.length; renderLB(); }
+    function renderLBIfOpen(){ if (lb.classList.contains('open')) renderLB(); }
+
+    document.addEventListener('click', e => {
+      const t = e.target.closest('.thumb');
+      if (t && t.dataset.idx != null) openLB(+t.dataset.idx);
+    });
+    document.getElementById('lbBack').addEventListener('click', closeLB);
+    document.getElementById('lbX').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', () => stepLB(-1));
+    document.getElementById('lbNext').addEventListener('click', () => stepLB(1));
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      else if (e.key === 'ArrowLeft') stepLB(-1);
+      else if (e.key === 'ArrowRight') stepLB(1);
+    });
+    // Hintergrund-/SW-Umschalter sollen die offene Lightbox sofort aktualisieren
+    document.getElementById('seg').addEventListener('click', renderLBIfOpen);
+    document.getElementById('seg-tone').addEventListener('click', renderLBIfOpen);
+  </script>
+</body>
+</html>

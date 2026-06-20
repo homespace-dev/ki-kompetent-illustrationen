@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Skalierbares Zielbild · Technologie</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{ --ink:#16171D; --muted:#74757f; --page-bg:#eceef3; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:'Roboto',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .toolbar{display:flex;justify-content:center;padding:26px 16px 0;}
+  .btn{display:inline-flex;align-items:center;font-family:inherit;font-size:14px;font-weight:500;color:#fff;background:var(--ink);
+    border:none;border-radius:9px;padding:10px 16px;cursor:pointer;}
+  .btn:hover{background:#000;}
+  .btn svg{width:16px;height:16px;margin-right:8px;}
+  .wrap{display:flex;justify-content:center;padding:34px 24px 60px;min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%);}
+
+  .card{background:transparent;padding:16px;width:792px;}
+  .title{margin:0 0 7px;font-size:27px;font-weight:800;letter-spacing:-0.03em;line-height:1.1;text-align:center;}
+  .subtitle{margin:0 auto 6px;font-size:14.5px;color:var(--muted);text-align:center;max-width:660px;line-height:1.5;}
+
+  .stage{position:relative;width:760px;height:600px;margin:14px auto 0;}
+  .roof{position:absolute;top:0;left:0;}
+
+  .roof-lbl{position:absolute;left:210px;top:78px;width:340px;text-align:center;}
+  .roof-lbl .ic{display:block;margin:0 auto 6px;line-height:0;color:#fff;}
+  .roof-lbl .ic svg{width:24px;height:24px;}
+  .roof-lbl .t{font-size:19px;font-weight:800;color:#fff;letter-spacing:-0.01em;}
+  .roof-lbl .s{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.92);margin-top:3px;letter-spacing:.02em;}
+
+  .pillar{position:absolute;width:168px;height:206px;top:196px;border-radius:13px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 12px;}
+  .pillar .ic{line-height:0;color:#fff;margin-bottom:12px;}
+  .pillar .ic svg{width:30px;height:30px;}
+  .pillar .t{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.01em;}
+  .pillar .s{font-size:11.5px;font-weight:500;color:rgba(255,255,255,.85);margin-top:4px;line-height:1.3;}
+
+  .band{position:absolute;left:50px;width:660px;height:66px;border-radius:13px;display:flex;align-items:center;padding:0 22px;}
+  .band .ic{line-height:0;color:#fff;margin-right:14px;flex:none;}
+  .band .ic svg{width:22px;height:22px;}
+  .band .t{font-size:15.5px;font-weight:700;color:#fff;letter-spacing:-0.005em;}
+  .band .s{font-size:12px;font-weight:500;color:rgba(255,255,255,.8);margin-left:10px;}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h1 class="title">Das skalierbare Zielbild</h1>
+      <p class="subtitle">Weniger ist mehr: Nicht möglichst viele Tools, sondern wenige richtige Bausteine – klar zusammengespielt – machen KI skalierbar.</p>
+
+      <div class="stage">
+        <svg class="roof" width="760" height="600" viewBox="0 0 760 600" fill="none">
+          <polygon points="380,30 720,168 40,168" fill="#6A5CB0"/>
+        </svg>
+
+        <div class="roof-lbl">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <div class="t">Skalierbares Zielbild</div>
+          <div class="s">Klarheit statt Tool-Wildwuchs</div>
+        </div>
+
+        <div class="pillar" style="left:68px;background:#5174BC">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span>
+          <div class="t">Daten</div>
+          <div class="s">Datenbasis &amp; Architektur</div>
+        </div>
+
+        <div class="pillar" style="left:296px;background:#615AAE">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></span>
+          <div class="t">Plattformen</div>
+          <div class="s">Cloud, APIs &amp; Werkzeuge</div>
+        </div>
+
+        <div class="pillar" style="left:524px;background:#8F5E9C">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div class="t">KI-Fähigkeiten</div>
+          <div class="s">Skills &amp; Rollen</div>
+        </div>
+
+        <div class="band" style="top:430px;background:#3A3B44">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
+          <span class="t">Strategie</span>
+          <span class="s">in der Unternehmensstrategie verankert</span>
+        </div>
+
+        <div class="band" style="top:506px;background:#4A4B57">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span class="t">AI-Governance</span>
+          <span class="s">AI Act · DSGVO · ethische Leitplanken</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="illu-export.js"></script>
+</body>
+</html>

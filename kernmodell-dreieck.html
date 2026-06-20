@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Das Kernmodell · Drei Kräfte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root { --ink:#16171D; --text-muted:#74757f; --page-bg:#eceef3; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; font-family:'Roboto',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .toolbar { display:flex; justify-content:center; padding:26px 16px 0; }
+  .btn { display:inline-flex; align-items:center; font-family:inherit; font-size:14px; font-weight:500;
+    color:#fff; background:var(--ink); border:none; border-radius:9px; padding:10px 16px; cursor:pointer; }
+  .btn:hover { background:#000; }
+  .btn svg { width:16px; height:16px; margin-right:8px; }
+  /* Verlauf auf .wrap (Vorfahre von #capture) – nicht im transparenten Export */
+  .wrap { display:flex; justify-content:center; padding:34px 24px 60px; min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%); }
+
+  .card { background:transparent; padding:16px; width:852px; }
+  .eyebrow { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--text-muted);
+    margin:0 0 8px; text-align:center; }
+  .title { margin:0 0 7px; font-size:27px; font-weight:800; letter-spacing:-0.03em; line-height:1.1; text-align:center; }
+  .subtitle { margin:0 auto 6px; font-size:14.5px; color:var(--text-muted); text-align:center; max-width:560px; line-height:1.5; }
+
+  .stage { position:relative; width:820px; height:540px; margin:8px auto 0; }
+  .geo { position:absolute; top:0; left:0; }
+
+  .lbl { position:absolute; }
+  .lbl .t { font-size:16px; font-weight:700; letter-spacing:-0.01em; }
+  .lbl .d { font-size:12px; color:var(--text-muted); font-weight:500; margin-top:2px; letter-spacing:.005em; }
+
+  .hub { position:absolute; text-align:center; }
+  .hub .ht { font-size:20px; font-weight:800; color:#fff; letter-spacing:-0.01em; line-height:1; }
+  .hub .hs { font-size:11px; font-weight:500; color:rgba(255,255,255,.9); margin-top:5px; letter-spacing:.01em; }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h1 class="title">Die drei Kräfte erfolgreicher KI</h1>
+      <p class="subtitle">Führung, Technologie sowie Organisation &amp; Kultur bringen gemeinsam die Use-Cases hervor – sie entstehen in ihrer Mitte.</p>
+
+      <div class="stage">
+        <svg class="geo" width="820" height="540" viewBox="0 0 820 540" fill="none">
+          <defs>
+            <linearGradient id="eTL" x1="410" y1="95" x2="175" y2="445" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5174BC"/><stop offset="1" stop-color="#685DBA"/></linearGradient>
+            <linearGradient id="eLR" x1="175" y1="445" x2="645" y2="445" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#685DBA"/><stop offset="1" stop-color="#A172B0"/></linearGradient>
+            <linearGradient id="eRT" x1="645" y1="445" x2="410" y2="95" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#A172B0"/><stop offset="1" stop-color="#5174BC"/></linearGradient>
+            <linearGradient id="triFill" x1="410" y1="95" x2="410" y2="445" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5174BC" stop-opacity="0.08"/><stop offset="1" stop-color="#A172B0" stop-opacity="0.08"/></linearGradient>
+            <radialGradient id="hubGlow" cx="410" cy="328" r="150" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7259B3" stop-opacity="0.32"/><stop offset="1" stop-color="#7259B3" stop-opacity="0"/></radialGradient>
+            <linearGradient id="hubFill" x1="326" y1="244" x2="494" y2="412" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5174BC"/><stop offset="0.52" stop-color="#7259B3"/><stop offset="1" stop-color="#AD6597"/></linearGradient>
+            <linearGradient id="oF" x1="377" y1="62" x2="443" y2="128" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5D86C9"/><stop offset="1" stop-color="#4567A4"/></linearGradient>
+            <linearGradient id="oL" x1="142" y1="412" x2="208" y2="478" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#756ABD"/><stop offset="1" stop-color="#5A4AA4"/></linearGradient>
+            <linearGradient id="oR" x1="612" y1="412" x2="678" y2="478" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#A96AA9"/><stop offset="1" stop-color="#95569D"/></linearGradient>
+          </defs>
+
+          <!-- Fläche -->
+          <polygon points="410,95 175,445 645,445" fill="#F1EEF8"/>
+
+          <!-- Konvergenz-Strahlen zur Mitte -->
+          <line x1="410" y1="95"  x2="410" y2="328" stroke="#cfcedb" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+          <line x1="175" y1="445" x2="410" y2="328" stroke="#cfcedb" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+          <line x1="645" y1="445" x2="410" y2="328" stroke="#cfcedb" stroke-width="1.5" stroke-dasharray="2 7" stroke-linecap="round"/>
+
+          <!-- Kanten mit Farbverlauf -->
+          <line x1="410" y1="95"  x2="175" y2="445" stroke="#7259B3" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="175" y1="445" x2="645" y2="445" stroke="#7259B3" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="645" y1="445" x2="410" y2="95"  stroke="#7259B3" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Glow + Kern -->
+
+
+          <!-- Eck-Knoten -->
+          <circle cx="410" cy="95" r="33" fill="#5D86C9"/>
+          <g transform="translate(410 95) scale(0.9) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></g>
+
+          <circle cx="175" cy="445" r="33" fill="#685DBA"/>
+          <g transform="translate(175 445) scale(0.9) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></g>
+
+          <circle cx="645" cy="445" r="33" fill="#A172B0"/>
+          <g transform="translate(645 445) scale(0.9) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></g>
+
+          <!-- Kern-Orb -->
+          <circle cx="410" cy="328" r="84" fill="#6A5CB0"/>
+
+        </svg>
+
+        <!-- Beschriftungen -->
+        <div class="lbl" style="left:300px; top:2px; width:220px; text-align:center">
+          <div class="t" style="color:#4567A4">Führung</div>
+          <div class="d">Vision · Priorisierung · Rückhalt</div>
+        </div>
+        <div class="lbl" style="left:55px; top:488px; width:240px; text-align:center">
+          <div class="t" style="color:#5A4AA4">Technologie</div>
+          <div class="d">Daten · Tools · Infrastruktur</div>
+        </div>
+        <div class="lbl" style="left:520px; top:488px; width:250px; text-align:center">
+          <div class="t" style="color:#95569D">Organisation &amp; Kultur</div>
+          <div class="d">Prozesse · Kompetenz · Akzeptanz</div>
+        </div>
+
+        <div class="hub" style="left:320px; top:306px; width:180px">
+          <div class="ht">Use-Cases</div>
+          <div class="hs">entstehen im Zusammenspiel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+
+<script src="illu-export.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>KI-Hierarchie · Verschachtelte Treppe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --ink: #16171D; --border: #e9eaee; --text-muted: #74757f; --page-bg: #eceef3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .toolbar { display: flex; justify-content: center; padding: 26px 16px 0; }
+  .btn {
+    display: inline-flex; align-items: center; font-family: inherit; font-size: 14px; font-weight: 500;
+    color: #fff; background: var(--ink); border: none; border-radius: 9px; padding: 10px 16px; cursor: pointer;
+  }
+  .btn:hover { background: #000; }
+  .btn svg { width: 16px; height: 16px; margin-right: 8px; }
+  /* Verlauf auf .wrap (Vorfahre von #capture) – im Export des Kind-Elements nicht enthalten */
+  .wrap { display: flex; justify-content: center; padding: 34px 24px 60px; min-height: 100vh;
+    background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%); }
+  .card { background: transparent; padding: 16px; max-width: 760px; width: 760px; }
+
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 8px; }
+  .title { margin: 0 0 6px; font-size: 25px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.12; }
+  .subtitle { margin: 0 0 26px; font-size: 14px; color: var(--text-muted); }
+
+  /* linksbündige Karten; Gradient-Rahmen als SVG-Stroke (gleichmäßig in html2canvas) */
+  .lvl {
+    position: relative; background: #fff; border-radius: 12px; padding: 14px 16px;
+    height: 72px;   /* alle Karten gleich hoch (Beschreibungen sind einzeilig) */
+    margin-bottom: 12px; box-shadow: 0 1px 2px rgba(17,17,19,.04);
+  }
+  /* Gradient-Rahmen als SVG-Stroke, knapp INNEN versetzt → gleichmäßig inkl. Ecken, auf jedem Hintergrund */
+  .bord { position: absolute; top: 0; left: 0; overflow: visible; pointer-events: none; }
+  .badge {
+    float: left; width: 30px; height: 30px; border-radius: 8px; background: var(--c);
+    color: #fff; font-weight: 700; font-size: 13px; text-align: center; line-height: 30px; margin-right: 13px;
+    position: relative; top: -1.5px;   /* Zahl-Mitte auf Überschrift-Mitte ausrichten */
+  }
+  .ct { overflow: hidden; margin-top: 4px; }   /* Textblock vertikal in der Karte zentrieren */
+  .ct-title { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+  .ct-title .sub { font-weight: 500; color: var(--c); font-size: 12.5px; margin-left: 8px; }
+  .ct-desc { font-size: 13px; color: var(--text-muted); line-height: 1.45; margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h1 class="title">Von der KI zum Chatbot – Schicht für Schicht</h1>
+      <p class="subtitle">Jede Ebene ist ein spezialisierter Teil der darüberliegenden. ChatGPT steckt ganz innen.</p>
+
+      <div class="lvl" style="--c:#4093BD; width:728px">
+        <svg class="bord" width="728" height="72" viewBox="0 0 728 72"><rect x="0.75" y="0.75" width="726.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#4093BD" stroke-width="1.25"/><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4093BD"/><stop offset="1" stop-color="#5174BC"/></linearGradient></defs></svg>
+        <div class="badge">1</div>
+        <div class="ct">
+          <div class="ct-title">Artificial Intelligence <span class="sub">der Oberbegriff</span></div>
+          <div class="ct-desc">Maschinen lösen Aufgaben, die sonst menschliche Intelligenz erfordern.</div>
+        </div>
+      </div>
+      <div class="lvl" style="--c:#5174BC; width:670px">
+        <svg class="bord" width="670" height="72" viewBox="0 0 670 72"><rect x="0.75" y="0.75" width="668.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#5174BC" stroke-width="1.25"/><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5174BC"/><stop offset="1" stop-color="#685DBA"/></linearGradient></defs></svg>
+        <div class="badge">2</div>
+        <div class="ct">
+          <div class="ct-title">Machine Learning</div>
+          <div class="ct-desc">Systeme, die aus Daten lernen, statt fest programmiert zu werden.</div>
+        </div>
+      </div>
+      <div class="lvl" style="--c:#685DBA; width:611px">
+        <svg class="bord" width="611" height="72" viewBox="0 0 611 72"><rect x="0.75" y="0.75" width="609.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#685DBA" stroke-width="1.25"/><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#685DBA"/><stop offset="1" stop-color="#8C5FAB"/></linearGradient></defs></svg>
+        <div class="badge">3</div>
+        <div class="ct">
+          <div class="ct-title">Neural Networks</div>
+          <div class="ct-desc">Lernende Netze nach dem Vorbild des Gehirns.</div>
+        </div>
+      </div>
+      <div class="lvl" style="--c:#8C5FAB; width:553px">
+        <svg class="bord" width="553" height="72" viewBox="0 0 553 72"><rect x="0.75" y="0.75" width="551.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#8C5FAB" stroke-width="1.25"/><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8C5FAB"/><stop offset="1" stop-color="#AD6097"/></linearGradient></defs></svg>
+        <div class="badge">4</div>
+        <div class="ct">
+          <div class="ct-title">Deep Learning</div>
+          <div class="ct-desc">Tiefe neuronale Netze für komplexe Muster.</div>
+        </div>
+      </div>
+      <div class="lvl" style="--c:#AD6097; width:495px">
+        <svg class="bord" width="495" height="72" viewBox="0 0 495 72"><rect x="0.75" y="0.75" width="493.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#AD6097" stroke-width="1.25"/><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#AD6097"/><stop offset="1" stop-color="#C4627E"/></linearGradient></defs></svg>
+        <div class="badge">5</div>
+        <div class="ct">
+          <div class="ct-title">Large Language Models</div>
+          <div class="ct-desc">Verstehen und erzeugen menschliche Sprache.</div>
+        </div>
+      </div>
+      <div class="lvl" style="--c:#C4627E; width:437px">
+        <svg class="bord" width="437" height="72" viewBox="0 0 437 72"><rect x="0.75" y="0.75" width="435.5" height="70.5" rx="11.25" ry="11.25" fill="none" stroke="#C4627E" stroke-width="1.25"/><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C4627E"/><stop offset="1" stop-color="#C4627E"/></linearGradient></defs></svg>
+        <div class="badge">6</div>
+        <div class="ct">
+          <div class="ct-title">ChatGPT <span class="sub">konkretes Produkt</span></div>
+          <div class="ct-desc">Ein Produkt auf Basis eines großen Sprachmodells.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+
+<script src="illu-export.js"></script>
+</body>
+</html>
