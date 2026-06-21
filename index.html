@@ -66,7 +66,7 @@
   /* S/W-Vorschau: desaturiert die Grafik live (1:1 wie der Graustufen-Druck) */
   body[data-tone="sw"] .thumb img{ filter:grayscale(1); }
   /* Logo-Entwürfe: eigene Karten, immer weiß + farbig (unabhängig von Hintergrund-/S-W-Umschalter) */
-  .logo-thumb{height:300px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:28px;background:#fff;}
+  .logo-thumb{height:300px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:28px;background:#fff;cursor:zoom-in;}
   .logo-thumb img{max-width:100%;max-height:100%;object-fit:contain;}
 
   .meta{display:flex;align-items:flex-start;gap:13px;padding:16px 18px 4px;}
@@ -174,23 +174,23 @@
   <div class="grid" id="chgrid"></div>
 
   <div class="section-h">
-    <h2>Logo-Entwürfe</h2>
-    <p>Erste Logo-Entwürfe für das Buchprojekt – bewusst getrennt von den Abbildungen und Kapitel-Covern. Noch nicht final.</p>
+    <h2>Logo-Entwurf</h2>
+    <p>Dasselbe Logo in zwei Setzungen – erste Entwürfe, bewusst getrennt von den Abbildungen und Kapitel-Covern. Noch nicht final. Klick auf das Bild öffnet die Großansicht.</p>
   </div>
   <div class="grid" id="logogrid">
     <div class="item">
-      <div class="logo-thumb"><img loading="lazy" src="logos/logo-entwurf-1.png" alt="Logo-Entwurf 1"></div>
+      <a class="logo-thumb" href="logos/logo-entwurf-1.png" target="_blank" rel="noopener"><img loading="lazy" src="logos/logo-entwurf-1.png" alt="Logo-Entwurf · Setzung 1"></a>
       <div class="meta"><div class="num"><small>LOGO</small>1</div>
-        <div class="info"><div class="t">Logo-Entwurf 1</div><div class="f">logo-entwurf-1.png</div></div></div>
+        <div class="info"><div class="t">Logo · Setzung 1</div><div class="f">logo-entwurf-1.png</div></div></div>
       <div class="dl">
         <a class="size big" href="logos/logo-entwurf-1.png" download>↓ Download</a>
         <a class="open" href="logos/logo-entwurf-1.png" target="_blank" rel="noopener">Öffnen ↗</a>
       </div>
     </div>
     <div class="item">
-      <div class="logo-thumb"><img loading="lazy" src="logos/logo-entwurf-2.png" alt="Logo-Entwurf 2"></div>
+      <a class="logo-thumb" href="logos/logo-entwurf-2.png" target="_blank" rel="noopener"><img loading="lazy" src="logos/logo-entwurf-2.png" alt="Logo-Entwurf · Setzung 2"></a>
       <div class="meta"><div class="num"><small>LOGO</small>2</div>
-        <div class="info"><div class="t">Logo-Entwurf 2</div><div class="f">logo-entwurf-2.png</div></div></div>
+        <div class="info"><div class="t">Logo · Setzung 2</div><div class="f">logo-entwurf-2.png</div></div></div>
       <div class="dl">
         <a class="size big" href="logos/logo-entwurf-2.png" download>↓ Download</a>
         <a class="open" href="logos/logo-entwurf-2.png" target="_blank" rel="noopener">Öffnen ↗</a>
@@ -316,10 +316,12 @@
     function refreshLinks(){
       const bg = currentBg(), g = isSW() ? '&sw=1&gray=1' : '';
       document.querySelectorAll('a.size').forEach(a => {
+        if(!a.dataset.file) return;   // Logo-Links (ohne data-file) nicht anfassen
         a.href = a.dataset.file + '.html?export=' + a.dataset.scale + '&bg=' + bg + g;
         a.target = '_blank'; a.rel = 'noopener';
       });
       document.querySelectorAll('a.open').forEach(a => {
+        if(!a.dataset.file) return;
         a.href = a.dataset.file + '.html?bg=' + bg + g;
       });
     }
