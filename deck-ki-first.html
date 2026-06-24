@@ -29,12 +29,13 @@
     border-radius:16px;overflow:hidden;position:relative;box-shadow:0 30px 80px -30px rgba(0,0,0,.7);
     background:#fff url(deck-assets/bg-grid.png) center/cover no-repeat;}
   .slide.dark{background:#101117;color:#fff}
-  .pad{position:absolute;inset:0;padding:60px 70px;display:flex;flex-direction:column}
+  /* mehr Schutzraum unten: Inhalt endet höher, Logo bekommt freie Zone */
+  .pad{position:absolute;inset:0;padding:56px 72px 92px;display:flex;flex-direction:column}
   .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .eyebrow .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--aura);margin-right:10px;vertical-align:middle}
   .slide.dark .eyebrow{color:rgba(255,255,255,.6)}
   .grad{background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .foot{position:absolute;left:70px;right:70px;bottom:32px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--faint)}
+  .foot{position:absolute;left:72px;right:72px;bottom:30px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--faint)}
   .foot .logo{height:20px;display:block}
   .slide.dark .foot{color:rgba(255,255,255,.4)} .slide.dark .foot .logo{filter:brightness(0) invert(1);opacity:.85}
   .snum{font-variant-numeric:tabular-nums;font-weight:600}
@@ -43,8 +44,7 @@
   .s-title .pad{justify-content:center}
   .s-title .glow{position:absolute;right:-6%;top:-12%;width:760px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(104,93,186,.28),transparent 70%),radial-gradient(closest-side at 70% 70%,rgba(189,108,133,.26),transparent 70%);filter:blur(34px)}
   .s-title h1{font-size:60px;max-width:18ch;position:relative}
-  .s-title .sub{font-size:23px;color:var(--ink-2);margin-top:18px;max-width:40ch;line-height:1.4;position:relative}
-  .s-title .sub b{color:var(--ink);font-weight:600}
+  .s-title .sub{font-size:23px;color:var(--ink-2);margin-top:18px;max-width:40ch;line-height:1.4;position:relative;font-weight:500}
   .who{margin-top:38px;display:flex;align-items:center;gap:14px;position:relative}
   .who .av{width:52px;height:52px;border-radius:14px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;box-shadow:0 10px 24px -10px rgba(104,93,186,.7)}
   .who .nm{font-size:17px;font-weight:700} .who .ro{font-size:13.5px;color:var(--muted);margin-top:2px}
@@ -72,7 +72,6 @@
   .s-sec .ai{display:flex;gap:18px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
   .s-sec .ai .n{font-size:22px;font-weight:800;background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent;width:34px;font-variant-numeric:tabular-nums}
   .s-sec .ai .at{font-size:21px;font-weight:700;letter-spacing:-0.01em}
-  .s-sec .ai .ae{font-size:14px;color:var(--muted);margin-left:auto}
 
   .s-q .pad{justify-content:center;align-items:flex-start}
   .s-q h1{font-size:50px;max-width:20ch}
@@ -82,15 +81,12 @@
   .s-state .dots2{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.10) 1px,transparent 1.5px);background-size:28px 28px;opacity:.5}
   .s-state h1{font-size:58px;line-height:1.05;max-width:17ch;position:relative}
   .s-state .em{background:linear-gradient(110deg,#8fb0ff,#c79edb 50%,#f0a6bd);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .s-state .sub{font-size:20px;color:rgba(255,255,255,.62);margin-top:24px;max-width:52ch;line-height:1.5;position:relative}
 
-  /* generic 3-column cards */
   .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:auto}
   .c3{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
   .c3 .ci{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:14px}
-  .c3 .lab{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+  .c3 .lab{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
   .c3 h3{font-size:18px;font-weight:800;letter-spacing:-0.01em;margin:0}
-  .c3 .en{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
   .c3 .desc{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;line-height:1.4}
   .c3 ul{list-style:none;margin:12px 0 0;padding:0}
   .c3 li{display:flex;gap:9px;font-size:13.5px;color:var(--ink-2);padding:6px 0;line-height:1.35}
@@ -98,7 +94,6 @@
   .c3 .tag{font-size:11.5px;font-weight:700;color:var(--muted);background:var(--page-bg);border-radius:999px;padding:6px 11px;align-self:flex-start;margin-top:10px}
   .s-cards h1{font-size:30px;margin-top:10px;max-width:34ch}
 
-  /* triangle (three forces) */
   .s-tri h1{font-size:30px;margin-top:8px;max-width:34ch}
   .tristage{flex:1;position:relative;margin-top:4px}
   .tristage svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
@@ -108,11 +103,10 @@
   .thub{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);text-align:center;width:150px}
   .thub .ht{font-size:16px;font-weight:800;color:#fff} .thub .hs{font-size:11px;color:rgba(255,255,255,.8);margin-top:1px}
 
-  /* 5 steps */
   .s-steps h1{font-size:30px;margin-top:8px}
   .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-top:auto}
   .step{border:1px solid var(--line);border-radius:14px;background:#fff;padding:18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  .step .sh{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .step .sh{display:flex;align-items:center;gap:9px;margin-bottom:10px}
   .step .sn{width:28px;height:28px;border-radius:8px;background:var(--aura);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
   .step .sl{font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--muted)}
   .step h3{font-size:15.5px;font-weight:800;letter-spacing:-0.01em;margin:0 0 8px}
@@ -120,25 +114,21 @@
   .step li{font-size:12px;color:var(--ink-2);padding:5px 0;border-top:1px solid var(--line-2);line-height:1.3}
   .step li:first-child{border-top:none}
 
-  /* Q&A */
   .s-qa .pad{justify-content:center;align-items:center;text-align:center}
   .s-qa h1{font-size:120px;letter-spacing:-0.05em}
   .s-qa .qsub{font-size:20px;color:var(--muted);margin-top:8px}
 
-  /* TWO LEVEL (backup) */
   .s-two h1{font-size:32px;margin-top:10px;max-width:32ch}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:auto}
   .col{border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow);background:#fff}
-  .col .ch{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .col .ch{display:flex;align-items:center;gap:12px;margin-bottom:8px}
   .col .ch .ci{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff}
   .col .ch .ct{font-size:20px;font-weight:800;letter-spacing:-0.02em}
-  .col .ch .ce{font-size:12.5px;color:var(--muted);font-weight:600}
   .col .row{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--line-2)}
-  .col .row:nth-child(2){border-top:none}
+  .col .row:first-of-type{border-top:none}
   .col .row .k{flex:none;width:128px;font-size:15px;font-weight:700;color:var(--ink)}
   .col .row .v{font-size:14.5px;color:var(--ink-2);line-height:1.4}
 
-  /* PYRAMID (backup) */
   .s-pyr h1{font-size:30px;margin-top:8px;max-width:34ch}
   .pyr{flex:1;margin-top:14px;display:flex;flex-direction:column;gap:11px;justify-content:center}
   .pyr .cap{align-self:center;background:var(--aura);color:#fff;border-radius:13px;padding:13px 26px;text-align:center;box-shadow:0 12px 28px -12px rgba(104,93,186,.6);max-width:560px}
@@ -151,7 +141,6 @@
   .pyr .base .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
   .pyr .base .chip{font-size:13px;font-weight:600;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px}
 
-  /* OFFERING (backup) */
   .s-off h1{font-size:28px;margin-top:8px;max-width:34ch}
   .s-off .meta{font-size:14px;color:var(--muted);margin-top:6px}
   .mods{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:auto}
@@ -164,21 +153,19 @@
   .mod li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:7px}
   .mod .mfoot{margin-top:12px;padding-top:11px;border-top:1px solid var(--line-2);font-size:12.5px;font-weight:600;color:var(--muted)}
 
-  /* PROMPT BLOCKS / LOOP / TOOL / CONCEPT / PP (backup) */
   .s-prompt h1{font-size:32px;margin-top:10px}
   .blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:auto}
-  .blk{border:1px solid var(--line);border-radius:16px;padding:20px;background:#fff;box-shadow:var(--shadow)}
-  .blk .bn{font-size:13px;font-weight:800;color:#fff;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .blk{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;box-shadow:var(--shadow)}
+  .blk .bn{font-size:13px;font-weight:800;color:#fff;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
   .blk h3{font-size:18px;font-weight:700;letter-spacing:-0.01em;margin:0}
-  .blk .en{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
   .blk p{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;line-height:1.4}
 
   .s-loop h1{font-size:30px;margin-top:8px;max-width:26ch}
   .loopstage{flex:1;position:relative;margin-top:6px}
   .loopstage svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-  .lnode{position:absolute;width:186px;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow);text-align:center}
-  .lnode .ln{width:28px;height:28px;border-radius:9px;background:var(--aura);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 7px}
-  .lnode .lt{font-size:14.5px;font-weight:700;letter-spacing:-0.01em} .lnode .le{font-size:12px;color:var(--muted);margin-top:2px}
+  .lnode{position:absolute;width:186px;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);text-align:center}
+  .lnode .ln{width:28px;height:28px;border-radius:9px;background:var(--aura);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+  .lnode .lt{font-size:15px;font-weight:700;letter-spacing:-0.01em}
   .loopstage .ctr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:200px}
   .loopstage .ctr .ct2{font-size:18px;font-weight:800;background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent}
   .loopstage .ctr .ce2{font-size:13px;color:var(--muted);margin-top:2px}
@@ -194,10 +181,9 @@
 
   .s-concept .pad{justify-content:center}
   .s-concept h1{font-size:34px;max-width:22ch}
-  .s-concept .quote{margin-top:26px;display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px 32px;box-shadow:var(--shadow);max-width:880px}
+  .s-concept .quote{margin-top:26px;display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 34px;box-shadow:var(--shadow);max-width:880px}
   .s-concept .quote .ic{flex:none;width:64px;height:64px;border-radius:18px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center}
-  .s-concept .quote .qt{font-size:26px;font-weight:800;letter-spacing:-0.02em;line-height:1.2}
-  .s-concept .quote .qe{font-size:15px;color:var(--muted);margin-top:6px}
+  .s-concept .quote .qt{font-size:27px;font-weight:800;letter-spacing:-0.02em;line-height:1.25}
 
   .s-pp .pad{display:grid;grid-template-columns:0.85fr 1.15fr;gap:46px;align-items:center}
   .s-pp .lft h1{font-size:30px;max-width:16ch}
@@ -209,24 +195,27 @@
   .s-pp li .ck{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(104,93,186,.14);color:var(--indigo);display:flex;align-items:center;justify-content:center}
   .s-pp li b{color:var(--ink);font-weight:700}
 
-  /* THANKS + closing QR */
   .s-thx .pad{justify-content:center;align-items:center;text-align:center}
-  .s-thx .biglogo{height:60px;margin-bottom:28px}
+  .s-thx .biglogo{height:58px;margin-bottom:28px}
   .s-thx h1{font-size:46px}
-  .s-thx .who{justify-content:center;margin-top:32px}
-  .s-close .pad{display:grid;grid-template-columns:1.05fr 0.95fr;gap:50px;align-items:center}
-  .s-close .lft .biglogo{height:46px;margin-bottom:24px}
-  .s-close .lft h1{font-size:46px}
-  .s-close .who{margin-top:30px}
-  .bookcard{border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow);padding:28px;display:flex;gap:24px;align-items:center}
-  .bookcard .cover{width:150px;flex:none;border-radius:8px;box-shadow:0 2px 6px rgba(22,23,29,.12),0 24px 44px -22px rgba(22,23,29,.5)}
-  .bookcard .qr{text-align:center}
-  .bookcard .qr img{width:148px;height:148px;display:block}
-  .bookcard .qr .ql{font-size:13px;font-weight:700;margin-top:12px}
-  .bookcard .qr .qe{font-size:12px;color:var(--muted);margin-top:2px}
-  .bookcard .bt{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-  .bookcard .bn2{font-size:21px;font-weight:800;letter-spacing:-0.02em;margin-top:4px}
-  .bookcard .bd{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+  .s-thx .who{justify-content:center;margin-top:30px}
+
+  /* closing slide – luftig, QR mit viel Weißraum */
+  .s-close .pad{justify-content:center;align-items:center;text-align:center;padding-bottom:92px}
+  .s-close .biglogo{height:38px;margin-bottom:20px}
+  .s-close h1{font-size:50px}
+  .s-close .auth{font-size:15px;color:var(--muted);margin-top:13px}
+  .bookpanel{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:26px;background:#fff;box-shadow:var(--shadow);margin-top:46px}
+  .bookpanel .seg{padding:38px 46px;display:flex;align-items:center;gap:28px;text-align:left}
+  .bookpanel .seg + .seg{border-left:1px solid var(--line-2)}
+  .bookpanel .cover{height:196px;border-radius:8px;box-shadow:0 2px 6px rgba(22,23,29,.12),0 22px 40px -22px rgba(22,23,29,.5)}
+  .bookpanel .bt{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .bookpanel .bn2{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin-top:4px}
+  .bookpanel .bd{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.5;max-width:230px}
+  .bookpanel .qrseg{flex-direction:column;gap:16px;text-align:center}
+  .bookpanel .qrseg img{width:164px;height:164px;display:block}
+  .bookpanel .qrseg .ql{font-size:13.5px;font-weight:700}
+  .bookpanel .qrseg .qe{font-size:12px;color:var(--muted);margin-top:2px}
 </style>
 </head>
 <body>
@@ -238,7 +227,7 @@
   <div class="slide-wrap"><div class="slide s-title"><div class="glow"></div>
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Keynote</span>
       <h1 class="t" style="margin-top:22px">Was braucht es für ein <span class="grad">KI-First-Unternehmen?</span></h1>
-      <p class="sub"><b>Vom Hype zur echten Wertschöpfung.</b><br><span style="color:var(--muted)">From hype to real business impact.</span></p>
+      <p class="sub">Vom Hype zur echten Wertschöpfung.</p>
       <div class="who"><div class="av">KE</div><div><div class="nm">Kira Engelhardt</div><div class="ro">Global Head of Data &amp; AI</div></div></div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">01</span></div></div></div>
 
@@ -264,7 +253,7 @@
           <defs><linearGradient id="cg" x1="40" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5174BC"/><stop offset="0.5" stop-color="#8F5E9C"/><stop offset="1" stop-color="#BD6C85"/></linearGradient></defs>
           <circle cx="210" cy="70" r="6" fill="#685DBA"/><circle cx="340" cy="270" r="6" fill="#BD6C85"/><circle cx="720" cy="130" r="6" fill="#5174BC"/></svg>
         <div class="clab" style="left:27%;top:6%">Gipfel der überzogenen<br>Erwartungen</div>
-        <div class="clab" style="left:44%;top:80%;color:#BD6C85">Tal der Tränen<br><span style="color:var(--faint);font-weight:500">„Valley of Tears"</span></div>
+        <div class="clab" style="left:44%;top:80%;color:#BD6C85">Tal der Tränen</div>
         <div class="clab" style="left:7%;top:84%">Technologie-<br>Auslöser</div>
         <div class="clab" style="left:88%;top:24%">Produktivitäts-<br>Plateau</div>
         <div class="reasons"><div class="r"><span class="ic">!</span><span class="rt">Kein Bezug zum Kerngeschäft</span></div><div class="r"><span class="ic">!</span><span class="rt">Fehlende Adaptionsstrategie</span></div><div class="r"><span class="ic">!</span><span class="rt">Kein Ownership</span></div></div>
@@ -276,14 +265,14 @@
     <div class="pad"><span class="part">Überblick · Agenda</span>
       <h1 class="t">Was braucht es für ein <span class="grad">KI-First-Unternehmen?</span></h1>
       <div class="agenda">
-        <div class="ai"><span class="n">1</span><span class="at">Wo KI Wert schafft</span><span class="ae">Value Creation</span></div>
-        <div class="ai"><span class="n">2</span><span class="at">Was erfolgreiche Adoption braucht</span><span class="ae">Leadership &amp; Adoption</span></div>
-        <div class="ai"><span class="n">3</span><span class="at">Wie man loslegt</span><span class="ae">Getting Started</span></div></div></div>
+        <div class="ai"><span class="n">1</span><span class="at">Wo KI Wert schafft</span></div>
+        <div class="ai"><span class="n">2</span><span class="at">Was erfolgreiche Adoption braucht</span></div>
+        <div class="ai"><span class="n">3</span><span class="at">Wie man loslegt</span></div></div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">04</span></div></div></div>
 
   <!-- 5 PART 1 -->
   <div class="slide-wrap"><div class="slide s-sec">
-    <div class="pad"><span class="part">Teil 1 · Part 1</span><h1 class="t">Wo <span class="grad">KI Wert schafft.</span></h1>
+    <div class="pad"><span class="part">Teil 1</span><h1 class="t">Wo <span class="grad">KI Wert schafft.</span></h1>
       <p class="sub" style="font-size:20px;color:var(--muted);margin-top:16px">Von der Effizienz bis zu neuen Geschäftsmodellen.</p></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">05</span></div></div></div>
 
@@ -296,8 +285,7 @@
   <!-- 7 STATEMENT -->
   <div class="slide-wrap"><div class="slide s-state dark"><div class="glow2"></div><div class="dots2"></div>
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Die Kernthese</span>
-      <h1 class="t" style="margin-top:20px">KI ist kein IT-Projekt.<br>KI-Transformation braucht <span class="em">Führung.</span></h1>
-      <p class="sub">AI is not an IT project – AI transformation requires leadership.</p></div>
+      <h1 class="t" style="margin-top:20px">KI ist kein IT-Projekt.<br>KI-Transformation braucht <span class="em">Führung.</span></h1></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">07</span></div></div></div>
 
   <!-- 8 THREE IMPACT LEVELS -->
@@ -306,15 +294,15 @@
       <h1 class="t">Drei Wirkungsebenen – <span class="grad">von Effizienz bis Geschäftsmodell.</span></h1>
       <div class="cards3">
         <div class="c3"><div class="ci" style="background:#5174BC"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
-          <h3>Kernprozesse transformieren</h3><div class="en">Transforming Core Processes</div>
+          <h3>Kernprozesse transformieren</h3>
           <div class="desc">Optimieren &amp; automatisieren – Effizienz im großen Maßstab.</div>
           <ul><li>Automation: Massentransaktionen effizient</li><li>Optimierung: Kernprozesse verbessern</li><li>Effizienz: Kosten, Tempo &amp; Qualität</li></ul></div>
         <div class="c3"><div class="ci" style="background:#6A5CB0"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-          <h3>Mitarbeitende befähigen</h3><div class="en">Empowering Employees</div>
+          <h3>Mitarbeitende befähigen</h3>
           <div class="desc">Produktiver mit KI im Arbeitsalltag.</div>
           <ul><li>Produktivität: Copilots &amp; KI-Agenten</li><li>Enablement: KI verstehen, Prompting, Barrieren abbauen</li><li>Neue Arbeits- &amp; Zusammenarbeitsformen</li></ul></div>
         <div class="c3"><div class="ci" style="background:#BD6C85"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/></svg></div>
-          <h3>Neue Geschäftsmodelle</h3><div class="en">Creating New Business Models</div>
+          <h3>Neue Geschäftsmodelle</h3>
           <div class="desc">Neue Produkte, Services &amp; Erlösquellen jenseits des heutigen Geschäfts.</div>
           <ul><li>Datengetriebene Services &amp; Plattformen</li><li>Outcome- &amp; servicebasierte Modelle</li><li>Personalisierte, skalierbare Kundenlösungen</li></ul></div>
       </div></div>
@@ -340,8 +328,7 @@
           <line x1="70" y1="330" x2="490" y2="330" stroke="#7259B3" stroke-width="2.5" stroke-linecap="round"/>
           <line x1="490" y1="330" x2="280" y2="40" stroke="#7259B3" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="280" cy="40" r="26" fill="#5174BC"/><circle cx="70" cy="330" r="26" fill="#685DBA"/><circle cx="490" cy="330" r="26" fill="#A172B0"/>
-          <circle cx="280" cy="210" r="62" fill="#6A5CB0"/>
-        </svg>
+          <circle cx="280" cy="210" r="62" fill="#6A5CB0"/></svg>
         <div class="tlabel" style="left:50%;top:2%"><div class="tt" style="color:#3f5da0">Führung</div><div class="td">Vision · Priorisierung · Rückhalt</div></div>
         <div class="tlabel" style="left:13%;top:96%"><div class="tt" style="color:#5a4aa4">Technologie</div><div class="td">Daten · Tools · Infrastruktur</div></div>
         <div class="tlabel" style="left:87%;top:96%"><div class="tt" style="color:#8f5e9c">Organisation &amp; Kultur</div><div class="td">Prozesse · Kompetenz · Akzeptanz</div></div>
@@ -354,11 +341,11 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Erfolg = Basis + Führung + Organisation</span>
       <h1 class="t">Technologie ist die Basis – <span class="grad">Führung &amp; Organisation</span> entscheiden.</h1>
       <div class="cards3">
-        <div class="c3"><div class="lab" style="color:#3f5da0">Leadership · Führung</div><div class="desc" style="margin-top:0">Richtung geben &amp; entscheiden, wo KI Wert schafft.</div>
+        <div class="c3"><div class="lab" style="color:#3f5da0">Führung</div><div class="desc" style="margin-top:0">Richtung geben &amp; entscheiden, wo KI Wert schafft.</div>
           <ul><li>Geschäftsprioritäten &amp; KI-Potenzial verstehen</li><li>Entscheiden, wo KI eingesetzt wird (Priorisierung)</li><li>Alignment treiben &amp; Vorbild sein</li></ul></div>
-        <div class="c3"><div class="lab" style="color:#5a4aa4">Technology · Technologie</div><div class="desc" style="margin-top:0">Die skalierbare, sichere Grundlage.</div>
+        <div class="c3"><div class="lab" style="color:#5a4aa4">Technologie</div><div class="desc" style="margin-top:0">Die skalierbare, sichere Grundlage.</div>
           <ul><li>Datenqualität &amp; -verfügbarkeit</li><li>Plattformen &amp; Infrastruktur</li><li>KI-Tools, Modelle &amp; Security</li></ul></div>
-        <div class="c3"><div class="lab" style="color:#a04f68">Organization · Organisation</div><div class="desc" style="margin-top:0">KI wirksam in der Organisation verankern.</div>
+        <div class="c3"><div class="lab" style="color:#a04f68">Organisation</div><div class="desc" style="margin-top:0">KI wirksam in der Organisation verankern.</div>
           <ul><li>Klare Rollen, Verantwortung &amp; Governance</li><li>Befähigung &amp; Training</li><li>„AI Value"-Denken etablieren</li></ul></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">11</span></div></div></div>
@@ -382,11 +369,11 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Teil 3 · Wie man loslegt</span>
       <h1 class="t">Fünf Schritte, um zu starten.</h1>
       <div class="steps">
-        <div class="step"><div class="sh"><span class="sn">1</span><span class="sl">LEADERSHIP</span></div><h3>Bei dir selbst anfangen</h3><ul><li>KI selbst nutzen – eigenen Agenten bauen</li><li>Fähigkeiten durch Nutzung verstehen</li><li>Eigene Erfahrung sammeln</li></ul></div>
-        <div class="step"><div class="sh"><span class="sn">2</span><span class="sl" style="color:#a04f68">URGENT</span></div><h3>Produktivität schnell ermöglichen</h3><ul><li>KI wird schon genutzt – gestalte es</li><li>Schnell die richtigen Tools bereitstellen</li><li>Shadow-AI verhindern</li></ul></div>
-        <div class="step"><div class="sh"><span class="sn">3</span><span class="sl">FOUNDATION</span></div><h3>Fundament bauen</h3><ul><li>Skills &amp; Rollen erfassen</li><li>Kompetenzlücken identifizieren</li><li>Struktur &amp; Verantwortung aufbauen</li></ul></div>
-        <div class="step"><div class="sh"><span class="sn">4</span><span class="sl">PLATFORM</span></div><h3>Skalierbare Plattform</h3><ul><li>Daten, Tools &amp; Infrastruktur</li><li>Sichere, integrierte Umgebung</li><li>Wiederverwendung &amp; Skalierung</li></ul></div>
-        <div class="step"><div class="sh"><span class="sn">5</span><span class="sl">USE CASES</span></div><h3>Use-Cases priorisieren</h3><ul><li>Auf hohe Wirkung fokussieren</li><li>Wenige Use-Cases priorisieren</li><li>Mit MVPs starten &amp; skalieren</li></ul></div>
+        <div class="step"><div class="sh"><span class="sn">1</span><span class="sl">FÜHRUNG</span></div><h3>Bei dir selbst anfangen</h3><ul><li>KI selbst nutzen – eigenen Agenten bauen</li><li>Fähigkeiten durch Nutzung verstehen</li><li>Eigene Erfahrung sammeln</li></ul></div>
+        <div class="step"><div class="sh"><span class="sn">2</span><span class="sl" style="color:#a04f68">DRINGEND</span></div><h3>Produktivität schnell ermöglichen</h3><ul><li>KI wird schon genutzt – gestalte es</li><li>Schnell die richtigen Tools bereitstellen</li><li>Shadow-AI verhindern</li></ul></div>
+        <div class="step"><div class="sh"><span class="sn">3</span><span class="sl">FUNDAMENT</span></div><h3>Fundament bauen</h3><ul><li>Skills &amp; Rollen erfassen</li><li>Kompetenzlücken identifizieren</li><li>Struktur &amp; Verantwortung aufbauen</li></ul></div>
+        <div class="step"><div class="sh"><span class="sn">4</span><span class="sl">PLATTFORM</span></div><h3>Skalierbare Plattform</h3><ul><li>Daten, Tools &amp; Infrastruktur</li><li>Sichere, integrierte Umgebung</li><li>Wiederverwendung &amp; Skalierung</li></ul></div>
+        <div class="step"><div class="sh"><span class="sn">5</span><span class="sl">USE-CASES</span></div><h3>Use-Cases priorisieren</h3><ul><li>Auf hohe Wirkung fokussieren</li><li>Wenige Use-Cases priorisieren</li><li>Mit MVPs starten &amp; skalieren</li></ul></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">13</span></div></div></div>
 
@@ -411,8 +398,7 @@
   <!-- 17 STATEMENT competitiveness -->
   <div class="slide-wrap"><div class="slide s-state dark"><div class="glow2"></div><div class="dots2"></div>
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Worauf es ankommt</span>
-      <h1 class="t" style="margin-top:20px">Unsere Wettbewerbsfähigkeit entscheidet nicht die Technologie –<br><span class="em">sondern Führungskräfte,</span> die KI in Wertschöpfung übersetzen.</h1>
-      <p class="sub">…but by leaders who turn AI into value creation.</p></div>
+      <h1 class="t" style="margin-top:20px;font-size:52px">Nicht die Technologie entscheidet über unsere Wettbewerbsfähigkeit –<br><span class="em">sondern Führungskräfte,</span> die KI in Wertschöpfung übersetzen.</h1></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">17</span></div></div></div>
 
   <!-- 18 SECTION how to get started -->
@@ -427,11 +413,11 @@
       <h1 class="t">KI, Wissen &amp; Prompting als <span class="grad">strategische Hebel.</span></h1>
       <p class="meta">Für Boards &amp; N-1 · onsite · 10–15 Teilnehmende</p>
       <div class="mods">
-        <div class="mod"><div class="mh"><div class="mn">1</div><div class="mt">Strategic AI Workshop</div></div>
+        <div class="mod"><div class="mh"><div class="mn">1</div><div class="mt">Strategie-Workshop</div></div>
           <ul><li>Strategische &amp; operative Herausforderungen identifizieren</li><li>KI-Fähigkeiten auf Herausforderungen mappen</li><li>Use-Cases nach Wirkung priorisieren</li><li>Gemeinsame KI-Perspektive schaffen</li></ul>
           <div class="mfoot">Business Impact · 5–6 Stunden</div></div>
-        <div class="mod"><div class="mh"><div class="mn">2</div><div class="mt">AI &amp; Prompting Upskilling</div></div>
-          <ul><li>AI Fundamentals – was Führungskräfte wissen müssen</li><li>M365-Copilot-Training, praxisnah</li><li>Prompting als tägliches Werkzeug</li><li>Starke Praxisrelevanz, hohes Engagement</li></ul>
+        <div class="mod"><div class="mh"><div class="mn">2</div><div class="mt">KI- &amp; Prompting-Upskilling</div></div>
+          <ul><li>Grundlagen – was Führungskräfte über KI wissen müssen</li><li>M365-Copilot-Training, praxisnah</li><li>Prompting als tägliches Werkzeug</li><li>Starke Praxisrelevanz, hohes Engagement</li></ul>
           <div class="mfoot">Enablement · 2–3 Stunden</div></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">19</span></div></div></div>
@@ -464,7 +450,7 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Einer der häufigsten Fehler</span>
       <h1 class="t" style="margin-top:18px">KI nur als bessere <span class="grad">Suchmaschine</span> zu nutzen.</h1>
       <div class="quote"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-        <div><div class="qt">Behandle KI wie den motiviertesten Praktikanten, den du je hattest.</div><div class="qe">„The most motivated intern you've ever had."</div></div></div></div>
+        <div class="qt">Behandle KI wie den motiviertesten Praktikanten, den du je hattest.</div></div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">22</span></div></div></div>
 
   <!-- 23 PROMPT BLOCKS -->
@@ -472,12 +458,12 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Praxis · Prompting</span>
       <h1 class="t">Die Bausteine eines guten Prompts.</h1>
       <div class="blocks">
-        <div class="blk"><div class="bn" style="background:#5174BC">1</div><h3>Rolle</h3><div class="en">Role</div><p>„In welcher Rolle soll die KI agieren?"</p></div>
-        <div class="blk"><div class="bn" style="background:#615AAE">2</div><h3>Aufgabe</h3><div class="en">Task</div><p>„Was soll die KI tun?"</p></div>
-        <div class="blk"><div class="bn" style="background:#6A5CB0">3</div><h3>Kontext</h3><div class="en">Context</div><p>„Welche Informationen sind relevant?"</p></div>
-        <div class="blk"><div class="bn" style="background:#8F5E9C">4</div><h3>Format</h3><div class="en">Format</div><p>„Wie soll das Ergebnis strukturiert sein?"</p></div>
-        <div class="blk"><div class="bn" style="background:#A85F8E">5</div><h3>Restriktionen</h3><div class="en">Restrictions</div><p>„Welche Regeln und Grenzen gelten?"</p></div>
-        <div class="blk"><div class="bn" style="background:#BD6C85">6</div><h3>Ton</h3><div class="en">Tone of Voice</div><p>„In welchem Ton soll das Ergebnis entstehen?"</p></div>
+        <div class="blk"><div class="bn" style="background:#5174BC">1</div><h3>Rolle</h3><p>„In welcher Rolle soll die KI agieren?"</p></div>
+        <div class="blk"><div class="bn" style="background:#615AAE">2</div><h3>Aufgabe</h3><p>„Was soll die KI tun?"</p></div>
+        <div class="blk"><div class="bn" style="background:#6A5CB0">3</div><h3>Kontext</h3><p>„Welche Informationen sind relevant?"</p></div>
+        <div class="blk"><div class="bn" style="background:#8F5E9C">4</div><h3>Format</h3><p>„Wie soll das Ergebnis strukturiert sein?"</p></div>
+        <div class="blk"><div class="bn" style="background:#A85F8E">5</div><h3>Restriktionen</h3><p>„Welche Regeln und Grenzen gelten?"</p></div>
+        <div class="blk"><div class="bn" style="background:#BD6C85">6</div><h3>Ton</h3><p>„In welchem Ton soll das Ergebnis entstehen?"</p></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">23</span></div></div></div>
 
@@ -490,26 +476,24 @@
           <path d="M393 155 A143 143 0 0 1 374 226" stroke="#BD6C85" stroke-width="3" fill="none" stroke-linecap="round" marker-end="url(#ah)"/>
           <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#BD6C85"/></marker></defs></svg>
         <div class="ctr"><div class="ct2">Iterieren</div><div class="ce2">Wiederholen, bis es passt</div></div>
-        <div class="lnode" style="left:50%;top:5%"><div class="ln">1</div><div class="lt">Output bewerten</div><div class="le">Rate output</div></div>
-        <div class="lnode" style="left:88%;top:38%"><div class="ln">2</div><div class="lt">Lücken erkennen</div><div class="le">Identify gaps</div></div>
-        <div class="lnode" style="left:76%;top:90%"><div class="ln">3</div><div class="lt">Prompt verfeinern</div><div class="le">Refine</div></div>
-        <div class="lnode" style="left:24%;top:90%"><div class="ln">4</div><div class="lt">Erneut testen</div><div class="le">Test again</div></div>
-        <div class="lnode" style="left:12%;top:38%"><div class="ln">5</div><div class="lt">Wiederholen</div><div class="le">Repeat</div></div>
+        <div class="lnode" style="left:50%;top:5%"><div class="ln">1</div><div class="lt">Output bewerten</div></div>
+        <div class="lnode" style="left:88%;top:38%"><div class="ln">2</div><div class="lt">Lücken erkennen</div></div>
+        <div class="lnode" style="left:76%;top:90%"><div class="ln">3</div><div class="lt">Prompt verfeinern</div></div>
+        <div class="lnode" style="left:24%;top:90%"><div class="ln">4</div><div class="lt">Erneut testen</div></div>
+        <div class="lnode" style="left:12%;top:38%"><div class="ln">5</div><div class="lt">Wiederholen</div></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">24</span></div></div></div>
 
   <!-- 25 STATEMENT not replace -->
   <div class="slide-wrap"><div class="slide s-state dark"><div class="glow2"></div><div class="dots2"></div>
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Zum Mitnehmen</span>
-      <h1 class="t" style="margin-top:20px;font-size:70px">KI wird dich <span class="em">nicht ersetzen.</span></h1>
-      <p class="sub">AI will not replace you.</p></div>
+      <h1 class="t" style="margin-top:20px;font-size:70px">KI wird dich <span class="em">nicht ersetzen.</span></h1></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">25</span></div></div></div>
 
   <!-- 26 STATEMENT but a human -->
   <div class="slide-wrap"><div class="slide s-state dark"><div class="glow2"></div><div class="dots2"></div>
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Zum Mitnehmen</span>
-      <h1 class="t" style="margin-top:20px">KI wird dich nicht ersetzen.<br><span class="em">Aber ein Mensch, der KI nutzt.</span></h1>
-      <p class="sub">… but a human who uses AI will.</p></div>
+      <h1 class="t" style="margin-top:20px">KI wird dich nicht ersetzen.<br><span class="em">Aber ein Mensch, der KI nutzt.</span></h1></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">26</span></div></div></div>
 
   <!-- 27 TWO LEVEL (value creation) -->
@@ -517,11 +501,11 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>KI schafft Wert</span>
       <h1 class="t">KI <span class="grad">transformiert Wertschöpfung</span> und befähigt Menschen.</h1>
       <div class="two">
-        <div class="col"><div class="ch"><div class="ci" style="background:#5174BC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><div><div class="ct">Wertschöpfung transformieren</div><div class="ce">Transforming Value Creation</div></div></div>
+        <div class="col"><div class="ch"><div class="ci" style="background:#5174BC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><div class="ct">Wertschöpfung transformieren</div></div>
           <div class="row"><div class="k">Automation</div><div class="v">Massentransaktionen effizient abwickeln.</div></div>
           <div class="row"><div class="k">Optimierung</div><div class="v">Kernprozesse verbessern.</div></div>
           <div class="row"><div class="k">Transformation</div><div class="v">Geschäftsmodelle zukunftsfähig machen.</div></div></div>
-        <div class="col"><div class="ch"><div class="ci" style="background:#BD6C85"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div><div class="ct">Mitarbeitende befähigen</div><div class="ce">Empowering Employees</div></div></div>
+        <div class="col"><div class="ch"><div class="ci" style="background:#BD6C85"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="ct">Mitarbeitende befähigen</div></div>
           <div class="row"><div class="k">Produktivität</div><div class="v">Copilots &amp; KI-Agenten im Arbeitsalltag.</div></div>
           <div class="row"><div class="k">Enablement</div><div class="v">KI verstehen, Ängste abbauen, Prompting lernen.</div></div>
           <div class="row"><div class="k">Empowerment</div><div class="v">Raum für Ideen und Innovation schaffen.</div></div></div>
@@ -533,25 +517,22 @@
     <div class="pad"><span class="eyebrow"><span class="dot"></span>Technologie ist die Basis – Führung entscheidet</span>
       <h1 class="t">Technologie ist die Grundlage –<br><span class="grad">Führung</span> entscheidet über den Erfolg.</h1>
       <div class="pyr">
-        <div class="cap"><div class="l">Erfolgsbringer · Success Bringer</div><div class="t">KI-Ownership im Top-Management</div></div>
+        <div class="cap"><div class="l">Erfolgsbringer</div><div class="t">KI-Ownership im Top-Management</div></div>
         <div class="mid"><div class="mc">Kerngeschäft &amp; Potenzial verstehen</div><div class="mc">Relevante Use-Cases identifizieren</div><div class="mc">Neuausrichtung ermöglichen</div><div class="mc">Mitarbeitende mitnehmen</div><div class="mc">Vorbild sein</div></div>
-        <div class="base"><div class="bl">Grundlagen · Basics für die KI-Adoption</div><div class="chips"><span class="chip">KI-Strategie</span><span class="chip">Datenqualität</span><span class="chip">Plattformen &amp; Infrastruktur</span><span class="chip">KI-Expert:innen &amp; Skills</span><span class="chip">Training &amp; Awareness</span><span class="chip">Governance &amp; Security</span></div></div>
+        <div class="base"><div class="bl">Grundlagen für die KI-Adoption</div><div class="chips"><span class="chip">KI-Strategie</span><span class="chip">Datenqualität</span><span class="chip">Plattformen &amp; Infrastruktur</span><span class="chip">KI-Expert:innen &amp; Skills</span><span class="chip">Training &amp; Awareness</span><span class="chip">Governance &amp; Security</span></div></div>
       </div></div>
     <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">28</span></div></div></div>
 
-  <!-- 29 THANKS + QR -->
+  <!-- 29 CLOSING + QR -->
   <div class="slide-wrap"><div class="slide s-close">
     <div class="pad">
-      <div class="lft"><img class="biglogo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent">
-        <h1 class="t">Vielen Dank.</h1>
-        <div class="who"><div class="av">KE</div><div style="text-align:left"><div class="nm">Kira Engelhardt</div><div class="ro">Global Head of Data &amp; AI</div></div></div></div>
-      <div class="bookcard">
-        <img class="cover" src="deck-assets/buchcover.jpg" alt="Buchcover KI-Kompetent">
-        <div>
-          <div class="bt">Das Buch</div><div class="bn2">KI-Kompetent</div>
-          <div class="bd">Künstliche Intelligenz im Unternehmen entscheidend nutzen.<br>Engelhardt &amp; Troendle · Wiley</div>
-          <div class="qr"><img src="deck-assets/qr-amazon.svg" alt="QR-Code zum Buch auf Amazon"><div class="ql">Auf Amazon ansehen</div><div class="qe">amazon.de · QR-Code scannen</div></div>
-        </div>
+      <img class="biglogo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent">
+      <h1 class="t">Vielen Dank.</h1>
+      <div class="auth">Kira Engelhardt · Global Head of Data &amp; AI</div>
+      <div class="bookpanel">
+        <div class="seg"><img class="cover" src="deck-assets/buchcover.jpg" alt="Buchcover KI-Kompetent">
+          <div><div class="bt">Das Buch</div><div class="bn2">KI-Kompetent</div><div class="bd">Künstliche Intelligenz im Unternehmen entscheidend nutzen. Engelhardt &amp; Troendle · Wiley</div></div></div>
+        <div class="seg qrseg"><img src="deck-assets/qr-amazon.svg" alt="QR-Code zum Buch auf Amazon"><div><div class="ql">Auf Amazon ansehen</div><div class="qe">QR-Code scannen</div></div></div>
       </div>
     </div>
     <div class="foot"><span></span><span class="snum">29</span></div></div></div>
