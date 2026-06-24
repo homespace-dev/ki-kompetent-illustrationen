@@ -86,6 +86,20 @@
   .section-h p{margin:0;font-size:13px;color:var(--muted);max-width:760px;line-height:1.5;}
   .thumb{cursor:zoom-in;}
 
+  /* Foliensatz-Links */
+  .deck-links{max-width:1180px;margin:18px auto 0;padding:0 24px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;}
+  @media (max-width:760px){ .deck-links{grid-template-columns:1fr} }
+  .dlk{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:14px;
+    padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px rgba(17,17,19,.04);transition:transform .16s,box-shadow .16s,border-color .16s;}
+  .dlk:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(17,17,19,.06),0 12px 26px rgba(17,17,19,.10);border-color:#d7d8de;}
+  .dlk .dlk-ic{flex:none;width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;letter-spacing:.02em;color:#16171D;background:#f1f2f5;border:1px solid var(--border);}
+  .dlk b{font-size:15px;font-weight:700;display:block;letter-spacing:-0.01em;}
+  .dlk small{font-size:12.5px;color:var(--muted);display:block;margin-top:2px;}
+  .dlk.primary{background:#16171D;border-color:#16171D;color:#fff;}
+  .dlk.primary small{color:rgba(255,255,255,.66);}
+  .dlk.primary .dlk-ic{background:linear-gradient(135deg,#5174BC,#BD6C85);color:#fff;border:none;font-size:16px;}
+
   /* Lightbox */
   .lb{position:fixed;inset:0;z-index:100;display:none;}
   .lb.open{display:block;}
@@ -196,6 +210,19 @@
         <a class="open" href="logos/logo-entwurf-2.png" target="_blank" rel="noopener">Öffnen ↗</a>
       </div>
     </div>
+  </div>
+
+  <div class="section-h">
+    <h2>Foliensatz · KI for Leaders</h2>
+    <p>Kiras Vortrag im Buch-Design – 29 Folien, zweisprachig. Ansehen oder als PDF / PowerPoint herunterladen.</p>
+  </div>
+  <div class="deck-links">
+    <a class="dlk primary" href="deck-ki-first.html" target="_blank" rel="noopener">
+      <span class="dlk-ic">▸</span><span><b>Foliensatz ansehen</b><small>Interaktiv im Browser · 29 Folien</small></span></a>
+    <a class="dlk" href="deck-ki-first.pdf" target="_blank" rel="noopener" download>
+      <span class="dlk-ic">PDF</span><span><b>Als PDF</b><small>29 Seiten · 16:9 · Vektor</small></span></a>
+    <a class="dlk" href="deck-ki-first.pptx" target="_blank" rel="noopener" download>
+      <span class="dlk-ic">PPT</span><span><b>Als PowerPoint</b><small>29 Folien · 16:9</small></span></a>
   </div>
 
   <!-- Lightbox -->
