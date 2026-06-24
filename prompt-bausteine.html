@@ -48,7 +48,7 @@
   .card {
     background: transparent;
     padding: 16px;
-    max-width: 1040px;
+    max-width: 760px;
     width: 100%;
   }
 
@@ -59,29 +59,44 @@
   .title {
     margin: 0 0 6px; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
   }
-  .subtitle { margin: 0 0 28px; font-size: 14.5px; color: var(--text-muted); letter-spacing: -0.005em; }
+  .subtitle { margin: 0 0 26px; font-size: 14.5px; color: var(--text-muted); letter-spacing: -0.005em; }
 
-  /* 2-Spalten-Raster als Tabelle (html2canvas-sicher; kein CSS-grid/gap/calc) */
-  .grid { width: 100%; border-collapse: separate; border-spacing: 0; }
-  .grid td.block {
+  /* Bausteine UNTEREINANDER (vertikal). Icon links via float (html2canvas-sicher). */
+  .block {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 20px 22px;
-    vertical-align: top;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    overflow: hidden;
   }
-  .grid td.gap { width: 18px; }
-  .grid tr.sp td { height: 18px; padding: 0; border: 0; }
-
-  /* Icon links (float) + Text daneben — float rendert in html2canvas zuverlässig */
   .b-ico { float: left; width: 48px; height: 48px; margin-right: 16px; }
   .b-text { overflow: hidden; }
   .b-title {
-    font-size: 15.5px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+    font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
     margin-bottom: 3px;
   }
-  .b-num { font-weight: 700; margin-right: 6px; }
-  .b-q { font-size: 13.5px; line-height: 1.45; color: var(--text-muted); }
+  .b-num { font-weight: 700; color: var(--acc-deep); margin-right: 8px; }
+  .b-q { font-size: 13.5px; line-height: 1.45; color: var(--text-muted); margin-bottom: 10px; }
+  /* Beispiel je Baustein, in der jeweiligen Akzentfarbe */
+  .b-ex {
+    display: inline-block;
+    background: var(--acc-soft); border: 1px solid var(--acc-line);
+    border-radius: 9px; padding: 7px 12px;
+    font-size: 13.5px; line-height: 1.4; color: var(--acc-deep);
+  }
+  .b-ex .lbl { font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; margin-right: 8px; opacity: .8; }
+
+  /* Zusammengesetzter Beispiel-Prompt */
+  .prompt-card {
+    margin-top: 20px; border: 1px solid var(--border-strong); border-radius: 16px;
+    background: linear-gradient(180deg, #fbfbfd, #ffffff); padding: 20px 24px; overflow: hidden;
+  }
+  .pc-stripe { height: 4px; margin: -20px -24px 18px; background: linear-gradient(90deg,#5D86C9,#6C6FBE,#8D72B4,#A172B0,#BD6C85); }
+  .pc-head { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  .pc-head svg { width: 15px; height: 15px; vertical-align: -3px; margin-right: 8px; color: #8D72B4; }
+  .pc-body { font-size: 15px; line-height: 1.62; color: var(--text-soft); }
+  .pc-body b { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -95,63 +110,67 @@
   <div class="wrap">
     <div class="card" id="capture">
       <h1 class="title">Die Bausteine eines guten Prompts</h1>
-      <p class="subtitle">Sechs Elemente, die aus einer vagen Anfrage eine präzise KI-Anweisung machen.</p>
+      <p class="subtitle">Sechs Elemente, die aus einer vagen Anfrage eine präzise KI-Anweisung machen – mit Beispiel.</p>
 
-      <table class="grid">
-        <tr>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(12 12)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">1.</span>Rolle</div>
-              <div class="b-q">„In welcher Rolle soll die KI agieren?“</div>
-            </div>
-          </td>
-          <td class="gap"></td>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#eeeffb" stroke="#d5d6f6"/><g transform="translate(12 12)" stroke="#6C6FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/><path d="m9 11 3 3L22 4"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">2.</span>Aufgabe</div>
-              <div class="b-q">„Was soll die KI tun?“</div>
-            </div>
-          </td>
-        </tr>
-        <tr class="sp"><td colspan="3"></td></tr>
-        <tr>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f0f0fb" stroke="#dbdbf4"/><g transform="translate(12 12)" stroke="#7674C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">3.</span>Kontext</div>
-              <div class="b-q">„Welche Informationen sind relevant?“</div>
-            </div>
-          </td>
-          <td class="gap"></td>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f3eefa" stroke="#e1d3f1"/><g transform="translate(12 12)" stroke="#8D72B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">4.</span>Format</div>
-              <div class="b-q">„Wie sollte das Ergebnis strukturiert sein?“</div>
-            </div>
-          </td>
-        </tr>
-        <tr class="sp"><td colspan="3"></td></tr>
-        <tr>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(12 12)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">5.</span>Einschränkungen</div>
-              <div class="b-q">„Welche Regeln und Einschränkungen gelten?“</div>
-            </div>
-          </td>
-          <td class="gap"></td>
-          <td class="block">
-            <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#fbeef2" stroke="#f3d7e0"/><g transform="translate(12 12)" stroke="#BD6C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></g></svg>
-            <div class="b-text">
-              <div class="b-title"><span class="b-num">6.</span>Tonfall</div>
-              <div class="b-q">„In welchem Ton sollte das Ergebnis erstellt werden?“</div>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div class="block" style="--acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(12 12)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">1</span>Rolle</div>
+          <div class="b-q">In welcher Rolle soll die KI agieren?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Du bist eine erfahrene Kommunikationsexpertin."</div>
+        </div>
+      </div>
+
+      <div class="block" style="--acc-soft:#eeeffb; --acc-line:#d5d6f6; --acc-deep:#504fad">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#eeeffb" stroke="#d5d6f6"/><g transform="translate(12 12)" stroke="#6C6FBE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/><path d="m9 11 3 3L22 4"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">2</span>Aufgabe</div>
+          <div class="b-q">Was soll die KI tun?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Beantworte die Beschwerde-E-Mail eines Kunden."</div>
+        </div>
+      </div>
+
+      <div class="block" style="--acc-soft:#f0f0fb; --acc-line:#dbdbf4; --acc-deep:#5a4aa4">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f0f0fb" stroke="#dbdbf4"/><g transform="translate(12 12)" stroke="#7674C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">3</span>Kontext</div>
+          <div class="b-q">Welche Informationen sind relevant?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Er wartet seit drei Wochen auf seine Lieferung."</div>
+        </div>
+      </div>
+
+      <div class="block" style="--acc-soft:#f3eefa; --acc-line:#e1d3f1; --acc-deep:#7a4f8c">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f3eefa" stroke="#e1d3f1"/><g transform="translate(12 12)" stroke="#8D72B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">4</span>Format</div>
+          <div class="b-q">Wie sollte das Ergebnis strukturiert sein?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Schreibe eine fertige E-Mail mit Betreff und Grußformel."</div>
+        </div>
+      </div>
+
+      <div class="block" style="--acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(12 12)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">5</span>Einschränkungen</div>
+          <div class="b-q">Welche Regeln und Einschränkungen gelten?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Höchstens 150 Wörter, biete eine konkrete Lösung an."</div>
+        </div>
+      </div>
+
+      <div class="block" style="--acc-soft:#fbeef2; --acc-line:#f3d7e0; --acc-deep:#9d3f60">
+        <svg class="b-ico" viewBox="0 0 48 48" fill="none"><rect x="0.5" y="0.5" width="47" height="47" rx="13" fill="#fbeef2" stroke="#f3d7e0"/><g transform="translate(12 12)" stroke="#BD6C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></g></svg>
+        <div class="b-text">
+          <div class="b-title"><span class="b-num">6</span>Tonfall</div>
+          <div class="b-q">In welchem Ton sollte das Ergebnis erstellt werden?</div>
+          <div class="b-ex"><span class="lbl">Beispiel</span>„Verständnisvoll, lösungsorientiert und professionell."</div>
+        </div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="pc-stripe"></div>
+        <div class="pc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/><path d="M12 2l1.9 5.1L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9z"/></svg>Zusammengesetzt: ein klarer Beispiel-Prompt</div>
+        <div class="pc-body">„<b>Du bist eine erfahrene Kommunikationsexpertin.</b> Beantworte die Beschwerde-E-Mail eines Kunden, der seit drei Wochen auf seine Lieferung wartet. Schreibe eine fertige E-Mail mit Betreff und Grußformel, höchstens 150 Wörter, und biete eine konkrete Lösung an – verständnisvoll, lösungsorientiert und professionell."</div>
+      </div>
     </div>
   </div>
 
