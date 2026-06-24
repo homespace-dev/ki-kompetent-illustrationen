@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>KI-First-Unternehmen · Foliensatz (Buch-Design) · Vorschau</title>
+<title>KI-First-Unternehmen · Foliensatz (Buch-Design)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -14,52 +14,46 @@
     --line:#e9eaee; --line-2:#f0f1f4; --bg:#ffffff; --page-bg:#eceef3;
     --blue:#5174BC; --indigo:#685DBA; --violet:#6A5CB0; --orchid:#8F5E9C; --rose:#BD6C85;
     --aura:linear-gradient(118deg,#5174BC 0%,#685DBA 32%,#8F5E9C 66%,#BD6C85 100%);
-    --dot:#d9dae1;
+    --shadow-sm:0 1px 2px rgba(22,23,29,.05);
     --shadow:0 1px 2px rgba(22,23,29,.05), 0 14px 32px -18px rgba(22,23,29,.22);
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:#0e0f12;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-  /* viewer chrome */
   .counter{position:fixed;top:14px;right:16px;z-index:50;font-size:12px;font-weight:600;color:#cfd0d6;
     background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:6px 12px;letter-spacing:.04em}
   .hint{position:fixed;bottom:14px;left:16px;z-index:50;font-size:11.5px;color:#7a7b85}
   .deck{display:flex;flex-direction:column;align-items:center;gap:26px;padding:26px 0 60px}
   .slide-wrap{width:min(1280px,94vw)}
-  .slide{width:1280px;height:720px;transform-origin:top left;background:var(--bg);color:var(--ink);
-    border-radius:16px;overflow:hidden;position:relative;box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+  .slide{width:1280px;height:720px;transform-origin:top left;color:var(--ink);
+    border-radius:16px;overflow:hidden;position:relative;box-shadow:0 30px 80px -30px rgba(0,0,0,.7);
+    background:#fff url(deck-assets/bg-grid.png) center/cover no-repeat;}
   .slide.dark{background:#101117;color:#fff}
 
-  /* shared slide furniture */
   .pad{position:absolute;inset:0;padding:64px 72px;display:flex;flex-direction:column}
   .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .eyebrow .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--aura);margin-right:10px;vertical-align:middle}
+  .slide.dark .eyebrow{color:rgba(255,255,255,.6)}
   .grad{background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .foot{position:absolute;left:72px;right:72px;bottom:34px;display:flex;align-items:center;justify-content:space-between;
-    font-size:12.5px;color:var(--faint)}
-  .foot .brand{display:flex;align-items:center;gap:9px;font-weight:600;color:var(--muted)}
-  .foot .brand .mk{width:18px;height:18px;border-radius:6px;background:var(--aura)}
-  .slide.dark .foot{color:rgba(255,255,255,.4)} .slide.dark .foot .brand{color:rgba(255,255,255,.6)}
+  .foot{position:absolute;left:72px;right:72px;bottom:34px;display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--faint)}
+  .foot .logo{height:21px;display:block}
+  .slide.dark .foot{color:rgba(255,255,255,.4)}
+  .slide.dark .foot .logo{filter:brightness(0) invert(1);opacity:.85}
   .snum{font-variant-numeric:tabular-nums;font-weight:600}
-  .dotbg{position:absolute;inset:0;background-image:radial-gradient(circle,var(--dot) 1px,transparent 1.5px);
-    background-size:26px 26px;opacity:.5;-webkit-mask-image:radial-gradient(900px 520px at 80% 20%,#000,transparent 75%);
-    mask-image:radial-gradient(900px 520px at 80% 20%,#000,transparent 75%)}
-
   h1.t{font-weight:800;letter-spacing:-0.035em;line-height:1.04;margin:0}
-  .lead{color:var(--ink-2);line-height:1.5}
 
-  /* ---- S1 TITLE ---- */
+  /* TITLE */
   .s-title .pad{justify-content:center}
   .s-title .glow{position:absolute;right:-6%;top:-12%;width:760px;height:640px;border-radius:50%;
     background:radial-gradient(closest-side,rgba(104,93,186,.28),transparent 70%),radial-gradient(closest-side at 70% 70%,rgba(189,108,133,.26),transparent 70%);filter:blur(34px)}
-  .s-title h1{font-size:62px;max-width:18ch}
-  .s-title .sub{font-size:23px;color:var(--ink-2);margin-top:18px;max-width:40ch;line-height:1.4}
+  .s-title h1{font-size:62px;max-width:18ch;position:relative}
+  .s-title .sub{font-size:23px;color:var(--ink-2);margin-top:18px;max-width:40ch;line-height:1.4;position:relative}
   .s-title .sub b{color:var(--ink);font-weight:600}
-  .s-title .who{margin-top:40px;display:flex;align-items:center;gap:14px}
-  .s-title .who .av{width:52px;height:52px;border-radius:14px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;box-shadow:0 10px 24px -10px rgba(104,93,186,.7)}
-  .s-title .who .nm{font-size:17px;font-weight:700} .s-title .who .ro{font-size:13.5px;color:var(--muted);margin-top:2px}
+  .who{margin-top:40px;display:flex;align-items:center;gap:14px;position:relative}
+  .who .av{width:52px;height:52px;border-radius:14px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;box-shadow:0 10px 24px -10px rgba(104,93,186,.7)}
+  .who .nm{font-size:17px;font-weight:700} .who .ro{font-size:13.5px;color:var(--muted);margin-top:2px}
 
-  /* ---- S2 STATS ---- */
+  /* STAT */
   .s-stat h1{font-size:40px;max-width:26ch;margin-top:14px}
   .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:auto}
   .statcard{border:1px solid var(--line);border-radius:16px;padding:28px;background:linear-gradient(160deg,#fff,#fbfbfd);box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -67,7 +61,7 @@
   .statcard .tx{font-size:15px;color:var(--ink-2);margin-top:14px;line-height:1.45;flex:1}
   .statcard .src{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-top:16px}
 
-  /* ---- S3 HYPE CYCLE ---- */
+  /* CYCLE */
   .s-cycle h1{font-size:34px;max-width:30ch;margin-top:12px}
   .s-cycle .stage{position:relative;flex:1;margin-top:18px}
   .s-cycle svg{position:absolute;inset:0;width:100%;height:100%}
@@ -77,15 +71,28 @@
   .reasons .r .rt{font-size:14px;font-weight:600;color:var(--ink-2)}
   .clab{position:absolute;font-size:12.5px;font-weight:600;color:var(--muted);text-align:center;transform:translateX(-50%)}
 
-  /* ---- S7 STATEMENT ---- */
+  /* SECTION / QUESTION */
+  .s-sec .pad{justify-content:center}
+  .s-sec .part{font-size:15px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .s-sec h1{font-size:56px;max-width:18ch;margin-top:14px}
+  .s-sec .agenda{margin-top:38px;display:flex;flex-direction:column;gap:2px;max-width:760px}
+  .s-sec .ai{display:flex;gap:18px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+  .s-sec .ai .n{font-size:22px;font-weight:800;background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent;width:34px;font-variant-numeric:tabular-nums}
+  .s-sec .ai .at{font-size:21px;font-weight:700;letter-spacing:-0.01em}
+  .s-sec .ai .ae{font-size:14px;color:var(--muted);margin-left:auto}
+
+  .s-q .pad{justify-content:center;align-items:flex-start}
+  .s-q h1{font-size:52px;max-width:20ch}
+
+  /* STATEMENT DARK */
   .s-state .pad{justify-content:center;align-items:flex-start}
   .s-state .glow2{position:absolute;inset:0;background:radial-gradient(620px 460px at 24% 30%,rgba(81,116,188,.5),transparent 64%),radial-gradient(560px 440px at 82% 82%,rgba(189,108,133,.42),transparent 64%);filter:blur(18px);opacity:.85}
   .s-state .dots2{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.10) 1px,transparent 1.5px);background-size:28px 28px;opacity:.5}
-  .s-state h1{font-size:64px;line-height:1.04;max-width:16ch;position:relative}
+  .s-state h1{font-size:60px;line-height:1.05;max-width:17ch;position:relative}
   .s-state .em{background:linear-gradient(110deg,#8fb0ff,#c79edb 50%,#f0a6bd);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .s-state .sub{font-size:21px;color:rgba(255,255,255,.66);margin-top:24px;max-width:48ch;line-height:1.5;position:relative}
+  .s-state .sub{font-size:20px;color:rgba(255,255,255,.62);margin-top:24px;max-width:50ch;line-height:1.5;position:relative}
 
-  /* ---- S8 TWO LEVEL ---- */
+  /* TWO LEVEL */
   .s-two h1{font-size:34px;margin-top:12px;max-width:30ch}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:auto}
   .col{border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);background:#fff}
@@ -98,7 +105,63 @@
   .col .row .k{flex:none;width:128px;font-size:15px;font-weight:700;color:var(--ink)}
   .col .row .v{font-size:14.5px;color:var(--ink-2);line-height:1.4}
 
-  /* ---- S17 PROMPT BLOCKS ---- */
+  /* PYRAMID (S10) */
+  .s-pyr h1{font-size:32px;margin-top:10px;max-width:34ch}
+  .pyr{flex:1;margin-top:16px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+  .pyr .cap{align-self:center;background:var(--aura);color:#fff;border-radius:13px;padding:14px 26px;text-align:center;box-shadow:0 12px 28px -12px rgba(104,93,186,.6);max-width:560px}
+  .pyr .cap .l{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .pyr .cap .t{font-size:19px;font-weight:800;letter-spacing:-0.01em;margin-top:2px}
+  .pyr .mid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .pyr .mc{border:1px solid var(--line);border-radius:11px;background:#fff;padding:12px 12px;font-size:13px;font-weight:600;color:var(--ink-2);text-align:center;box-shadow:var(--shadow-sm)}
+  .pyr .base{border:1px solid var(--line);border-radius:13px;background:linear-gradient(160deg,#fbfbfd,#fff);padding:16px 18px}
+  .pyr .base .bl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .pyr .base .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .pyr .base .chip{font-size:13px;font-weight:600;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+
+  /* OFFERING (S13) */
+  .s-off h1{font-size:30px;margin-top:10px;max-width:34ch}
+  .s-off .meta{font-size:14px;color:var(--muted);margin-top:6px}
+  .mods{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:auto}
+  .mod{border:1px solid var(--line);border-radius:18px;background:#fff;padding:24px;box-shadow:var(--shadow)}
+  .mod .mh{display:flex;align-items:center;gap:12px}
+  .mod .mh .mn{width:34px;height:34px;border-radius:10px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .mod .mh .mt{font-size:19px;font-weight:800;letter-spacing:-0.01em}
+  .mod ul{list-style:none;margin:14px 0 0;padding:0}
+  .mod li{display:flex;gap:10px;font-size:14px;color:var(--ink-2);padding:7px 0;line-height:1.35}
+  .mod li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-top:7px}
+  .mod .mfoot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2);font-size:12.5px;font-weight:600;color:var(--muted)}
+
+  /* STAT-BULLETS (S14) */
+  .s-pp{display:grid;grid-template-columns:0.9fr 1.1fr;gap:40px}
+  .s-pp .pad{display:grid;grid-template-columns:0.85fr 1.15fr;gap:46px;align-items:center}
+  .s-pp .lft h1{font-size:30px;max-width:16ch}
+  .s-pp .pct{font-size:84px;font-weight:800;letter-spacing:-0.04em;line-height:1;background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:18px}
+  .s-pp .pl{font-size:17px;color:var(--ink-2);margin-top:8px;max-width:24ch;line-height:1.4}
+  .s-pp ul{list-style:none;margin:0;padding:0}
+  .s-pp li{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid var(--line);font-size:16px;color:var(--ink-2);line-height:1.45}
+  .s-pp li:first-child{border-top:none}
+  .s-pp li .ck{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(104,93,186,.14);color:var(--indigo);display:flex;align-items:center;justify-content:center}
+  .s-pp li b{color:var(--ink);font-weight:700}
+
+  /* TOOL CARDS (S15) */
+  .s-tool h1{font-size:32px;margin-top:10px}
+  .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:auto}
+  .tool{border:1px solid var(--line);border-radius:16px;background:#fff;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .tool .th{font-size:18px;font-weight:800;letter-spacing:-0.01em}
+  .tool .badge{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:4px 10px;margin-top:10px}
+  .tool ul{list-style:none;margin:14px 0 0;padding:0;flex:1}
+  .tool li{font-size:13.5px;color:var(--ink-2);padding:6px 0;border-top:1px solid var(--line-2);line-height:1.35}
+  .tool li:first-child{border-top:none}
+
+  /* CONCEPT (S16) */
+  .s-concept .pad{justify-content:center}
+  .s-concept h1{font-size:34px;max-width:22ch}
+  .s-concept .quote{margin-top:28px;display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 34px;box-shadow:var(--shadow);max-width:880px}
+  .s-concept .quote .ic{flex:none;width:66px;height:66px;border-radius:18px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center}
+  .s-concept .quote .qt{font-size:27px;font-weight:800;letter-spacing:-0.02em;line-height:1.2}
+  .s-concept .quote .qe{font-size:15px;color:var(--muted);margin-top:6px}
+
+  /* PROMPT BLOCKS (S17) */
   .s-prompt h1{font-size:34px;margin-top:12px}
   .blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:auto}
   .blk{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
@@ -106,29 +169,44 @@
   .blk h3{font-size:19px;font-weight:700;letter-spacing:-0.01em;margin:0}
   .blk .en{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
   .blk p{font-size:14px;color:var(--ink-2);margin:12px 0 0;line-height:1.45}
+
+  /* LOOP (S18) */
+  .s-loop h1{font-size:32px;margin-top:10px;max-width:26ch}
+  .loopstage{flex:1;position:relative;margin-top:10px}
+  .loopstage svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+  .lnode{position:absolute;width:188px;transform:translate(-50%,-50%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);text-align:center}
+  .lnode .ln{width:28px;height:28px;border-radius:9px;background:var(--aura);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+  .lnode .lt{font-size:15px;font-weight:700;letter-spacing:-0.01em}
+  .lnode .le{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .loopstage .ctr{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:200px}
+  .loopstage .ctr .ct2{font-size:18px;font-weight:800;background:var(--aura);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .loopstage .ctr .ce2{font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* THANKS (S21) */
+  .s-thx .pad{justify-content:center;align-items:center;text-align:center}
+  .s-thx .biglogo{height:64px;margin-bottom:30px}
+  .s-thx h1{font-size:48px}
+  .s-thx .who{justify-content:center;margin-top:34px}
 </style>
 </head>
 <body>
-<div class="counter" id="counter">1 / 6</div>
-<div class="hint">↑ ↓ / Scrollen · Vorschau (6 von 21)</div>
+<div class="counter" id="counter">1 / 21</div>
+<div class="hint">↑ ↓ / Scrollen · 21 Folien</div>
 <div class="deck" id="deck">
 
-  <!-- ===== S1 TITLE ===== -->
+  <!-- S1 TITLE -->
   <div class="slide-wrap"><div class="slide s-title">
-    <div class="glow"></div><div class="dotbg"></div>
+    <div class="glow"></div>
     <div class="pad">
-      <span class="eyebrow"><span class="dot"></span>KI-Kompetent · Keynote</span>
+      <span class="eyebrow"><span class="dot"></span>Keynote</span>
       <h1 class="t" style="margin-top:22px">Was braucht es für ein <span class="grad">KI-First-Unternehmen?</span></h1>
       <p class="sub"><b>Vom Hype zur echten Wertschöpfung.</b><br><span style="color:var(--muted)">From hype to real business impact.</span></p>
-      <div class="who">
-        <div class="av">KE</div>
-        <div><div class="nm">Kira Engelhardt</div><div class="ro">Head of Data &amp; AI · Energy Networks</div></div>
-      </div>
+      <div class="who"><div class="av">KE</div><div><div class="nm">Kira Engelhardt</div><div class="ro">Head of Data &amp; AI · Energy Networks</div></div></div>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">01</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">01</span></div>
   </div></div>
 
-  <!-- ===== S2 STATS ===== -->
+  <!-- S2 STATS -->
   <div class="slide-wrap"><div class="slide s-stat">
     <div class="pad">
       <span class="eyebrow"><span class="dot"></span>Warum jetzt</span>
@@ -139,10 +217,10 @@
         <div class="statcard"><div class="big">4,4 Bio. $</div><div class="tx">Wert, den generative KI <i>jährlich</i> freisetzen kann.</div><div class="src">McKinsey</div></div>
       </div>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">02</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">02</span></div>
   </div></div>
 
-  <!-- ===== S3 HYPE CYCLE ===== -->
+  <!-- S3 HYPE CYCLE -->
   <div class="slide-wrap"><div class="slide s-cycle">
     <div class="pad">
       <span class="eyebrow"><span class="dot"></span>Der Realitäts-Check</span>
@@ -151,13 +229,9 @@
         <svg viewBox="0 0 760 360" preserveAspectRatio="none" fill="none">
           <line x1="40" y1="320" x2="720" y2="320" stroke="#e9eaee" stroke-width="2"/>
           <line x1="40" y1="320" x2="40" y2="20" stroke="#e9eaee" stroke-width="2"/>
-          <path d="M40 300 C 120 300, 150 70, 210 70 C 270 70, 280 250, 340 270 C 400 290, 410 250, 470 210 C 540 165, 600 150, 720 130"
-                stroke="url(#cg)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <defs><linearGradient id="cg" x1="40" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#5174BC"/><stop offset="0.5" stop-color="#8F5E9C"/><stop offset="1" stop-color="#BD6C85"/></linearGradient></defs>
-          <circle cx="210" cy="70" r="6" fill="#685DBA"/>
-          <circle cx="340" cy="270" r="6" fill="#BD6C85"/>
-          <circle cx="720" cy="130" r="6" fill="#5174BC"/>
+          <path d="M40 300 C 120 300, 150 70, 210 70 C 270 70, 280 250, 340 270 C 400 290, 410 250, 470 210 C 540 165, 600 150, 720 130" stroke="url(#cg)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <defs><linearGradient id="cg" x1="40" y1="0" x2="720" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5174BC"/><stop offset="0.5" stop-color="#8F5E9C"/><stop offset="1" stop-color="#BD6C85"/></linearGradient></defs>
+          <circle cx="210" cy="70" r="6" fill="#685DBA"/><circle cx="340" cy="270" r="6" fill="#BD6C85"/><circle cx="720" cy="130" r="6" fill="#5174BC"/>
         </svg>
         <div class="clab" style="left:27%;top:6%">Gipfel der überzogenen<br>Erwartungen</div>
         <div class="clab" style="left:44%;top:80%;color:#BD6C85">Tal der Tränen<br><span style="color:var(--faint);font-weight:500">„Valley of Tears"</span></div>
@@ -170,21 +244,54 @@
         </div>
       </div>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">03</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">03</span></div>
   </div></div>
 
-  <!-- ===== S7 STATEMENT ===== -->
+  <!-- S4 AGENDA -->
+  <div class="slide-wrap"><div class="slide s-sec">
+    <div class="pad">
+      <span class="part">Überblick · Agenda</span>
+      <h1 class="t">Was braucht es für ein <span class="grad">KI-First-Unternehmen?</span></h1>
+      <div class="agenda">
+        <div class="ai"><span class="n">1</span><span class="at">Wo KI Wert schafft</span><span class="ae">Value Creation</span></div>
+        <div class="ai"><span class="n">2</span><span class="at">Was erfolgreiche Adoption braucht</span><span class="ae">Leadership &amp; Adoption</span></div>
+        <div class="ai"><span class="n">3</span><span class="at">Wie man loslegt</span><span class="ae">Getting Started</span></div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">04</span></div>
+  </div></div>
+
+  <!-- S5 PART 1 -->
+  <div class="slide-wrap"><div class="slide s-sec">
+    <div class="pad">
+      <span class="part">Teil 1 · Part 1</span>
+      <h1 class="t">Wo <span class="grad">KI Wert schafft.</span></h1>
+      <p class="sub" style="font-size:20px;color:var(--muted);margin-top:16px">Von der Effizienz bis zur Transformation des Geschäftsmodells.</p>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">05</span></div>
+  </div></div>
+
+  <!-- S6 QUESTION -->
+  <div class="slide-wrap"><div class="slide s-q">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Die Leitfrage</span>
+      <h1 class="t" style="margin-top:20px">Was braucht es, damit KI zum <span class="grad">Treiber der Wertschöpfung</span> wird?</h1>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">06</span></div>
+  </div></div>
+
+  <!-- S7 STATEMENT -->
   <div class="slide-wrap"><div class="slide s-state dark">
     <div class="glow2"></div><div class="dots2"></div>
     <div class="pad">
-      <span class="eyebrow" style="color:rgba(255,255,255,.6)"><span class="dot"></span>Die Kernthese</span>
+      <span class="eyebrow"><span class="dot"></span>Die Kernthese</span>
       <h1 class="t" style="margin-top:20px">KI ist kein IT-Projekt.<br>KI-Transformation braucht <span class="em">Führung.</span></h1>
       <p class="sub">AI is not an IT project – AI transformation requires leadership.</p>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">07</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">07</span></div>
   </div></div>
 
-  <!-- ===== S8 TWO LEVEL ===== -->
+  <!-- S8 TWO LEVEL -->
   <div class="slide-wrap"><div class="slide s-two">
     <div class="pad">
       <span class="eyebrow"><span class="dot"></span>Wo KI wirkt</span>
@@ -204,10 +311,146 @@
         </div>
       </div>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">08</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">08</span></div>
   </div></div>
 
-  <!-- ===== S17 PROMPT BLOCKS ===== -->
+  <!-- S9 QUESTION / PART 2 -->
+  <div class="slide-wrap"><div class="slide s-q">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Teil 2 · Leitfrage</span>
+      <h1 class="t" style="margin-top:20px">Was braucht es für eine <span class="grad">erfolgreiche KI-Adoption?</span></h1>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">09</span></div>
+  </div></div>
+
+  <!-- S10 PYRAMID -->
+  <div class="slide-wrap"><div class="slide s-pyr">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Technologie ist die Basis – Führung entscheidet</span>
+      <h1 class="t">Technologie ist die Grundlage –<br><span class="grad">Führung</span> entscheidet über den Erfolg.</h1>
+      <div class="pyr">
+        <div class="cap"><div class="l">Erfolgsbringer · Success Bringer</div><div class="t">KI-Ownership im Top-Management</div></div>
+        <div class="mid">
+          <div class="mc">Kerngeschäft &amp; Potenzial verstehen</div>
+          <div class="mc">Relevante Use-Cases identifizieren</div>
+          <div class="mc">Neuausrichtung ermöglichen</div>
+          <div class="mc">Mitarbeitende mitnehmen</div>
+          <div class="mc">Vorbild sein</div>
+        </div>
+        <div class="base">
+          <div class="bl">Grundlagen · Basics für die KI-Adoption</div>
+          <div class="chips">
+            <span class="chip">KI-Strategie</span><span class="chip">Datenqualität</span><span class="chip">Plattformen &amp; Infrastruktur</span>
+            <span class="chip">KI-Expert:innen &amp; Skills</span><span class="chip">Training &amp; Awareness</span><span class="chip">Governance &amp; Security</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">10</span></div>
+  </div></div>
+
+  <!-- S11 STATEMENT -->
+  <div class="slide-wrap"><div class="slide s-state dark">
+    <div class="glow2"></div><div class="dots2"></div>
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Worauf es ankommt</span>
+      <h1 class="t" style="margin-top:20px">Unsere Wettbewerbsfähigkeit entscheidet nicht die Technologie –<br><span class="em">sondern Führungskräfte,</span> die KI in Wertschöpfung übersetzen.</h1>
+      <p class="sub">Our competitiveness is not decided by technology, but by leaders who turn AI into value creation.</p>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">11</span></div>
+  </div></div>
+
+  <!-- S12 PART 3 -->
+  <div class="slide-wrap"><div class="slide s-sec">
+    <div class="pad">
+      <span class="part">Teil 3 · Part 3</span>
+      <h1 class="t">Wie fängt man <span class="grad">an?</span></h1>
+      <p class="sub" style="font-size:20px;color:var(--muted);margin-top:16px">Vom Verstehen zum Anwenden – Prompting als erster Hebel.</p>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">12</span></div>
+  </div></div>
+
+  <!-- S13 OFFERING -->
+  <div class="slide-wrap"><div class="slide s-off">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Enablement-Angebot</span>
+      <h1 class="t">KI, Wissen &amp; Prompting als <span class="grad">strategische Hebel.</span></h1>
+      <p class="meta">Für Energy-Networks-Boards &amp; N-1 · onsite · 10–15 Teilnehmende</p>
+      <div class="mods">
+        <div class="mod">
+          <div class="mh"><div class="mn">1</div><div class="mt">Strategic AI Workshop</div></div>
+          <ul>
+            <li>Strategische &amp; operative Herausforderungen identifizieren</li>
+            <li>KI-Fähigkeiten auf Herausforderungen mappen</li>
+            <li>Use-Cases nach Wirkung priorisieren</li>
+            <li>Gemeinsame KI-Perspektive schaffen</li>
+          </ul>
+          <div class="mfoot">Business Impact · 5–6 Stunden</div>
+        </div>
+        <div class="mod">
+          <div class="mh"><div class="mn">2</div><div class="mt">AI &amp; Prompting Upskilling</div></div>
+          <ul>
+            <li>AI Fundamentals – was Führungskräfte über KI wissen müssen</li>
+            <li>M365-Copilot-Training, praxisnah</li>
+            <li>Prompting als tägliches Werkzeug</li>
+            <li>Starke Praxisrelevanz, hohes Engagement auf Board-Level</li>
+          </ul>
+          <div class="mfoot">Enablement · 2–3 Stunden</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">13</span></div>
+  </div></div>
+
+  <!-- S14 PROMPTING PRODUCTIVITY -->
+  <div class="slide-wrap"><div class="slide s-pp">
+    <div class="pad">
+      <div class="lft">
+        <span class="eyebrow"><span class="dot"></span>Wirkung</span>
+        <h1 class="t">Prompting steigert die Produktivität der meisten Mitarbeitenden.</h1>
+        <div class="pct">30–50 %</div>
+        <div class="pl">schnellere Entscheidungen und Umsetzung durch das Automatisieren von Routine.</div>
+      </div>
+      <ul>
+        <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Weniger Zeit</b> für Recherchieren, Analysieren und Dokumentieren.</span></li>
+        <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Datengetriebene Analysen</b> – schneller und fundierter.</span></li>
+        <li><span class="ck"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Personalisierte Lösungen,</b> wie sie zunehmend erwartet werden.</span></li>
+      </ul>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">14</span></div>
+  </div></div>
+
+  <!-- S15 TOOLS -->
+  <div class="slide-wrap"><div class="slide s-tool">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Werkzeuge bei E.ON</span>
+      <h1 class="t">Welche KI-Tools stehen zur Verfügung?</h1>
+      <div class="tools">
+        <div class="tool"><div class="th">Copilot Chat</div><span class="badge" style="background:rgba(81,116,188,.14);color:#3f5da0">für alle zugänglich</span>
+          <ul><li>Vergleichbar mit ChatGPT</li><li>Nutzt OpenAI-Modelle (GPT), multimodal</li><li>Kein Zugriff auf interne Daten</li></ul></div>
+        <div class="tool"><div class="th">SharePoint Agents</div><span class="badge" style="background:rgba(143,94,156,.16);color:#7c4f88">Lizenz erforderlich</span>
+          <ul><li>SharePoint-basierte KI-Assistenten</li><li>Macht Infos aus Ordnern &amp; Dateien zugänglich</li><li>Für definierte Bereiche</li></ul></div>
+        <div class="tool"><div class="th">M365 Copilot</div><span class="badge" style="background:rgba(189,108,133,.16);color:#a04f68">für vertrauliche Inhalte</span>
+          <ul><li>In M365-Apps integriert</li><li>Zugriff auf persönliche M365-Dateien</li><li>Freigegeben für streng vertrauliche Inhalte</li></ul></div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">15</span></div>
+  </div></div>
+
+  <!-- S16 CONCEPT -->
+  <div class="slide-wrap"><div class="slide s-concept">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Einer der häufigsten Fehler</span>
+      <h1 class="t" style="margin-top:18px">KI nur als bessere <span class="grad">Suchmaschine</span> zu nutzen.</h1>
+      <div class="quote">
+        <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><div class="qt">Behandle KI wie den motiviertesten Praktikanten, den du je hattest.</div><div class="qe">„The most motivated intern you've ever had."</div></div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">16</span></div>
+  </div></div>
+
+  <!-- S17 PROMPT BLOCKS -->
   <div class="slide-wrap"><div class="slide s-prompt">
     <div class="pad">
       <span class="eyebrow"><span class="dot"></span>Praxis · Prompting</span>
@@ -221,30 +464,74 @@
         <div class="blk"><div class="bn" style="background:#BD6C85">6</div><h3>Ton</h3><div class="en">Tone of Voice</div><p>„In welchem Ton soll das Ergebnis entstehen?"</p></div>
       </div>
     </div>
-    <div class="foot"><span class="brand"><span class="mk"></span>KI-Kompetent</span><span class="snum">17</span></div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">17</span></div>
+  </div></div>
+
+  <!-- S18 LOOP -->
+  <div class="slide-wrap"><div class="slide s-loop">
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Praxis · Prompting</span>
+      <h1 class="t">Gutes Prompting ist eher ein <span class="grad">Gespräch.</span></h1>
+      <div class="loopstage">
+        <svg width="520" height="320" viewBox="0 0 520 320" fill="none">
+          <circle cx="260" cy="160" r="150" stroke="#e9eaee" stroke-width="2" stroke-dasharray="3 8"/>
+          <path d="M408 160 A148 148 0 0 1 388 235" stroke="#BD6C85" stroke-width="3" fill="none" stroke-linecap="round" marker-end="url(#ah)"/>
+          <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#BD6C85"/></marker></defs>
+        </svg>
+        <div class="ctr"><div class="ct2">Iterieren</div><div class="ce2">Wiederholen, bis es passt</div></div>
+        <div class="lnode" style="left:50%;top:6%"><div class="ln">1</div><div class="lt">Output bewerten</div><div class="le">Rate output</div></div>
+        <div class="lnode" style="left:88%;top:38%"><div class="ln">2</div><div class="lt">Lücken erkennen</div><div class="le">Identify gaps</div></div>
+        <div class="lnode" style="left:76%;top:88%"><div class="ln">3</div><div class="lt">Prompt verfeinern</div><div class="le">Refine</div></div>
+        <div class="lnode" style="left:24%;top:88%"><div class="ln">4</div><div class="lt">Erneut testen</div><div class="le">Test again</div></div>
+        <div class="lnode" style="left:12%;top:38%"><div class="ln">5</div><div class="lt">Wiederholen</div><div class="le">Repeat</div></div>
+      </div>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">18</span></div>
+  </div></div>
+
+  <!-- S19 STATEMENT -->
+  <div class="slide-wrap"><div class="slide s-state dark">
+    <div class="glow2"></div><div class="dots2"></div>
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Zum Mitnehmen</span>
+      <h1 class="t" style="margin-top:20px;font-size:72px">KI wird dich <span class="em">nicht ersetzen.</span></h1>
+      <p class="sub">AI will not replace you.</p>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">19</span></div>
+  </div></div>
+
+  <!-- S20 STATEMENT -->
+  <div class="slide-wrap"><div class="slide s-state dark">
+    <div class="glow2"></div><div class="dots2"></div>
+    <div class="pad">
+      <span class="eyebrow"><span class="dot"></span>Zum Mitnehmen</span>
+      <h1 class="t" style="margin-top:20px">KI wird dich nicht ersetzen.<br><span class="em">Aber ein Mensch, der KI nutzt.</span></h1>
+      <p class="sub">… but a human who uses AI will.</p>
+    </div>
+    <div class="foot"><img class="logo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent"><span class="snum">20</span></div>
+  </div></div>
+
+  <!-- S21 THANKS -->
+  <div class="slide-wrap"><div class="slide s-thx">
+    <div class="pad">
+      <img class="biglogo" src="deck-assets/ki-kompetent-logo.png" alt="KI-Kompetent">
+      <h1 class="t">Vielen Dank für<br>Ihre Aufmerksamkeit.</h1>
+      <div class="who"><div class="av">KE</div><div style="text-align:left"><div class="nm">Kira Engelhardt</div><div class="ro">Head of Data &amp; AI</div></div></div>
+    </div>
+    <div class="foot"><span></span><span class="snum">21</span></div>
   </div></div>
 
 </div>
 
 <script>
-  // fit slides to wrapper width
-  function fit(){
-    document.querySelectorAll('.slide-wrap').forEach(w=>{
-      const s=w.querySelector('.slide'); const scale=w.clientWidth/1280;
-      s.style.transform='scale('+scale+')'; w.style.height=(720*scale)+'px';
-    });
-  }
+  function fit(){document.querySelectorAll('.slide-wrap').forEach(w=>{const s=w.querySelector('.slide');const sc=w.clientWidth/1280;s.style.transform='scale('+sc+')';w.style.height=(720*sc)+'px';});}
   window.addEventListener('resize',fit); fit();
-  // counter on scroll
-  const slides=[...document.querySelectorAll('.slide-wrap')]; const counter=document.getElementById('counter');
-  function upd(){ let idx=0,best=1e9; slides.forEach((w,i)=>{const r=w.getBoundingClientRect();const d=Math.abs(r.top+r.height/2-window.innerHeight/2);if(d<best){best=d;idx=i;}}); counter.textContent=(idx+1)+' / 6'; }
-  window.addEventListener('scroll',upd,{passive:true}); upd();
-  // keyboard nav
-  window.addEventListener('keydown',e=>{
-    if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}
-    else if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}
-  });
-  function go(d){ let idx=0,best=1e9; slides.forEach((w,i)=>{const r=w.getBoundingClientRect();const dd=Math.abs(r.top+r.height/2-window.innerHeight/2);if(dd<best){best=dd;idx=i;}}); const n=Math.max(0,Math.min(slides.length-1,idx+d)); slides[n].scrollIntoView({behavior:'smooth',block:'center'}); }
+  const slides=[...document.querySelectorAll('.slide-wrap')];const counter=document.getElementById('counter');const N=slides.length;
+  function cur(){let idx=0,best=1e9;slides.forEach((w,i)=>{const r=w.getBoundingClientRect();const d=Math.abs(r.top+r.height/2-innerHeight/2);if(d<best){best=d;idx=i;}});return idx;}
+  function upd(){counter.textContent=(cur()+1)+' / '+N;}
+  addEventListener('scroll',upd,{passive:true});upd();
+  addEventListener('keydown',e=>{if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(1);}else if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(-1);}});
+  function go(d){const n=Math.max(0,Math.min(N-1,cur()+d));slides[n].scrollIntoView({behavior:'smooth',block:'center'});}
 </script>
 </body>
 </html>
