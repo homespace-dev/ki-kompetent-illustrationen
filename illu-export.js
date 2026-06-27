@@ -36,11 +36,12 @@
     var canvas = await html2canvas(node, { scale: scale, backgroundColor: null, useCORS: true, logging: false });
     var out = canvas;
     if (bg === "white" || bg === "grid"){
-      var c = document.createElement("canvas"); c.width = canvas.width; c.height = canvas.height;
+      var m = Math.round(36 * scale);   // Rand: mind. 2 Grid-Punkte (16px) ringsum, Grafik zentriert
+      var c = document.createElement("canvas"); c.width = canvas.width + 2*m; c.height = canvas.height + 2*m;
       var ctx = c.getContext("2d");
       ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,c.width,c.height);
       if (bg === "grid") drawGrid(ctx, c.width, c.height, scale);
-      ctx.drawImage(canvas, 0, 0);
+      ctx.drawImage(canvas, m, m);
       out = c;
     }
     if (gray) desaturate(out);
