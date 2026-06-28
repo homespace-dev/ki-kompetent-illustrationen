@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>OpenAI · ChatGPT · GPT-3.5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{ --ink:#16171D; --muted:#74757f; --faint:#9a9ba3; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .toolbar{display:flex;justify-content:center;padding:26px 16px 0;}
+  .btn{display:inline-flex;align-items:center;font-family:inherit;font-size:14px;font-weight:500;color:#fff;background:var(--ink);
+    border:none;border-radius:9px;padding:10px 16px;cursor:pointer;}
+  .btn:hover{background:#000;} .btn svg{width:16px;height:16px;margin-right:8px;}
+  .wrap{display:flex;justify-content:center;padding:34px 24px 60px;min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #eceef3 60%);}
+  .card{background:transparent;padding:30px 34px;width:800px;}
+
+  .head{text-align:center;margin-bottom:6px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+  .title{margin:0 0 8px;font-size:26px;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+  .subtitle{margin:0 auto;font-size:14px;color:var(--muted);max-width:480px;line-height:1.5}
+
+  .nest{width:620px;margin:22px auto 0}
+  .lvl{border-radius:18px;padding:16px}
+  .lvl.product{margin-top:14px}
+  .lvl.model{margin-top:14px}
+  .company{background:#ECF1FB;border:1.5px solid #cfddf5}
+  .product{background:#F2EEF9;border:1.5px solid #ddd5ef}
+  .model{background:#FBEEF2;border:1.5px solid #f1d6e0}
+
+  .lhead{display:flex;align-items:center;gap:13px}
+  .lhead .ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+  .lhead .ic svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .lhead .term{font-size:19px;font-weight:800;letter-spacing:-0.015em;line-height:1.1}
+  .lhead .role{font-size:12px;color:var(--muted);margin-top:3px;font-weight:600;white-space:nowrap}
+  .lhead .tag{margin-left:auto;flex:none;width:112px;text-align:center;font-size:10.5px;font-weight:800;letter-spacing:.08em;
+    text-transform:uppercase;border-radius:999px;padding:7px 0;border:1px solid transparent}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="head">
+        <div class="eyebrow">Begriffe einordnen</div>
+        <h1 class="title">OpenAI, ChatGPT &amp; GPT-3.5</h1>
+        <p class="subtitle">Drei Ebenen: das Unternehmen, sein Produkt – und das Modell dahinter.</p>
+      </div>
+
+      <div class="nest">
+        <div class="lvl company">
+          <div class="lhead">
+            <div class="ic" style="background:#5174BC"><svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/></svg></div>
+            <div><div class="term">OpenAI</div><div class="role">Die Firma dahinter</div></div>
+            <div class="tag" style="color:#3f5da0;background:#dde8fa;border-color:#cbddf6">Unternehmen</div>
+          </div>
+
+          <div class="lvl product">
+            <div class="lhead">
+              <div class="ic" style="background:#6A5CB0"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div><div class="term">ChatGPT</div><div class="role">Chat-Oberfläche &amp; das Modell dahinter</div></div>
+              <div class="tag" style="color:#5a4aa4;background:#e7e1f4;border-color:#d8cdee">Produkt</div>
+            </div>
+
+            <div class="lvl model">
+              <div class="lhead">
+                <div class="ic" style="background:#BD6C85"><svg viewBox="0 0 24 24"><path d="M9.94 14.06A2 2 0 0 0 8.5 12.62L2.37 11.04a.5.5 0 0 1 0-.96L8.5 8.5a2 2 0 0 0 1.44-1.44l1.58-6.13a.5.5 0 0 1 .96 0l1.58 6.13A2 2 0 0 0 15.5 8.5l6.13 1.58a.5.5 0 0 1 0 .96L15.5 12.62a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg></div>
+                <div><div class="term">GPT-3.5</div><div class="role">Ein KI-Sprachmodell (Large Language Model)</div></div>
+                <div class="tag" style="color:#a0506b;background:#f6dde5;border-color:#eecdd6">Modell</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>
