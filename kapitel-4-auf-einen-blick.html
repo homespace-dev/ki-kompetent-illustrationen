@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Auf einen Blick · Kapitel 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{ --ink:#16171D; --muted:#74757f; --faint:#9a9ba3; --line:#ececf1; --line-2:#f3f3f7;
+    --aura:linear-gradient(135deg,#5174BC 0%,#6A5CB0 52%,#BD6C85 100%); }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .toolbar{display:flex;justify-content:center;padding:26px 16px 0;}
+  .btn{display:inline-flex;align-items:center;font-family:inherit;font-size:14px;font-weight:500;color:#fff;background:var(--ink);
+    border:none;border-radius:9px;padding:10px 16px;cursor:pointer;}
+  .btn:hover{background:#000;} .btn svg{width:16px;height:16px;margin-right:8px;}
+  .wrap{display:flex;justify-content:center;padding:34px 24px 60px;min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #eceef3 60%);}
+  .card{background:transparent;padding:30px 34px;width:920px;}
+
+  .summary{position:relative;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(22,23,29,.05),0 30px 60px -34px rgba(22,23,29,.4);}
+  .accent{height:5px;background:var(--aura)}
+  .inner{padding:30px 38px 34px}
+
+  .top{display:flex;align-items:center;gap:16px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .top .tic{width:50px;height:50px;border-radius:14px;background:var(--aura);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+  .top .tic svg{width:26px;height:26px}
+  .top .ht{flex:1}
+  .top .ey{font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#9a7ab0}
+  .top .ti{font-size:23px;font-weight:900;letter-spacing:-0.02em;margin-top:3px}
+  .top .chip{flex:none;font-size:12px;font-weight:700;color:#7c5e8a;background:#f4eef7;border:1px solid #e9ddf0;
+    border-radius:999px;padding:7px 14px;letter-spacing:.02em}
+
+  .row{display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--line-2)}
+  .row:first-of-type{border-top:none;padding-top:22px}
+  .row .num{flex:none;width:38px;height:38px;border-radius:11px;color:#fff;font-weight:800;font-size:16px;
+    display:flex;align-items:center;justify-content:center;letter-spacing:-0.02em}
+  .row .rt{flex:1}
+  .row .rh{font-size:16.5px;font-weight:800;letter-spacing:-0.015em;line-height:1.3}
+  .row .rd{font-size:13px;color:#5c5d66;line-height:1.5;margin-top:6px}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="summary">
+        <div class="inner">
+          <div class="top">
+            <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></div>
+            <div class="ht">
+              <div class="ey">Auf einen Blick</div>
+              <div class="ti">KI-Erfolgsfaktor Führung</div>
+            </div>
+            <div class="chip">Kapitel 4</div>
+          </div>
+
+          <div class="row">
+            <div class="num" style="background:#5174BC">1</div>
+            <div class="rt">
+              <div class="rh">Vom Kunden her denken, nicht von der Technologie.</div>
+              <div class="rd">Die richtige Frage ist nicht „Sollen wir KI einführen?", sondern „Was brauchen unsere Kunden – und wie liefern wir es mit KI besser?". Das Zielbild gehört ins Kerngeschäft, nicht in die Technologie.</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="num" style="background:#675FB6">2</div>
+            <div class="rt">
+              <div class="rh">Weniger, aber konsequenter.</div>
+              <div class="rd">Zwei bis vier strategische KI-Initiativen mit vollen Ressourcen schlagen zwanzig halbherzige Piloten. Den Suchraum von oben definieren – und von Anfang an auf Produktivbetrieb denken, nicht nur auf den Machbarkeitsbeweis.</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="num" style="background:#7E5BA4">3</div>
+            <div class="rt">
+              <div class="rh">KI berührt Identität – das unterscheidet sie von früheren Transformationen.</div>
+              <div class="rd">Mitarbeitende verlieren nicht nur gewohnte Arbeitsweisen, sondern den Kern ihrer beruflichen Kompetenz. Führung begleitet diesen inneren Übergang, baut Vertrauen aktiv auf und entscheidet, welche menschlichen Fähigkeiten geschützt werden.</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="num" style="background:#9F5E92">4</div>
+            <div class="rt">
+              <div class="rh">Zuversicht ist die wichtigste innere Ressource.</div>
+              <div class="rd">Psychologisches Kapital – Hoffnung, Selbstwirksamkeit, Resilienz, Optimismus – lässt sich aufbauen wie finanzielles Kapital. Wer als Führungskraft stabil steht, kann andere stützen.</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="num" style="background:#BD6C85">5</div>
+            <div class="rt">
+              <div class="rh">Vorbild sein ist der stärkste Hebel.</div>
+              <div class="rd">Mitarbeitende, deren Führungskraft KI sichtbar nutzt und fördert, sind fast achtmal häufiger selbst aktiv. Nicht das Budget, nicht die Plattform, nicht das Schulungsprogramm – das Vorleben macht den Unterschied.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

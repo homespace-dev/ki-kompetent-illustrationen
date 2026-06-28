@@ -187,6 +187,12 @@
   <div class="grid" id="chgrid"></div>
 
   <div class="section-h">
+    <h2>Kapitel-Zusammenfassungen · Auf einen Blick</h2>
+    <p>Erscheinen am Kapitel-Ende und fassen die wichtigsten Erkenntnisse auf einen Blick zusammen – durchnummeriert, Kernaussage plus kurze Erläuterung.</p>
+  </div>
+  <div class="grid" id="sumgrid"></div>
+
+  <div class="section-h">
     <h2>Logo-Entwurf</h2>
     <p>Dasselbe Logo in zwei Setzungen – erste Entwürfe, bewusst getrennt von den Abbildungen und Kapitel-Covern. Noch nicht final. Klick auf das Bild öffnet die Großansicht.</p>
   </div>
@@ -274,13 +280,19 @@
       [8,'kapitel-8-titelseite','Kapitel 8 · Vom Verstehen ins Handeln'],
     ];
 
+    // Kapitel-Zusammenfassungen (Auf einen Blick)
+    const summaries = [
+      [4,'kapitel-4-auf-einen-blick','Kapitel 4 · Auf einen Blick'],
+    ];
+
     // Gemeinsame Liste – Reihenfolge = Anzeige; Index steuert die Lightbox
     const allItems = [];
     items.forEach(([nr,file,title]) => allItems.push({kind:'ABB', nr, file, title}));
     chapters.forEach(([nr,file,title]) => allItems.push({kind:'KAP', nr, file, title}));
+    summaries.forEach(([nr,file,title]) => allItems.push({kind:'SUM', nr, file, title}));
 
     function cardHTML(it, idx){
-      const badge = (it.kind==='KAP' ? '<small>KAP.</small>' : '<small>ABB.</small>') + it.nr;
+      const badge = (it.kind==='KAP' ? '<small>KAP.</small>' : it.kind==='SUM' ? '<small>BLICK</small>' : '<small>ABB.</small>') + it.nr;
       return '<div class="thumb" data-idx="'+idx+'" title="Großansicht öffnen">'+
           '<img loading="lazy" data-file="'+it.file+'" src="illu-thumbs/'+it.file+'.png" alt="'+it.title+'"></div>'+
         '<div class="meta"><div class="num">'+badge+'</div>'+
@@ -295,11 +307,12 @@
     }
     const grid = document.getElementById('grid');
     const chgrid = document.getElementById('chgrid');
+    const sumgrid = document.getElementById('sumgrid');
     allItems.forEach((it, idx) => {
       const el = document.createElement('div');
       el.className = 'item';
       el.innerHTML = cardHTML(it, idx);
-      (it.kind==='KAP' ? chgrid : grid).appendChild(el);
+      (it.kind==='KAP' ? chgrid : it.kind==='SUM' ? sumgrid : grid).appendChild(el);
     });
 
     // Farbschema
