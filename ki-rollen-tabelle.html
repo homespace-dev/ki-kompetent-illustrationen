@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rollen in der KI-Organisation · Attio-Tabelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --ink: #16171D; --border: #e9eaee; --header-bg: #fbfbfd; --row-hover: #fafbfc;
+    --text: #16171D; --text-soft: #3a3b44; --text-muted: #74757f; --page-bg: #eceef3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%);
+    color: var(--text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .toolbar { display: flex; justify-content: center; gap: 12px; padding: 26px 16px 0; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; font-family: inherit;
+    font-size: 14px; font-weight: 500; color: #fff; background: var(--ink);
+    border: none; border-radius: 9px; padding: 10px 16px; cursor: pointer;
+    transition: background .15s ease, transform .05s ease;
+  }
+  .btn:hover { background: #000; } .btn:active { transform: translateY(1px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  .wrap { display: flex; justify-content: center; padding: 34px 24px 60px; }
+  .card { position: relative; background: transparent; padding: 16px; max-width: 1120px; width: 100%; }
+
+  .card-head { margin: 0 0 5px; font-size: 20px; font-weight: 600; letter-spacing: -0.015em; }
+  .card-sub { margin: 0 0 24px; font-size: 14px; color: var(--text-muted); font-weight: 400; letter-spacing: -0.005em; }
+
+  table {
+    width: 100%; border-collapse: separate; border-spacing: 0; background: #ffffff;
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  }
+  thead th {
+    text-align: left; background: var(--header-bg); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.045em; text-transform: uppercase; color: var(--text-muted);
+    padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap;
+  }
+  thead th:not(:last-child) { border-right: 1px solid var(--border); }
+  .th-inner { display: inline-flex; align-items: center; }
+  .th-inner svg { width: 14px; height: 14px; color: #a0a0a6; flex: none; margin-right: 8px; }
+
+  tbody td {
+    padding: 16px; font-size: 13.5px; line-height: 1.5; vertical-align: top;
+    border-bottom: 1px solid var(--border); color: var(--text-soft);
+  }
+  tbody td:not(:last-child) { border-right: 1px solid var(--border); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background .12s ease; }
+  tbody tr:hover { background: var(--row-hover); }
+
+  .entity { display: flex; align-items: flex-start; gap: 12px; }
+  .entity .dico { width: 36px; height: 36px; flex: none; margin-top: 1px; }
+  .entity .name {
+    font-weight: 600; color: var(--text); font-size: 14px; letter-spacing: -0.01em; line-height: 1.35;
+  }
+  .desc { white-space: normal; }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <h2 class="card-head">Rollen in der KI-Organisation</h2>
+      <p class="card-sub">Wer welchen Beitrag zur KI-Transformation leistet – und welche Verantwortung damit verbunden ist.</p>
+
+      <table>
+        <colgroup><col style="width:25%"><col style="width:37%"><col style="width:38%"></colgroup>
+        <thead>
+          <tr>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Rolle</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 14.06A2 2 0 0 0 8.5 12.62L2.37 11.04a.5.5 0 0 1 0-.96L8.5 8.5a2 2 0 0 0 1.44-1.44l1.58-6.13a.5.5 0 0 1 .96 0l1.58 6.13A2 2 0 0 0 15.5 8.5l6.13 1.58a.5.5 0 0 1 0 .96L15.5 12.62a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/></svg>Beitrag zur KI-Transformation</span></th>
+            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Typische Verantwortung</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ECF0F8" stroke="#C4D0E8"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></g></svg><span class="name">CAIO bzw. verantwortliche Funktion für KI</span></div></td>
+            <td class="desc">Gibt Richtung, Priorität und Mandat für KI im Unternehmen.</td>
+            <td class="desc">Entscheidet über Ambition, Portfolio, Investitionen und Eskalationen.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#EEEEF8" stroke="#C9CAE8"/><g transform="translate(9 9) scale(0.75)" stroke="#6063BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></svg><span class="name">Vorstand, Geschäftsführung und Führungskräfte</span></div></td>
+            <td class="desc">Machen KI zur Führungs- und Veränderungsaufgabe.</td>
+            <td class="desc">Priorisieren Anwendungsfälle, schaffen Freiräume, begleiten Rollenveränderungen und übernehmen Verantwortung für Entscheidungen.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#EFEDF7" stroke="#CDC8E6"/><g transform="translate(9 9) scale(0.75)" stroke="#6D5EB6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></g></svg><span class="name">Zentrales KI-Team</span></div></td>
+            <td class="desc">Bündelt Technologiekompetenz und entwickelt skalierbare KI-Lösungen.</td>
+            <td class="desc">Verantwortet Standards, Wiederverwendbarkeit und Umsetzung großer Use Cases.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#F1EDF6" stroke="#D2C7E2"/><g transform="translate(9 9) scale(0.75)" stroke="#7C5BAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></g></svg><span class="name">KI-Übersetzerinnen / KI-Business-Analyst</span></div></td>
+            <td class="desc">Verbinden technologische Möglichkeiten mit fachlichem Bedarf.</td>
+            <td class="desc">Übersetzen zwischen Business und Technologie, schärfen Anforderungen und helfen, den Lösungsraum zu erkunden.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#F2EDF4" stroke="#D8C8DE"/><g transform="translate(9 9) scale(0.75)" stroke="#8B5C9E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g></svg><span class="name">KI-Plattform-Team</span></div></td>
+            <td class="desc">Schafft die technische Grundlage, auf der KI-Lösungen sicher und skalierbar entstehen können.</td>
+            <td class="desc">Verantwortet Plattformen, Architektur, Integration, Betrieb, Datenanbindung und technische Leitplanken.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#F4EDF3" stroke="#DDC8D9"/><g transform="translate(9 9) scale(0.75)" stroke="#9C5E90" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></g></svg><span class="name">KI-Ambassadors</span></div></td>
+            <td class="desc">Verankern KI im Alltag der Fachbereiche.</td>
+            <td class="desc">Sammeln Ideen, geben Orientierung, fördern Nutzung und machen Erfolgsbeispiele sichtbar.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#F6EEF2" stroke="#E3CBD7"/><g transform="translate(9 9) scale(0.75)" stroke="#AE6788" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></g></svg><span class="name">Fachbereiche</span></div></td>
+            <td class="desc">Bringen Prozesswissen, Kundennähe und konkrete Probleme ein.</td>
+            <td class="desc">Arbeiten an relevanten Use Cases, bewerten Nutzen und tragen Verantwortung für fachliche Adoption.</td>
+          </tr>
+          <tr>
+            <td><div class="entity"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#F8EFF2" stroke="#E9CDD6"/><g transform="translate(9 9) scale(0.75)" stroke="#BD6C85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></svg><span class="name">Governance, Risk, Compliance und Cyber Security</span></div></td>
+            <td class="desc">Setzen Leitplanken, damit KI sicher, nachvollziehbar und verantwortungsvoll eingesetzt wird.</td>
+            <td class="desc">Prüfen Risiken, Datenzugriffe, regulatorische Anforderungen und Freigaben für produktive Nutzung.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>
