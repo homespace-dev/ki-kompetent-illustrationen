@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow" />
 <title>KPIs für KI-Adoption · Attio-Tabelle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +35,13 @@
   .card { background: transparent; padding: 16px; max-width: 900px; width: 100%; }
   .card-head { margin: 0 0 5px; font-size: 20px; font-weight: 600; letter-spacing: -0.015em; }
   .card-sub { margin: 0 0 24px; font-size: 14px; color: var(--text-muted); font-weight: 400; letter-spacing: -0.005em; }
+  .eb { display:inline-flex; align-items:center; gap:11px; border-radius:999px; padding:7px 16px 7px 9px; margin:0 0 14px; color:#fff;
+    box-shadow:0 1px 2px rgba(22,23,29,.10),0 12px 24px -16px rgba(22,23,29,.55); }
+  .eb .ebn { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; background:rgba(255,255,255,.22); border-radius:999px; padding:4px 10px; }
+  .eb .ebt { font-size:13px; font-weight:700; letter-spacing:-0.005em; white-space:nowrap; }
+  .eb.e1 { background:linear-gradient(110deg,#6E97D6,#41639E); }
+  .eb.e2 { background:linear-gradient(110deg,#8076C8,#574799); }
+  .eb.e3 { background:linear-gradient(110deg,#CB7C95,#9C4E69); }
 
   table {
     width: 100%; border-collapse: separate; border-spacing: 0;
@@ -94,6 +100,7 @@
 
   <div class="wrap">
     <div class="card" id="capture">
+      <div class="eb e2"><span class="ebn">Wirkungsebene 2</span><span class="ebt">Befähigung von Mitarbeitenden</span></div>
       <h2 class="card-head">Leading vs. Lagging: Adoption &amp; Wirkung von KI</h2>
       <p class="card-sub">Frühindikatoren zeigen, ob die KI angenommen wird – Ergebniskennzahlen belegen, was sie bewirkt.</p>
 
