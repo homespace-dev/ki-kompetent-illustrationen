@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt · System Prompt · Context Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{ --ink:#16171D; --muted:#74757f; --faint:#9a9ba3; }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .toolbar{display:flex;justify-content:center;padding:26px 16px 0;}
+  .btn{display:inline-flex;align-items:center;font-family:inherit;font-size:14px;font-weight:500;color:#fff;background:var(--ink);
+    border:none;border-radius:9px;padding:10px 16px;cursor:pointer;}
+  .btn:hover{background:#000;} .btn svg{width:16px;height:16px;margin-right:8px;}
+  .wrap{display:flex;justify-content:center;padding:34px 24px 60px;min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #eceef3 60%);}
+  .card{background:transparent;padding:30px 34px;width:760px;}
+
+  .head{text-align:center;margin-bottom:6px}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+  .title{margin:0 0 8px;font-size:27px;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+  .subtitle{margin:0 auto;font-size:14px;color:var(--muted);max-width:540px;line-height:1.5}
+
+  .nest{width:660px;margin:24px auto 0}
+  .lvl{border-radius:20px;padding:18px}
+  .lvl.l2{margin-top:16px}
+  .lvl.l3{margin-top:16px}
+  .ctx{background:#ECF1FB;border:1.5px solid #cfddf5}
+  .sys{background:#F2EEF9;border:1.5px solid #ddd5ef}
+  .pr{background:#FBEEF2;border:1.5px solid #f1d6e0}
+
+  .lhead{display:flex;align-items:center;gap:13px}
+  .lhead .ic{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+  .lhead .ic svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .lhead .nm{font-size:18px;font-weight:800;letter-spacing:-0.015em}
+  .lhead .who{margin-left:auto;flex:none;font-size:11px;font-weight:700;letter-spacing:.02em;border-radius:999px;padding:6px 13px;white-space:nowrap}
+  .what{font-size:13.5px;color:#3f4048;line-height:1.45;margin:11px 2px 0}
+  .ana{font-size:12.5px;color:var(--muted);margin:8px 2px 0}
+  .ana b{font-weight:700;color:#5c5d66}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="head">
+        <div class="eyebrow">Das ganze Bild</div>
+        <h1 class="title">Prompt, System Prompt &amp; Context Engineering</h1>
+        <p class="subtitle">Drei Ebenen, auf denen Unternehmen KI steuern – von der einzelnen Eingabe bis zum ganzen Umfeld der KI.</p>
+      </div>
+
+      <div class="nest">
+        <div class="lvl ctx">
+          <div class="lhead">
+            <div class="ic" style="background:#5174BC"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></div>
+            <div class="nm">Context Engineering</div>
+            <div class="who" style="color:#3f5da0;background:#dde8fa">Führung + Architekten</div>
+          </div>
+          <div class="what">Alles, worauf die KI zugreifen kann – Dokumente, Datenbanken, Werkzeuge, Gesprächsverlauf und Erinnerungen, bevor jemand etwas eintippt.</div>
+          <div class="ana"><b>Wie das Büro einrichten:</b> Welche Akten stehen im Regal? Welche Systeme sind angeschlossen?</div>
+
+          <div class="lvl sys l2">
+            <div class="lhead">
+              <div class="ic" style="background:#6A5CB0"><svg viewBox="0 0 24 24"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg></div>
+              <div class="nm">System Prompt</div>
+              <div class="who" style="color:#5a4aa4;background:#e7e1f4">Entwickler &amp; Architekten</div>
+            </div>
+            <div class="what">Die unsichtbare Grundkonfiguration – Rolle, Regeln und Grenzen, die vor jeder Nutzung gesetzt werden.</div>
+            <div class="ana"><b>Wie die Arbeitsanweisung,</b> die ein neuer Mitarbeiter am ersten Tag bekommt.</div>
+
+            <div class="lvl pr l3">
+              <div class="lhead">
+                <div class="ic" style="background:#BD6C85"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                <div class="nm">Prompt</div>
+                <div class="who" style="color:#a0506b;background:#f6dde5">Jede Person</div>
+              </div>
+              <div class="what">Was ich der KI in diesem Moment sage – die 8 Bausteine eines guten Prompts.</div>
+              <div class="ana"><b>Wie eine gute E-Mail schreiben.</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>
