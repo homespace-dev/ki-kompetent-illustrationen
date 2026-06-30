@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Illustrationen – Galerie</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
   :root{ --ink:#16171D; --muted:#74757f; --border:#e7e8ec; --bg:#f4f5f7; }
   *{box-sizing:border-box}
@@ -135,6 +136,28 @@
   .lb-nav:hover{background:rgba(255,255,255,.18);}
   .lb-nav.prev{left:20px;} .lb-nav.next{right:20px;}
   @media (max-width:600px){ .lb-stage{padding:46px 12px 18px;} .lb-nav{width:40px;height:40px;font-size:22px;} .lb-nav.prev{left:8px;} .lb-nav.next{right:8px;} }
+
+  /* Alle herunterladen */
+  .dlall-wrap{position:relative;}
+  .dlall-btn{font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#16171D;border:none;border-radius:9px;
+    padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+  .dlall-btn:hover{background:#000;}
+  .dlall-panel{position:absolute;right:0;top:calc(100% + 9px);width:312px;background:#fff;border:1px solid var(--border);
+    border-radius:14px;box-shadow:0 14px 38px rgba(17,17,19,.18);padding:15px;z-index:60;}
+  .dlall-panel[hidden]{display:none;}
+  .dlall-panel h4{margin:0 0 3px;font-size:13.5px;font-weight:800;letter-spacing:-0.01em;}
+  .dlall-panel .sub{margin:0 0 12px;font-size:11.5px;color:var(--muted);line-height:1.5;}
+  .fmt{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border:1px solid var(--border);border-radius:10px;
+    margin-bottom:7px;cursor:pointer;background:#fbfbfd;}
+  .fmt:hover{background:#f1f2f5;}
+  .fmt:has(input:checked){border-color:#16171D;background:#fff;box-shadow:0 0 0 1px #16171D inset;}
+  .fmt input{margin-top:2px;accent-color:#16171D;flex:none;}
+  .fmt .fl{font-size:12.5px;font-weight:700;display:block;letter-spacing:-0.005em;}
+  .fmt .fd{font-size:11px;color:var(--muted);display:block;margin-top:1px;line-height:1.35;}
+  .dlall-go{width:100%;margin-top:7px;font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#16171D;
+    border:none;border-radius:10px;padding:11px;cursor:pointer;}
+  .dlall-go:hover{background:#000;} .dlall-go:disabled{opacity:.55;cursor:default;}
+  .dlall-prog{margin-top:9px;font-size:11.5px;color:var(--muted);min-height:15px;text-align:center;line-height:1.4;}
 </style>
 </head>
 <body data-bg="grid" data-tone="color">
@@ -175,6 +198,20 @@
         <button data-tone="sw" aria-selected="false"><span class="sw2" style="background:linear-gradient(135deg,#3a3b44,#cfd0d6)"></span>S/W</button>
       </div>
       <span class="hint">S/W = Vorschau &amp; Download in echten Graustufen (Druck)</span>
+      <div class="dlall-wrap" style="margin-left:auto">
+        <button id="dlAllBtn" class="dlall-btn" type="button">↓ Alle herunterladen</button>
+        <div id="dlAllPanel" class="dlall-panel" hidden>
+          <h4>Alle Illustrationen herunterladen</h4>
+          <p class="sub">Als ZIP – fortlaufend nummeriert (01–N) im Dateinamen. Format wählen:</p>
+          <label class="fmt"><input type="radio" name="dlfmt" value="png-color" checked><span><span class="fl">PNG · Farbe</span><span class="fd">Web-Palette, hohe Auflösung</span></span></label>
+          <label class="fmt"><input type="radio" name="dlfmt" value="png-sw"><span><span class="fl">PNG · Schwarz-Weiß</span><span class="fd">S/W-sichere Druckpalette</span></span></label>
+          <label class="fmt"><input type="radio" name="dlfmt" value="eps-97mm"><span><span class="fl">EPS · 97 mm (CMYK)</span><span class="fd">Vektor für den Druck</span></span></label>
+          <label class="fmt"><input type="radio" name="dlfmt" value="eps-85mm"><span><span class="fl">EPS · 85 mm (CMYK)</span><span class="fd">schmale Spaltenbreite</span></span></label>
+          <label class="fmt"><input type="radio" name="dlfmt" value="eps-107mm"><span><span class="fl">EPS · 107 mm (CMYK)</span><span class="fd">volle Spaltenbreite</span></span></label>
+          <button class="dlall-go" id="dlAllGo" type="button">Herunterladen</button>
+          <div class="dlall-prog" id="dlAllProg"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -435,6 +472,52 @@
     // Hintergrund-/SW-Umschalter sollen die offene Lightbox sofort aktualisieren
     document.getElementById('seg').addEventListener('click', renderLBIfOpen);
     document.getElementById('seg-tone').addEventListener('click', renderLBIfOpen);
+
+    // ---- Alle herunterladen (ZIP, fortlaufend nummeriert 01–N) ----
+    (function(){
+      const btn   = document.getElementById('dlAllBtn');
+      const panel = document.getElementById('dlAllPanel');
+      const go    = document.getElementById('dlAllGo');
+      const prog  = document.getElementById('dlAllProg');
+      btn.addEventListener('click', e => { e.stopPropagation(); panel.hidden = !panel.hidden; });
+      document.addEventListener('click', e => {
+        if (!panel.hidden && !panel.contains(e.target) && e.target !== btn) panel.hidden = true;
+      });
+      const pad = n => String(n).padStart(2, '0');
+      function fileFor(it, fmt){
+        if (fmt === 'png-color') return { url:'illu-thumbs/'    + it.file + '.png', ext:'png' };
+        if (fmt === 'png-sw')    return { url:'illu-thumbs-sw/' + it.file + '.png', ext:'png' };
+        const size = fmt.split('-')[1]; // 85mm | 97mm | 107mm
+        return { url:'eps/' + it.file + '-' + size + '.eps', ext:'eps' };
+      }
+      go.addEventListener('click', async () => {
+        if (typeof JSZip === 'undefined'){ prog.textContent = 'ZIP-Bibliothek nicht geladen.'; return; }
+        const fmt = (document.querySelector('input[name=dlfmt]:checked') || {}).value || 'png-color';
+        go.disabled = true;
+        const zip = new JSZip();
+        const missing = [];
+        for (let i = 0; i < allItems.length; i++){
+          const it = allItems[i];
+          const { url, ext } = fileFor(it, fmt);
+          prog.textContent = 'Lade ' + (i + 1) + ' / ' + allItems.length + ' …';
+          try {
+            const r = await fetch(url);
+            if (!r.ok) throw 0;
+            zip.file(pad(i + 1) + '-' + it.file + '.' + ext, await r.blob());
+          } catch (e) { missing.push(it.file); }
+        }
+        prog.textContent = 'ZIP wird erstellt …';
+        const blob = await zip.generateAsync({ type:'blob' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'ki-kompetent-illustrationen-' + fmt + '.zip';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+        const ok = allItems.length - missing.length;
+        prog.textContent = 'Fertig · ' + ok + ' Dateien' + (missing.length ? ' · ' + missing.length + ' nicht gefunden' : '');
+        go.disabled = false;
+      });
+    })();
   </script>
 </body>
 </html>
