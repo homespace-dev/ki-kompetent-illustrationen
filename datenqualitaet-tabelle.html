@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow" />
 <title>Datenqualität · Dimensionen</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -23,39 +22,43 @@
   .wrap{display:flex;justify-content:center;padding:34px 24px 60px;min-height:100vh;
     background:radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%);}
 
-  .card{background:transparent;padding:16px;max-width:1000px;width:100%;}
-  .card-head{margin:0 0 5px;font-size:20px;font-weight:600;letter-spacing:-0.015em;}
-  .card-sub{margin:0 0 24px;font-size:14px;color:var(--text-muted);font-weight:400;letter-spacing:-0.005em;}
+  .card{background:transparent;padding:16px;width:520px;}
+  .card-head{margin:0 0 4px;font-size:22px;line-height:1.2;font-weight:600;letter-spacing:-0.015em;}
+  .card-sub{margin:0 0 12px;font-size:13.5px;line-height:1.4;color:var(--text-muted);font-weight:400;letter-spacing:-0.005em;}
 
-  table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--border);
+  table{width:488px;table-layout:fixed;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--border);
     border-radius:12px;overflow:hidden;}
-  thead th{text-align:left;background:var(--header-bg);font-size:11px;font-weight:600;letter-spacing:0.045em;
-    text-transform:uppercase;color:var(--text-muted);padding:12px 16px;border-bottom:1px solid var(--border);white-space:nowrap;}
+  thead th{text-align:left;background:var(--header-bg);font-size:12px;line-height:1.35;font-weight:600;letter-spacing:0.045em;
+    text-transform:uppercase;color:var(--text-muted);padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
   thead th:not(:last-child){border-right:1px solid var(--border);}
   .th-inner{display:inline-flex;align-items:center;}
-  .th-inner svg{width:14px;height:14px;color:#a0a0a6;flex:none;margin-right:8px;}
+  .th-group{display:flex;gap:14px;flex-wrap:wrap;}
+  .th-inner svg{width:14px;height:14px;color:#a0a0a6;flex:none;margin-right:7px;}
 
-  tbody td{padding:14px 16px;font-size:13.5px;line-height:1.5;vertical-align:middle;
+  tbody td{padding:7px 12px 7px 10px;font-size:13px;line-height:1.36;vertical-align:top;
     border-bottom:1px solid var(--border);color:var(--text-soft);}
-  tbody td:not(:last-child){border-right:1px solid var(--border);}
+  
 
-  .dim{white-space:nowrap;}
-  .dim .dico{width:34px;height:34px;vertical-align:middle;margin-right:11px;}
-  .dim .name{display:inline-block;vertical-align:middle;font-weight:600;color:var(--text);font-size:14px;letter-spacing:-0.01em;}
+  .ico{padding-right:0 !important;vertical-align:top !important;}
+  .dico{width:28px;height:28px;display:block;margin-top:-3px;}
+  .name{font-weight:600;color:var(--text);font-size:14px;letter-spacing:-0.01em;margin-right:4px;}
 
   .q,.rel{color:var(--text-soft);}
-  .q .ic,.rel .ic{display:inline-flex;vertical-align:-2px;margin-right:8px;color:var(--accent);}
+  td p{margin:0;} td p.rel-p{margin-top:1px;}
+  .lbl{display:inline-block;font-size:12px;font-weight:600;letter-spacing:0.045em;text-transform:uppercase;color:var(--accent);
+    margin-right:2px;}
+  .q .ic,.rel .ic{display:inline-flex;vertical-align:-2px;margin-right:6px;color:var(--accent);}
   .q .ic svg,.rel .ic svg{width:14px;height:14px;}
 
   /* Trenn-/Hinweiszeile vor der 7. Dimension */
-  .divider td{background:#f6f1f9;border-top:2px solid #e2d6ea;color:#7a4f8c;font-weight:600;font-size:12.5px;
-    letter-spacing:.01em;padding:11px 16px;}
+  .divider td{background:#f6f1f9;border-top:2px solid #e2d6ea;color:#7a4f8c;font-weight:600;font-size:13px;
+    letter-spacing:.01em;padding:7px 12px;line-height:1.35;}
   .divider .ic{display:inline-flex;vertical-align:-3px;margin-right:8px;color:#8F5E9C;}
   .divider .ic svg{width:15px;height:15px;}
   /* hervorgehobene 7. Dimension */
   .hl td{background:#faf5fc;border-bottom:none;}
-  .badge{display:inline-block;margin-left:10px;background:#8F5E9C;color:#fff;font-size:10px;font-weight:700;
-    letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:20px;vertical-align:middle;}
+  .badge{display:inline-block;margin:0 6px 0 0;background:#8F5E9C;color:#fff;font-size:12px;font-weight:700;line-height:1.2;
+    letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:20px;vertical-align:1px;}
 </style>
 </head>
 <body>
@@ -72,53 +75,45 @@
       <p class="card-sub">Klassische Datenqualität misst sechs Dimensionen. Für KI kommt eine siebte hinzu, die über Fairness entscheidet.</p>
 
       <table>
+        <colgroup><col style="width:52px"><col style="width:436px"></colgroup>
         <thead>
           <tr>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>Dimension</span></th>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Was sie misst</span></th>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>KI-Relevanz</span></th>
+            <th colspan="2"><div class="th-group"><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>Dimension</span><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Was sie misst</span><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>KI-Relevanz</span></div></th>
           </tr>
         </thead>
         <tbody style="--accent:#5174BC">
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></g></svg><span class="name">Vollständigkeit</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind alle Felder und Datensätze vorhanden?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Lücken im Trainingsdatensatz erzeugen blinde Flecken im Modell.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Vollständigkeit</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind alle Felder und Datensätze vorhanden?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Lücken im Trainingsdatensatz erzeugen blinde Flecken im Modell.</span></p></td>
           </tr>
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></g></svg><span class="name">Richtigkeit</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Stimmen die Daten mit der Realität überein?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Falsche Labels erzeugen falsche Vorhersagen.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Richtigkeit</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Stimmen die Daten mit der Realität überein?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Falsche Labels erzeugen falsche Vorhersagen.</span></p></td>
           </tr>
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></g></svg><span class="name">Konsistenz</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind Daten über Systeme hinweg widerspruchsfrei?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Ein Wert in SAP anders als im CRM erzeugt Chaos beim Training der KI-Modelle.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Konsistenz</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind Daten über Systeme hinweg widerspruchsfrei?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Ein Wert in SAP anders als im CRM erzeugt Chaos beim Training der KI-Modelle.</span></p></td>
           </tr>
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g></svg><span class="name">Aktualität</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind die Daten aktuell genug für den Zweck?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Ein Modell auf 5 Jahre alten Daten kennt die heutige Realität nicht.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Aktualität</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Sind die Daten aktuell genug für den Zweck?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Ein Modell auf 5 Jahre alten Daten kennt die heutige Realität nicht.</span></p></td>
           </tr>
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></g></svg><span class="name">Eindeutigkeit</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Gibt es Duplikate?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Doppelte Datensätze gewichten bestimmte Muster künstlich stärker.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Eindeutigkeit</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Gibt es Duplikate?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Doppelte Datensätze gewichten bestimmte Muster künstlich stärker.</span></p></td>
           </tr>
           <tr>
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></svg><span class="name">Gültigkeit</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Entsprechen Daten den definierten Regeln und Formaten?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Falsche Einheiten oder Formate verfälschen die zu verarbeitenden Rohdaten.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf1fb" stroke="#d3def5"/><g transform="translate(9 9) scale(0.75)" stroke="#5174BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Gültigkeit</span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Entsprechen Daten den definierten Regeln und Formaten?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Falsche Einheiten oder Formate verfälschen die zu verarbeitenden Rohdaten.</span></p></td>
           </tr>
         </tbody>
         <tbody style="--accent:#8F5E9C">
           <tr class="divider">
-            <td colspan="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>Für KI kommt eine 7. Dimension hinzu, die in klassischen Modellen fehlt:</td>
+            <td colspan="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>Für KI kommt eine 7. Dimension hinzu, die in klassischen Modellen fehlt:</td>
           </tr>
           <tr class="hl">
-            <td><div class="dim"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f4edf7" stroke="#e6d6ed"/><g transform="translate(9 9) scale(0.75)" stroke="#8F5E9C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></svg><span class="name">Repräsentativität</span><span class="badge">Neu für KI</span></div></td>
-            <td><span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Bildet der Datensatz die Realität fair und ausgewogen ab?</span></td>
-            <td><span class="rel"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></span>Fehlende Gruppen oder Szenarien im Training führen zu Bias im Modell.</span></td>
+            <td class="ico"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f4edf7" stroke="#e6d6ed"/><g transform="translate(9 9) scale(0.75)" stroke="#8F5E9C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></svg></td>
+            <td><p class="q-p"><span class="name">Repräsentativität</span><span class="badge">Neu für KI</span></span> <span class="q"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>Bildet der Datensatz die Realität fair und ausgewogen ab?</span></p><p class="rel-p"><span class="lbl">KI-Relevanz</span> <span class="rel">Fehlende Gruppen oder Szenarien im Training führen zu Bias im Modell.</span></p></td>
           </tr>
         </tbody>
       </table>
