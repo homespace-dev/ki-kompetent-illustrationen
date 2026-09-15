@@ -164,9 +164,9 @@
   <header>
     <p class="eyebrow">Buchprojekt · KI</p>
     <h1>Illustrationen – Galerie</h1>
-    <p class="lead">Alle Illustrationen an einem Ort – nummeriert nach den <b>Abbildungs-Nummern aus dem PDF</b>. So passt „Abbildung 8" auf der Website zu „Abbildung 8" im Manuskript.</p>
-    <p class="note"><b>Zwei-spurig:</b> <b>Farbe</b> = lebendige Web-Palette (Galerie, Landingpage). <b>S/W</b> = die <b>S/W-sichere Druckpalette</b> (gleiche Farbfamilie, aber Helligkeit so gestuft, dass die Töne im reinen Schwarz-Weiß-Druck klar unterscheidbar bleiben) – entsättigt dargestellt, genau wie der Graustufendruck. Umschalter: <b>Hintergrund</b> (Transparent / Weiß / Raster) und <b>Darstellung (Farbe / S&#8202;/&#8202;W)</b>; der Download folgt der Auswahl. Für die Druckabgabe an Wiley liegen zusätzlich <b>EPS-Vektordateien</b> (85 / 97 / 107&nbsp;mm) unter <code>eps/</code>. &nbsp;Hinweis: <b>Abbildung 11</b> hat keine Grafik.</p>
-    <p class="note"><b>Druckfassung (Stand 14.09.2026):</b> Alle Abbildungen sind für das Buchformat <b>140 × 216 mm</b> (Satzspiegel ca. 110 mm) neu gesetzt – einheitliche Breite, Fließtext in den Grafiken mindestens <b>7,8 pt</b>, Labels mindestens 7,2 pt, jede Grafik passt mit Bildunterschrift auf eine Seite. Die Rollen-Tabelle (Abb. 14) ist bei lesbarer Schrift zu hoch für eine Seite und liegt deshalb zusätzlich zweiteilig vor (<b>14a / 14b</b>).</p>
+    <p class="lead">Alle Illustrationen an einem Ort – nummeriert und benannt <b>wie im Manuskript</b> (Abbildung 1.1 bis 6.3, Wiley-Vorabentwurf vom 07.09.2026). Dateinamen tragen die Abbildungsnummer.</p>
+    <p class="note"><b>Zwei-spurig:</b> <b>Farbe</b> = lebendige Web-Palette (Galerie, Landingpage). <b>S/W</b> = die <b>S/W-sichere Druckpalette</b> (gleiche Farbfamilie, aber Helligkeit so gestuft, dass die Töne im reinen Schwarz-Weiß-Druck klar unterscheidbar bleiben) – entsättigt dargestellt, genau wie der Graustufendruck. Umschalter: <b>Hintergrund</b> (Transparent / Weiß / Raster) und <b>Darstellung (Farbe / S&#8202;/&#8202;W)</b>; der Download folgt der Auswahl. Für die Druckabgabe an Wiley liegen zusätzlich <b>EPS-Vektordateien</b> (85 / 97 / 107&nbsp;mm) unter <code>eps/</code>.</p>
+    <p class="note"><b>Druckfassung (Stand 14.09.2026):</b> Alle Abbildungen sind für das Buchformat <b>140 × 216 mm</b> (Satzspiegel ca. 110 mm) neu gesetzt – einheitliche Breite, Fließtext in den Grafiken mindestens <b>7,8 pt</b>, Labels mindestens 7,2 pt, jede Grafik passt mit Bildunterschrift auf eine Seite. Die Rollen-Tabelle (Abb. 6.2) ist bei lesbarer Schrift zu hoch für eine Seite und liegt deshalb zweiteilig vor (<b>6.2a / 6.2b</b>). Alle Grafiken folgen einem gemeinsamen Designsystem (<code>illu-base.css</code>), Texte unverändert wie im Manuskript.</p>
   </header>
 
   <div class="palette">
@@ -225,8 +225,8 @@
   <div class="grid" id="chgrid"></div>
 
   <div class="section-h">
-    <h2>Kapitel-Zusammenfassungen · Auf einen Blick</h2>
-    <p>Erscheinen am Kapitel-Ende und fassen die wichtigsten Erkenntnisse auf einen Blick zusammen – durchnummeriert, Kernaussage plus kurze Erläuterung.</p>
+    <h2>Weitere Grafiken · nicht im Buch</h2>
+    <p>Grafiken ohne Abbildungsnummer im aktuellen Manuskript – gleiches Designsystem, für Website, Vorträge oder spätere Auflagen.</p>
   </div>
   <div class="grid" id="sumgrid"></div>
 
@@ -291,28 +291,34 @@
   <div class="copied" id="copied">HEX kopiert</div>
 
   <script>
-    // [Abbildungsnummer, Datei, Titel]
+    // [Abbildungsnummer wie im Buch, Datei, Bildunterschrift wie im Buch]
     const items = [
-      [1,'ki-hierarchie-treppe','Von der KI zu ChatGPT & Agenten · Schichten'],
-      ["1b",'openai-chatgpt-gpt','OpenAI, ChatGPT & GPT-3.5 · Begriffe (Kap. 1)'],
-      ["1c",'ki-faehigkeiten-mindweb','Was KI alles kann · Mind-Web (Kap. 1)'],
-      [2,'ki-datenarten-tabelle','KI-Datenarten · Tabelle'],
-      [3,'prompt-bausteine','Bausteine eines guten Prompts'],
-      ["3b",'prompt-bausteine-beispiel','Die 8 Bausteine in Aktion · Beispiel (Kap. 1)'],
-      ["3c",'prompt-system-context','Prompt · System Prompt · Context Engineering (Kap. 1)'],
-      [4,'ki-wirkungsebenen','Die drei Wirkungsebenen der KI'],
-      [5,'kpi-leading-lagging-tabelle','Leading/Lagging · Wirksamkeit & Qualität'],
-      [6,'kpi-adoption-leading-lagging','Leading/Lagging · Adoption'],
-      [7,'kpi-markt-leading-lagging','Leading/Lagging · Markt & Umsatz'],
-      [8,'kernmodell-dreieck','KI kompetent durch drei Kräfte'],
-      [9,'vertrauen-dimensionen-tabelle','Vertrauen · vier Dimensionen'],
-      [10,'zuversicht-bluete','Zuversicht · Blüte (PsyCap)'],
-      [12,'ki-zielbild-tempel','Skalierbares Zielbild · Technologie (Kap. 5)'],
-      [13,'datenqualitaet-tabelle','Datenqualität · Dimensionen'],
-      [14,'ki-rollen-tabelle','Rollen in der KI-Organisation (Kap. 6)'],
-      ["14a",'ki-rollen-tabelle-teil1','Rollen in der KI-Organisation · Teil 1 von 2 (Kap. 6)'],
-      ["14b",'ki-rollen-tabelle-teil2','Rollen in der KI-Organisation · Teil 2 von 2 (Kap. 6)'],
-      [15,'ki-betriebsmodelle-tabelle','KI-Betriebsmodelle (Kap. 6)'],
+      ['1.1','abb-1-1-erklaerungsmodell-ki','Erklärungsmodell für Künstliche Intelligenz'],
+      ['1.2','abb-1-2-ki-faehigkeiten','KI-Fähigkeiten auf einen Blick'],
+      ['1.3','abb-1-3-datenarten','Übersicht der verschiedenen Datenarten'],
+      ['1.4','abb-1-4-grundsaetze-prompt','Acht Grundsätze eines guten Prompts'],
+      ['1.5','abb-1-5-context-engineering','Einordnung Context Engineering'],
+      ['2.1','abb-2-1-wirkungsebenen','Die drei Wirkungsebenen der KI'],
+      ['3.1','abb-3-1-ki-kompetenz-modell','KI-Kompetenz-Modell'],
+      ['4.1','abb-4-1-vertrauen','Die vier Dimensionen von Vertrauen in KI'],
+      ['4.2','abb-4-2-psychologisches-kapital','Führungsmodell des Psychologischen Kapitals'],
+      ['4.3','abb-4-3-fuehrung-auf-einen-blick','Führung auf einen Blick'],
+      ['5.1','abb-5-1-technologie-zielbild','Technologie Zielbild'],
+      ['5.2','abb-5-2-datenqualitaet','Übersicht der Dimensionen der Datenqualität'],
+      ['5.3','abb-5-3-technologie-auf-einen-blick','Technologie auf einen Blick'],
+      ['6.1','abb-6-1-ki-organisationsmodell','KI-Organisationsmodell'],
+      ['6.2a','abb-6-2a-rollen-teil1','Übersicht der Rollen im Unternehmen · Teil 1 von 2'],
+      ['6.2b','abb-6-2b-rollen-teil2','Übersicht der Rollen im Unternehmen · Teil 2 von 2'],
+      ['6.2','abb-6-2-rollen','Übersicht der Rollen im Unternehmen · Gesamtübersicht (zu hoch für eine Buchseite)'],
+      ['6.3','abb-6-3-organisation-auf-einen-blick','Organisation auf einen Blick'],
+    ];
+    // Weitere Grafiken – nicht im Buch
+    const extras = [
+      ['E1','openai-chatgpt-gpt','OpenAI, ChatGPT & GPT-3.5 · Begriffe'],
+      ['E2','prompt-bausteine-beispiel','Die 8 Bausteine in Aktion · Beispiel'],
+      ['E3','kpi-leading-lagging-tabelle','Leading/Lagging · Wirksamkeit & Qualität'],
+      ['E4','kpi-adoption-leading-lagging','Leading/Lagging · Adoption'],
+      ['E5','kpi-markt-leading-lagging','Leading/Lagging · Markt & Umsatz'],
     ];
     // Kapitel-Titelseiten
     const chapters = [
@@ -326,21 +332,14 @@
       [8,'kapitel-8-titelseite','Kapitel 8 · Vom Verstehen ins Handeln'],
     ];
 
-    // Kapitel-Zusammenfassungen (Auf einen Blick)
-    const summaries = [
-      [4,'kapitel-4-auf-einen-blick','Kapitel 4 · Auf einen Blick'],
-      [5,'kapitel-5-auf-einen-blick','Kapitel 5 · Auf einen Blick'],
-      [6,'kapitel-6-auf-einen-blick','Kapitel 6 · Auf einen Blick'],
-    ];
-
     // Gemeinsame Liste – Reihenfolge = Anzeige; Index steuert die Lightbox
     const allItems = [];
     items.forEach(([nr,file,title]) => allItems.push({kind:'ABB', nr, file, title}));
+    extras.forEach(([nr,file,title]) => allItems.push({kind:'EXT', nr, file, title}));
     chapters.forEach(([nr,file,title]) => allItems.push({kind:'KAP', nr, file, title}));
-    summaries.forEach(([nr,file,title]) => allItems.push({kind:'SUM', nr, file, title}));
 
     function cardHTML(it, idx){
-      const badge = (it.kind==='KAP' ? '<small>KAP.</small>' : it.kind==='SUM' ? '<small>BLICK</small>' : '<small>ABB.</small>') + it.nr;
+      const badge = (it.kind==='KAP' ? '<small>KAP.</small>' : it.kind==='EXT' ? '<small>EXTRA</small>' : '<small>ABB.</small>') + (it.kind==='EXT' ? '' : it.nr);
       return '<div class="thumb" data-idx="'+idx+'" title="Großansicht öffnen">'+
           '<img loading="lazy" data-file="'+it.file+'" src="illu-thumbs/'+it.file+'.png" alt="'+it.title+'"></div>'+
         '<div class="meta"><div class="num">'+badge+'</div>'+
@@ -349,7 +348,7 @@
           '<a class="size big" data-file="'+it.file+'" data-scale="3" href="#">↓ Download · Druck</a>'+
           '<a class="size" data-file="'+it.file+'" data-scale="2" href="#">2×</a>'+
           '<a class="size" data-file="'+it.file+'" data-scale="4" href="#">4×</a>'+
-          '<a class="eps" href="eps/'+it.file+'-97mm.eps" download title="Vektor-EPS (CMYK, Roboto) · 97 mm – auch 85/107 mm im eps-Ordner">EPS ↓</a>'+
+          '<a class="eps" href="eps/'+it.file+'-97mm.eps" download title="Vektor-EPS (CMYK) · 97 mm – auch 85/107 mm im eps-Ordner">EPS ↓</a>'+
           '<a class="open" data-file="'+it.file+'" href="#" target="_blank" rel="noopener">Öffnen ↗</a>'+
         '</div>';
     }
@@ -360,7 +359,7 @@
       const el = document.createElement('div');
       el.className = 'item';
       el.innerHTML = cardHTML(it, idx);
-      (it.kind==='KAP' ? chgrid : it.kind==='SUM' ? sumgrid : grid).appendChild(el);
+      (it.kind==='KAP' ? chgrid : it.kind==='EXT' ? sumgrid : grid).appendChild(el);
     });
 
     // Farbschema

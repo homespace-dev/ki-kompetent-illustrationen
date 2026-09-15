@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Übersicht der Rollen im Unternehmen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+  .hd .chip{margin-top:4px;}
+  .tbl td{vertical-align:top;padding:8px 10px;}
+  .ent{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+  .blk + .blk{margin-top:5px;}
+  .blk .lbl{margin-bottom:1px;}
+  .blk .txt{font-size:13px;line-height:1.36;color:var(--text);}
+  .blk .txt b{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <div>
+          <h1 class="title">Übersicht der Rollen im Unternehmen</h1>
+          <p class="subtitle">Wer welchen Beitrag zur KI-Transformation leistet – und welche Verantwortung damit verbunden ist.</p>
+        </div>
+        <span class="chip">Teil 2 von 2</span>
+      </div>
+
+      <table class="tbl">
+        <colgroup><col style="width:148px"><col style="width:340px"></colgroup>
+        <tbody>
+          <tr class="a3">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></span><span class="name">KI-Plattform-Team</span></div></td>
+            <td>
+              <div class="blk"><div class="lbl">Beitrag zur KI-Transformation</div><div class="txt">Schafft die <b>technische Grundlage</b>, auf der KI-Lösungen sicher und skalierbar entstehen können.</div></div>
+              <div class="blk"><div class="lbl">Typische Verantwortung</div><div class="txt">Verantwortet <b>Plattformen, Architektur, Integration, Betrieb</b>, Datenanbindung und technische Leitplanken.</div></div>
+            </td>
+          </tr>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="name">KI-Ambassadors</span></div></td>
+            <td>
+              <div class="blk"><div class="lbl">Beitrag zur KI-Transformation</div><div class="txt">Verankern KI <b>im Alltag der Fachbereiche</b>.</div></div>
+              <div class="blk"><div class="lbl">Typische Verantwortung</div><div class="txt">Sammeln Ideen, geben Orientierung, <b>fördern Nutzung</b> und machen Erfolgsbeispiele sichtbar.</div></div>
+            </td>
+          </tr>
+          <tr class="a5">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><span class="name">Fachbereiche</span></div></td>
+            <td>
+              <div class="blk"><div class="lbl">Beitrag zur KI-Transformation</div><div class="txt">Bringen <b>Prozesswissen, Kundennähe und konkrete Probleme</b> ein.</div></div>
+              <div class="blk"><div class="lbl">Typische Verantwortung</div><div class="txt">Arbeiten an relevanten Use Cases, bewerten Nutzen und tragen Verantwortung für <b>fachliche Adoption</b>.</div></div>
+            </td>
+          </tr>
+          <tr class="a5">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="name">Governance, Risk, Compliance und Cyber Security</span></div></td>
+            <td>
+              <div class="blk"><div class="lbl">Beitrag zur KI-Transformation</div><div class="txt">Setzen <b>Leitplanken</b>, damit KI sicher, nachvollziehbar und verantwortungsvoll eingesetzt wird.</div></div>
+              <div class="blk"><div class="lbl">Typische Verantwortung</div><div class="txt">Prüfen <b>Risiken, Datenzugriffe, regulatorische Anforderungen</b> und Freigaben für produktive Nutzung.</div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

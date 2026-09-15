@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organisation auf einen Blick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .hd .chip{margin-top:4px;}
+  .row .rd b{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <div>
+          <h1 class="title">Organisation auf einen Blick</h1>
+          <p class="subtitle">Fünf Kernaussagen zur Organisation.</p>
+        </div>
+        <span class="chip">Kapitel 6</span>
+      </div>
+
+      <div class="panel">
+        <div class="row">
+          <span class="num">1</span>
+          <div class="rh">Das KI-Team zentral verankern und eng mit dem Geschäft verzahnen.</div>
+          <div class="rd">Ein <b>zentrales, multidisziplinäres KI-Team</b> bündelt Kompetenz, ermöglicht Standardisierung und verhindert Wildwuchs. Entscheidend ist die <b>klare Anbindung an die Fachbereiche</b> und an unternehmensweite strategische Hebel – sonst entsteht ein weiteres Silo.</div>
+        </div>
+        <div class="row">
+          <span class="num">2</span>
+          <div class="rh">Die richtigen Rollen schaffen.</div>
+          <div class="rd">KI braucht <b>Verankerung auf Vorstandsebene</b> und Übersetzer-Rollen zwischen Technologie und Geschäft. <b>KI-Botschafter in den Fachbereichen</b> sorgen dafür, dass das Thema dort ankommt, wo es wirken soll.</div>
+        </div>
+        <div class="row">
+          <span class="num">3</span>
+          <div class="rh">Verantwortung bewusst gestalten, nicht an die KI delegieren.</div>
+          <div class="rd">„Die KI hat das entschieden“ ist keine Antwort. Führung bedeutet festzulegen, <b>wie Mensch und KI zusammenarbeiten</b> – vom aktiven Genehmigen bis zur reinen Rahmensteuerung. Ownership verschiebt sich von Einzelentscheidungen hin zur <b>Gestaltung von Rahmenbedingungen</b>.</div>
+        </div>
+        <div class="row">
+          <span class="num">4</span>
+          <div class="rh">KI-Befähigung in die Breite bringen.</div>
+          <div class="rd">Orientierung für alle, Kompetenz für die tägliche Anwendung, Expertise für Spezialisten. <b>Sandboxes, Train-the-Trainer und Botschafter-Netzwerke</b> skalieren besser als zentrale Schulungsprogramme. Das wirksamste Lernwerkzeug für KI ist <b>KI selbst</b>.</div>
+        </div>
+        <div class="row">
+          <span class="num">5</span>
+          <div class="rh">Kultur entscheidet, ob alles andere wirkt.</div>
+          <div class="rd"><b>Psychologische Sicherheit, aktive Fehlerkultur und offener Dialog</b> sind die Voraussetzung dafür, dass Menschen KI als Werkzeug annehmen, statt sie als Bedrohung zu erleben. Kultur ändert sich nicht durch Kommunikationspakete, sondern durch <b>sichtbare Handlungen</b>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

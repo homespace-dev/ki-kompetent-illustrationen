@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Technologie auf einen Blick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .hd .chip{margin-top:4px;}
+  .row .rd b{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <div>
+          <h1 class="title">Technologie auf einen Blick</h1>
+          <p class="subtitle">Fünf Kernaussagen zur Technologie.</p>
+        </div>
+        <span class="chip">Kapitel 5</span>
+      </div>
+
+      <div class="panel">
+        <div class="row">
+          <span class="num">1</span>
+          <div class="rh">Technologie ist keine IT-Frage, sondern eine Führungsaufgabe.</div>
+          <div class="rd">Ohne eine klare, <b>an der Geschäftsstrategie ausgerichtete KI-Strategie</b> bleiben selbst die besten Expertinnen und Experten wirkungslos. Die <b>Rahmenbedingungen entscheiden</b> darüber, ob Fähigkeiten ihr Potenzial entfalten können.</div>
+        </div>
+        <div class="row">
+          <span class="num">2</span>
+          <div class="rh">Daten sind das Fundament – und Datenqualität ist Chefsache.</div>
+          <div class="rd">Drei Dimensionen müssen stimmen: <b>Quantität, Qualität und Verfügbarkeit</b>. Datenqualität lässt sich messen und verbessern – aber nur, wenn Führungskräfte <b>Data Ownership im Fachbereich</b> einfordern, statt das Thema an die IT zu delegieren.</div>
+        </div>
+        <div class="row">
+          <span class="num">3</span>
+          <div class="rh">In Plattformen denken, nicht in Tools.</div>
+          <div class="rd">Ein funktionierendes KI-Setup besteht aus drei Bausteinen: <b>Datenplattform, KI-Entwicklungsumgebung und skalierbare Infrastruktur</b>. <b>Integration schlägt Einzellösung</b> – jedes zusätzliche Tool muss einen klaren Mehrwert fürs Gesamtsystem liefern. Weniger ist mehr.</div>
+        </div>
+        <div class="row">
+          <span class="num">4</span>
+          <div class="rh">KI-Fähigkeiten strategisch aufbauen und halten.</div>
+          <div class="rd">Die <b>Schnittstelle zwischen Technologieverständnis und Geschäftswissen</b> ist am Markt kaum verfügbar. Wer diese Kompetenz dauerhaft extern einkauft, gibt ein strategisches Asset aus der Hand. Der interne Aufbau braucht <b>klare Verantwortung im Führungsteam</b>.</div>
+        </div>
+        <div class="row">
+          <span class="num">5</span>
+          <div class="rh">Governance ermöglicht, statt zu verhindern.</div>
+          <div class="rd"><b>Klare Leitplanken schaffen Sicherheit</b> für Entscheidungen – ihr Fehlen erzeugt Lähmung. Risiken differenziert bewerten, <b>Verantwortlichkeiten eindeutig zuweisen</b> und den Rahmen regelmäßig an die technologische Entwicklung anpassen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

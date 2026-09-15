@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Übersicht der verschiedenen Datenarten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  .ent{display:flex;align-items:center;gap:9px;}
+  .ent .small{margin-top:1px;}
+  .disc{font-size:13.5px;font-weight:700;color:var(--acc-deep);}
+  .eg{color:var(--muted);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <h1 class="title">Übersicht der verschiedenen Datenarten</h1>
+        <p class="subtitle">Texte, Bilder und Zahlen sind typische Datenarten – jede hat ihre eigene KI-Disziplin und Modellgruppe.</p>
+      </div>
+
+      <table class="tbl">
+        <colgroup><col style="width:150px"><col style="width:160px"><col style="width:178px"></colgroup>
+        <thead>
+          <tr><th>1&nbsp;·&nbsp;Datenart</th><th>2&nbsp;·&nbsp;KI-Disziplin (Fachbegriff)</th><th>3&nbsp;·&nbsp;Subkategorie / Modellgruppe</th></tr>
+        </thead>
+        <tbody>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span><div><div class="name">Texte</div><div class="small">Unstrukturiert</div></div></div></td>
+            <td><span class="disc">Natural Language Processing (NLP)</span></td>
+            <td><span class="eg">z.&nbsp;B.</span> Large Language Models (LLMs)</td>
+          </tr>
+          <tr class="a3">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span><div><div class="name">Bilder</div><div class="small">Unstrukturiert</div></div></div></td>
+            <td><span class="disc">Computer Vision</span></td>
+            <td><span class="eg">z.&nbsp;B.</span> Generative / Convolutional Models</td>
+          </tr>
+          <tr class="a5">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span><div><div class="name">Zahlen</div><div class="small">Strukturiert</div></div></div></td>
+            <td><span class="disc">Predictive Analytics</span></td>
+            <td><span class="eg">z.&nbsp;B.</span> Zeitreihen-, Regressions- und Klassifikationsmodelle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

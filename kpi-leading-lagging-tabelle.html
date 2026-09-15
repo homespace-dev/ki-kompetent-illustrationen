@@ -3,111 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KPIs für KI-Projekte · Attio-Tabelle</title>
+<title>Leading vs. Lagging: KPIs für KI-Projekte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
 <style>
-  :root {
-    --ink: #16171D;
-    --paper: #FBFBFD;
-    --border: #e9eaee;
-    --border-strong: #e2e3e8;
-    --header-bg: #fbfbfd;
-    --row-hover: #fafbfc;
-    --text: #16171D;
-    --text-soft: #3a3b44;
-    --text-muted: #74757f;
-    --chip-border: #e7e8ec;
-    --page-bg: #eceef3;
-  }
-
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0; padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  .toolbar { display: flex; justify-content: center; padding: 26px 16px 0; }
-  .btn {
-    display: inline-flex; align-items: center;
-    font-family: inherit; font-size: 14px; font-weight: 500;
-    color: #fff; background: var(--ink); border: none; border-radius: 9px;
-    padding: 10px 16px; cursor: pointer; transition: background .15s ease, transform .05s ease;
-  }
-  .btn:hover { background: #000; }
-  .btn:active { transform: translateY(1px); }
-  .btn svg { width: 16px; height: 16px; margin-right: 8px; }
-
-  .wrap { display: flex; justify-content: center; padding: 34px 24px 60px; }
-
-  /* Capture target — transparent: nur die Tabelle behält ihren Hintergrund.
-     Druck-Spec: feste 520 px Breite (Innenbreite 488 px), Tabelle 2 Spalten 228 / 260 px. */
-  .card { background: transparent; padding: 16px; width: 520px; }
-  .card-head { margin: 0 0 3px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
-  .card-sub { margin: 0 0 10px; font-size: 13.5px; line-height: 1.4; color: var(--text-muted); font-weight: 400; letter-spacing: -0.005em; }
-  /* Ebenen-Badge: darf umbrechen (kein nowrap), Nummer-Pill bleibt einzeilig */
-  .eb { display:inline-flex; align-items:center; gap:10px; border-radius:999px; padding:5px 14px 5px 6px; margin:0 0 10px; color:#fff;
-    box-shadow:0 1px 2px rgba(22,23,29,.10),0 8px 16px -12px rgba(22,23,29,.12); }
-  .eb .ebn { flex:none; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.22); border-radius:999px; padding:4px 9px; white-space:nowrap; }
-  .eb .ebt { font-size:13px; font-weight:700; letter-spacing:-0.005em; line-height:1.3; }
-  .eb.e1 { background:linear-gradient(110deg,#6E97D6,#41639E); }
-  .eb.e2 { background:linear-gradient(110deg,#8076C8,#574799); }
-  .eb.e3 { background:linear-gradient(110deg,#CB7C95,#9C4E69); }
-
-  table {
-    width: 488px; table-layout: fixed;
-    border-collapse: separate; border-spacing: 0;
-    background: #ffffff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-  }
-  thead th {
-    text-align: left; background: var(--header-bg);
-    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--text-muted); padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap;
-  }
-  thead th:first-child { width: 228px; }
-  thead th:not(:last-child) { border-right: 1px solid var(--border); }
-  .th-inner { display: inline-flex; align-items: center; }
-  .th-inner svg { width: 14px; height: 14px; color: #a0a0a6; flex: none; margin-right: 7px; }
-
-  tbody td {
-    padding: 5px 12px; font-size: 13px; line-height: 1.35; vertical-align: middle;
-    border-bottom: 1px solid var(--border); color: var(--text-soft);
-  }
-  tbody td:not(:last-child) { border-right: 1px solid var(--border); }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr.group-end td { border-bottom: 2px solid var(--border-strong); }
-
-  .chip {
-    display: inline-block; background: var(--acc-soft); color: var(--acc-deep);
-    font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 7px; line-height: 1.3;
-    border: 1px solid var(--acc-line);
-  }
-  .chip .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); margin-right: 7px; vertical-align: middle; }
-
-  /* Abschnitts-Band: Typ einmal je Gruppe statt auf jeder Zeile */
-  .grouprow td { background: var(--acc-soft); border-bottom: 1px solid var(--acc-line); padding: 6px 12px; }
-  .grouprow .gdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 9px; vertical-align: middle; }
-  .grouprow .glabel { font-size: 13.5px; font-weight: 700; color: var(--acc-deep); letter-spacing: -0.005em; vertical-align: middle; }
-  .grouprow .gdesc { font-size: 12.5px; color: var(--text-muted); margin-left: 10px; vertical-align: middle; }
-
-  /* KPI-Zelle: Icon-Kachel 30 px + Name (darf umbrechen) */
-  .kpi { display: flex; align-items: center; }
-  .kpi .dico { flex: none; width: 30px; height: 30px; margin-right: 9px; }
-  .kpi .name { font-weight: 600; color: var(--text); font-size: 14px; line-height: 1.25; letter-spacing: -0.01em; }
-
-  /* "Was es zeigt" */
-  .shows { color: var(--text-soft); }
-
-  .footnote { margin: 12px 2px 0; font-size: 12px; color: #9a9aa0; letter-spacing: .01em; }
-  .footnote b { color: #7a7a82; font-weight: 600; }
+  /* nur Datei-spezifisches */
+  /* Ebenen-Badge unter dem Kopf: Chip + Ebenen-Bezeichnung in einer Zeile */
+  .ebene{display:flex;align-items:center;gap:9px;margin:0 0 10px;}
+  .ebene .ebt{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-0.005em;line-height:1.3;}
+  /* Zellpadding 6 px statt 10 px: 11 Zeilen mit Icon-Kachel passen sonst nicht unter 780 px */
+  .tbl.kpi td{padding:6px 12px;}
+  .tbl.kpi .sep td{padding:7px 12px;}
+  /* KPI-Zelle: Icon-Kachel + Name (darf am Wortende umbrechen) */
+  .ent{display:flex;align-items:center;gap:9px;}
+  .ent .name{min-width:0;}
+  /* Gruppen-Trenner: Label in Tinte, Beschreibung im Wortlaut (nicht versal) */
+  .sep .gl{color:var(--ink);margin-right:10px;}
+  .sep .gd{text-transform:none;letter-spacing:0;font-weight:400;font-size:12.5px;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -120,80 +35,68 @@
 
   <div class="wrap">
     <div class="card" id="capture">
-      <div class="eb e1"><span class="ebn">Wirkungsebene 1</span><span class="ebt">KI-gestützte Automatisierung von Massenprozessen</span></div>
-      <h2 class="card-head">Leading vs. Lagging: KPIs für KI-Projekte</h2>
-      <p class="card-sub">Frühindikatoren verraten früh, ob die KI greift – Ergebniskennzahlen belegen, was sie gebracht hat.</p>
+      <div class="hd">
+        <h1 class="title">Leading vs. Lagging: KPIs für KI-Projekte</h1>
+        <p class="subtitle">Frühindikatoren verraten früh, ob die KI greift – Ergebniskennzahlen belegen, was sie gebracht hat.</p>
+      </div>
+      <div class="ebene a1"><span class="chip acc">Wirkungsebene 1</span><span class="ebt">KI-gestützte Automatisierung von Massenprozessen</span></div>
 
-      <table>
+      <table class="tbl kpi">
+        <colgroup><col style="width:228px"><col style="width:260px"></colgroup>
         <thead>
-          <tr>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>Kennzahl / KPI</span></th>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg>Was es zeigt</span></th>
-          </tr>
+          <tr><th>Kennzahl / KPI</th><th>Was es zeigt</th></tr>
         </thead>
         <tbody>
-          <!-- LEADING -->
-          <tr class="grouprow" style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td colspan="2"><span class="gdot"></span><span class="glabel">Leading</span><span class="gdesc">Frühindikatoren – vorausschauend und steuerbar</span></td>
+          <tr class="sep"><td colspan="2"><span class="gl">Leading</span><span class="gd">Frühindikatoren – vorausschauend und steuerbar</span></td></tr>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span><span class="name">Automatisierungsquote</span></div></td>
+            <td>Anteil der Fälle ohne manuelle Intervention</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></g></svg><span class="name">Automatisierungsquote</span></div></td>
-            <td><span class="shows">Anteil der Fälle ohne manuelle Intervention</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><span class="name">Ausnahmequote</span></div></td>
+            <td>Anteil der Fälle, die eskaliert werden (sinkt idealerweise)</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></g></svg><span class="name">Ausnahmequote</span></div></td>
-            <td><span class="shows">Anteil der Fälle, die eskaliert werden (sinkt idealerweise)</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="name">Datenqualitäts-Score</span></div></td>
+            <td>Vollständigkeit und Genauigkeit der Eingangsdaten</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></g></svg><span class="name">Datenqualitäts-Score</span></div></td>
-            <td><span class="shows">Vollständigkeit und Genauigkeit der Eingangsdaten</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span><span class="name">KI-Modelle in Produktion</span></div></td>
+            <td>Wie weit die Lösung wirklich ausgerollt ist</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g></svg><span class="name">KI-Modelle in Produktion</span></div></td>
-            <td><span class="shows">Wie weit die Lösung wirklich ausgerollt ist</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg></span><span class="name">System-Uptime</span></div></td>
+            <td>Verfügbarkeit und Stabilität der KI-Lösung</td>
           </tr>
-          <tr class="group-end" style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g></svg><span class="name">System-Uptime</span></div></td>
-            <td><span class="shows">Verfügbarkeit und Stabilität der KI-Lösung</span></td>
+          <tr class="sep"><td colspan="2"><span class="gl">Lagging</span><span class="gd">Ergebniskennzahlen – rückblickend und belegend</span></td></tr>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></span><span class="name">Kosten pro Transaktion</span></div></td>
+            <td>€-Wert pro Vorgang – vor vs. nach KI-Einführung</td>
           </tr>
-
-          <!-- LAGGING -->
-          <tr class="grouprow" style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td colspan="2"><span class="gdot"></span><span class="glabel">Lagging</span><span class="gdesc">Ergebniskennzahlen – rückblickend und belegend</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></span><span class="name">Durchlaufzeit-Reduktion</span></div></td>
+            <td>Bearbeitungszeit vor vs. nach</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></g></svg><span class="name">Kosten pro Transaktion</span></div></td>
-            <td><span class="shows">€-Wert pro Vorgang – vor vs. nach KI-Einführung</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="name">Fehlerquote</span></div></td>
+            <td>Qualitätsentwicklung vor vs. nach</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g></svg><span class="name">Durchlaufzeit-Reduktion</span></div></td>
-            <td><span class="shows">Bearbeitungszeit vor vs. nach</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="name">FTE-Einsparung</span></div></td>
+            <td>Personalaufwand für den Prozess</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g></svg><span class="name">Fehlerquote</span></div></td>
-            <td><span class="shows">Qualitätsentwicklung vor vs. nach</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span><span class="name">SLA-Erfüllung</span></div></td>
+            <td>Anteil der Fälle innerhalb des definierten Zeitfensters</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g></svg><span class="name">FTE-Einsparung</span></div></td>
-            <td><span class="shows">Personalaufwand für den Prozess</span></td>
-          </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></g></svg><span class="name">SLA-Erfüllung</span></div></td>
-            <td><span class="shows">Anteil der Fälle innerhalb des definierten Zeitfensters</span></td>
-          </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></g></svg><span class="name">ROI</span></div></td>
-            <td><span class="shows">Rendite auf die KI-Investition</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span><span class="name">ROI</span></div></td>
+            <td>Rendite auf die KI-Investition</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
-  
-
-
-
 
 <script src="illu-export.js"></script>
 </body>

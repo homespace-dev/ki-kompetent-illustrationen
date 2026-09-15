@@ -3,95 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KPIs für KI-Geschäft · Attio-Tabelle</title>
+<title>Leading vs. Lagging: Markt & Umsatz mit KI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
 <style>
-  :root {
-    --ink: #16171D; --paper: #FBFBFD;
-    --border: #e9eaee; --border-strong: #e2e3e8; --header-bg: #fbfbfd;
-    --text: #16171D; --text-soft: #3a3b44; --text-muted: #74757f; --chip-border: #e7e8ec;
-    --page-bg: #eceef3;
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-  }
-  .toolbar { display: flex; justify-content: center; padding: 26px 16px 0; }
-  .btn { display: inline-flex; align-items: center; font-family: inherit; font-size: 14px; font-weight: 500;
-    color: #fff; background: var(--ink); border: none; border-radius: 9px; padding: 10px 16px; cursor: pointer; }
-  .btn:hover { background: #000; }
-  .btn svg { width: 16px; height: 16px; margin-right: 8px; }
-
-  /* Verlauf auf .wrap (Vorfahre von #capture) – im transparenten PNG-Export nicht enthalten */
-  .wrap { display: flex; justify-content: center; padding: 34px 24px 60px; min-height: 100vh;
-    background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--page-bg) 60%); }
-
-  /* Capture target — transparent: nur die Tabelle behält ihren Hintergrund.
-     Druck-Spec: feste 520 px Breite (Innenbreite 488 px), Tabelle 2 Spalten 228 / 260 px. */
-  .card { background: transparent; padding: 16px; width: 520px; }
-  .card-head { margin: 0 0 3px; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
-  .card-sub { margin: 0 0 10px; font-size: 13.5px; line-height: 1.4; color: var(--text-muted); font-weight: 400; letter-spacing: -0.005em; }
-  /* Ebenen-Badge: darf umbrechen (kein nowrap), Nummer-Pill bleibt einzeilig */
-  .eb { display:inline-flex; align-items:center; gap:10px; border-radius:999px; padding:5px 14px 5px 6px; margin:0 0 10px; color:#fff;
-    box-shadow:0 1px 2px rgba(22,23,29,.10),0 8px 16px -12px rgba(22,23,29,.12); }
-  .eb .ebn { flex:none; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.22); border-radius:999px; padding:4px 9px; white-space:nowrap; }
-  .eb .ebt { font-size:13px; font-weight:700; letter-spacing:-0.005em; line-height:1.3; }
-  .eb.e1 { background:linear-gradient(110deg,#6E97D6,#41639E); }
-  .eb.e2 { background:linear-gradient(110deg,#8076C8,#574799); }
-  .eb.e3 { background:linear-gradient(110deg,#CB7C95,#9C4E69); }
-
-  table {
-    width: 488px; table-layout: fixed;
-    border-collapse: separate; border-spacing: 0;
-    background: #ffffff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-  }
-  thead th {
-    text-align: left; background: var(--header-bg);
-    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--text-muted); padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap;
-  }
-  thead th:first-child { width: 228px; }
-  thead th:not(:last-child) { border-right: 1px solid var(--border); }
-  .th-inner { display: inline-flex; align-items: center; }
-  .th-inner svg { width: 14px; height: 14px; color: #a0a0a6; flex: none; margin-right: 7px; }
-
-  tbody td {
-    padding: 5px 12px; font-size: 13px; line-height: 1.35; vertical-align: middle;
-    border-bottom: 1px solid var(--border); color: var(--text-soft);
-  }
-  tbody td:not(:last-child) { border-right: 1px solid var(--border); }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr.group-end td { border-bottom: 2px solid var(--border-strong); }
-
-  .chip {
-    display: inline-block; background: var(--acc-soft); color: var(--acc-deep);
-    font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 7px; line-height: 1.3;
-    border: 1px solid var(--acc-line);
-  }
-  .chip .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent); margin-right: 7px; vertical-align: middle; }
-
-  /* Abschnitts-Band: Typ einmal je Gruppe statt auf jeder Zeile */
-  .grouprow td { background: var(--acc-soft); border-bottom: 1px solid var(--acc-line); padding: 6px 12px; }
-  .grouprow .gdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 9px; vertical-align: middle; }
-  .grouprow .glabel { font-size: 13.5px; font-weight: 700; color: var(--acc-deep); letter-spacing: -0.005em; vertical-align: middle; }
-  .grouprow .gdesc { font-size: 12.5px; color: var(--text-muted); margin-left: 10px; vertical-align: middle; }
-
-  /* KPI-Zelle: Icon-Kachel 30 px + Name (darf umbrechen) */
-  .kpi { display: flex; align-items: center; }
-  .kpi .dico { flex: none; width: 30px; height: 30px; margin-right: 9px; }
-  .kpi .name { font-weight: 600; color: var(--text); font-size: 14px; line-height: 1.25; letter-spacing: -0.01em; }
-
-  /* "Was es zeigt" */
-  .shows { color: var(--text-soft); }
-
-  .footnote { margin: 12px 2px 0; font-size: 12px; color: #9a9aa0; letter-spacing: .01em; }
-  .footnote b { color: #7a7a82; font-weight: 600; }
+  /* nur Datei-spezifisches */
+  /* Ebenen-Badge unter dem Kopf: Chip + Ebenen-Bezeichnung in einer Zeile */
+  .ebene{display:flex;align-items:center;gap:9px;margin:0 0 10px;}
+  .ebene .ebt{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-0.005em;line-height:1.3;}
+  /* Zellpadding 6 px statt 10 px: 11 Zeilen mit Icon-Kachel passen sonst nicht unter 780 px */
+  .tbl.kpi td{padding:6px 12px;}
+  .tbl.kpi .sep td{padding:7px 12px;}
+  /* KPI-Zelle: Icon-Kachel + Name (darf am Wortende umbrechen) */
+  .ent{display:flex;align-items:center;gap:9px;}
+  .ent .name{min-width:0;}
+  /* Gruppen-Trenner: Label in Tinte, Beschreibung im Wortlaut (nicht versal) */
+  .sep .gl{color:var(--ink);margin-right:10px;}
+  .sep .gd{text-transform:none;letter-spacing:0;font-weight:400;font-size:12.5px;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -104,77 +35,64 @@
 
   <div class="wrap">
     <div class="card" id="capture">
-      <div class="eb e3"><span class="ebn">Wirkungsebene 3</span><span class="ebt">Transformation der Wertschöpfung &amp; neue Geschäftsmodelle</span></div>
-      <h2 class="card-head">Leading vs. Lagging: Markt &amp; Umsatz mit KI</h2>
-      <p class="card-sub">Frühindikatoren zeigen, ob das KI-Geschäft wächst – Ergebniskennzahlen belegen den Umsatzbeitrag.</p>
+      <div class="hd">
+        <h1 class="title">Leading vs. Lagging: Markt &amp; Umsatz mit KI</h1>
+        <p class="subtitle">Frühindikatoren zeigen, ob das KI-Geschäft wächst – Ergebniskennzahlen belegen den Umsatzbeitrag.</p>
+      </div>
+      <div class="ebene a5"><span class="chip acc">Wirkungsebene 3</span><span class="ebt">Transformation der Wertschöpfung &amp; neue Geschäftsmodelle</span></div>
 
-      <table>
+      <table class="tbl kpi">
+        <colgroup><col style="width:228px"><col style="width:260px"></colgroup>
         <thead>
-          <tr>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>Kennzahl / KPI</span></th>
-            <th><span class="th-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0"/><circle cx="12" cy="12" r="3"/></svg>Was es zeigt</span></th>
-          </tr>
+          <tr><th>Kennzahl / KPI</th><th>Was es zeigt</th></tr>
         </thead>
         <tbody>
-          <!-- LEADING -->
-          <tr class="grouprow" style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td colspan="2"><span class="gdot"></span><span class="glabel">Leading</span><span class="gdesc">Frühindikatoren – vorausschauend und steuerbar</span></td>
+          <tr class="sep"><td colspan="2"><span class="gl">Leading</span><span class="gd">Frühindikatoren – vorausschauend und steuerbar</span></td></tr>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.58 16.5h12.85"/></svg></span><span class="name">Use Cases in Pipeline / PoC</span></div></td>
+            <td>Wie viele KI-Angebote sind in der Entwicklung?</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.58 16.5h12.85"/></g></svg><span class="name">Use Cases in Pipeline / PoC</span></div></td>
-            <td><span class="shows">Wie viele KI-Angebote sind in der Entwicklung?</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span><span class="name">Time-to-Market neuer KI-Features</span></div></td>
+            <td>Wie schnell kommen neue Angebote auf den Markt?</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></g></svg><span class="name">Time-to-Market neuer KI-Features</span></div></td>
-            <td><span class="shows">Wie schnell kommen neue Angebote auf den Markt?</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></span><span class="name">Net Revenue Retention (NRR)</span></div></td>
+            <td>Bleiben Kunden und kaufen mehr?</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g></svg><span class="name">Net Revenue Retention (NRR)</span></div></td>
-            <td><span class="shows">Bleiben Kunden und kaufen mehr?</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg></span><span class="name">Anzahl Kunden-Pilotprojekte</span></div></td>
+            <td>Wie viele neue Angebote werden aktiv getestet?</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></g></svg><span class="name">Anzahl Kunden-Pilotprojekte</span></div></td>
-            <td><span class="shows">Wie viele neue Angebote werden aktiv getestet?</span></td>
+          <tr class="a1">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span><span class="name">Anzahl neuer Partnerschaften</span></div></td>
+            <td>Wächst das Ökosystem rund um die KI-Lösung?</td>
           </tr>
-          <tr style="--accent:#5D86C9; --acc-soft:#ecf2fc; --acc-line:#d2e1f8; --acc-deep:#2f5fa8">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#ecf2fc" stroke="#d2e1f8"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#5D86C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></g></svg><span class="name">Anzahl neuer Partnerschaften</span></div></td>
-            <td><span class="shows">Wächst das Ökosystem rund um die KI-Lösung?</span></td>
+          <tr class="sep"><td colspan="2"><span class="gl">Lagging</span><span class="gd">Ergebniskennzahlen – rückblickend und belegend</span></td></tr>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></span><span class="name">Umsatz aus KI-Services</span></div></td>
+            <td>Absolut und als % am Gesamtumsatz</td>
           </tr>
-
-          <!-- LAGGING -->
-          <tr class="grouprow" style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td colspan="2"><span class="gdot"></span><span class="glabel">Lagging</span><span class="gdesc">Ergebniskennzahlen – rückblickend und belegend</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></span><span class="name">ARR (Annual Recurring Revenue)</span></div></td>
+            <td>Wiederkehrende Erlöse aus Subscription-Modellen</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></g></svg><span class="name">Umsatz aus KI-Services</span></div></td>
-            <td><span class="shows">Absolut und als % am Gesamtumsatz</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span><span class="name">Erschlossene Kundensegmente</span></div></td>
+            <td>Welche Märkte wurden neu erreicht?</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></g></svg><span class="name">ARR (Annual Recurring Revenue)</span></div></td>
-            <td><span class="shows">Wiederkehrende Erlöse aus Subscription-Modellen</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></span><span class="name">Customer Lifetime Value</span></div></td>
+            <td>KI-Kunden vs. klassische Kunden im Vergleich</td>
           </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></g></svg><span class="name">Erschlossene Kundensegmente</span></div></td>
-            <td><span class="shows">Welche Märkte wurden neu erreicht?</span></td>
-          </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></g></svg><span class="name">Customer Lifetime Value</span></div></td>
-            <td><span class="shows">KI-Kunden vs. klassische Kunden im Vergleich</span></td>
-          </tr>
-          <tr style="--accent:#A172B0; --acc-soft:#f6edfa; --acc-line:#e9d6f1; --acc-deep:#7e459f">
-            <td><div class="kpi"><svg class="dico" viewBox="0 0 36 36" fill="none"><rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#f6edfa" stroke="#e9d6f1"/><g transform="translate(7.2 7.2) scale(0.9)" stroke="#A172B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/></g></svg><span class="name">Churn-Rate</span></div></td>
-            <td><span class="shows">Abwanderung bei KI-gestützten vs. klassischen Produkten</span></td>
+          <tr class="a4">
+            <td><div class="ent"><span class="ico"><svg viewBox="0 0 24 24"><path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/></svg></span><span class="name">Churn-Rate</span></div></td>
+            <td>Abwanderung bei KI-gestützten vs. klassischen Produkten</td>
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
-
-  
-
-
-
 
 <script src="illu-export.js"></script>
 </body>

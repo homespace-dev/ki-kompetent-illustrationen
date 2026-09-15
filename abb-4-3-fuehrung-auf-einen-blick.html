@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Führung auf einen Blick</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .hd .chip{margin-top:4px;}
+  .row .rd b{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <div>
+          <h1 class="title">Führung auf einen Blick</h1>
+          <p class="subtitle">Fünf Kernaussagen zum KI-Erfolgsfaktor Führung.</p>
+        </div>
+        <span class="chip">Kapitel 4</span>
+      </div>
+
+      <div class="panel">
+        <div class="row">
+          <span class="num">1</span>
+          <div class="rh">KI kann nicht delegiert werden.</div>
+          <div class="rd">KI-Transformation ist <b>Führungsaufgabe</b>. Wer sie an die IT oder externe Partner abgibt, verliert die Steuerung über Richtung und Wirkung.</div>
+        </div>
+        <div class="row">
+          <span class="num">2</span>
+          <div class="rh">Vom Werttreiber her denken, nicht von der Technologie.</div>
+          <div class="rd">Das KI-Zielbild muss <b>im Kerngeschäft verankert</b> und <b>hypothesenbasiert</b> entwickelt werden. Erst dann trägt echte Entscheidungskompetenz KI wirklich ins Unternehmen.</div>
+        </div>
+        <div class="row">
+          <span class="num">3</span>
+          <div class="rh">Weniger, aber konsequenter.</div>
+          <div class="rd"><b>Zwei bis vier strategische KI-Initiativen</b> mit vollen Ressourcen schlagen zwanzig Piloten mit halber Aufmerksamkeit. Von Anfang an auf Produktivbetrieb denken, nicht nur auf den Machbarkeitsbeweis.</div>
+        </div>
+        <div class="row">
+          <span class="num">4</span>
+          <div class="rh">Wer KI einführt, verändert Berufsbilder.</div>
+          <div class="rd">Mitarbeitende verlieren nicht nur gewohnte Arbeitsweisen, sondern das, was sie als Kern ihrer beruflichen Kompetenz erleben. Führung <b>begleitet diesen Übergang</b>, baut Vertrauen aktiv auf und entscheidet bewusst, welche menschlichen Fähigkeiten geschützt werden.</div>
+        </div>
+        <div class="row">
+          <span class="num">5</span>
+          <div class="rh">Vorbild sein ist der stärkste Hebel.</div>
+          <div class="rd">Mitarbeitende, deren Führungskraft KI sichtbar nutzt und fördert, sind <b>fast achtmal häufiger</b> selbst aktiv. Nicht Budget, Plattform oder Schulungsprogramm – das Vorleben macht den Unterschied.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

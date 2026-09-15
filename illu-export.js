@@ -65,7 +65,7 @@
   function _hsl2rgb(h,s,l){var r,g,b;if(s===0){r=g=b=l;}else{var f=function(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};var q=l<0.5?l*(1+s):l+s-l*s,p=2*l-q;r=f(p,q,h+1/3);g=f(p,q,h);b=f(p,q,h-1/3);}return [r*255,g*255,b*255];}
   function _recolor(hex,t){var rgb=_hx2rgb(hex),hsl=_rgb2hsl(rgb[0],rgb[1],rgb[2]),lo=0,hi=1,i,m,c;for(i=0;i<26;i++){m=(lo+hi)/2;c=_hsl2rgb(hsl[0],hsl[1],m);(_gL(c[0],c[1],c[2])<t)?lo=m:hi=m;}c=_hsl2rgb(hsl[0],hsl[1],(lo+hi)/2);return _rgb2hx(c[0],c[1],c[2]);}
   var _OVERRIDES = {
-    'kernmodell-dreieck': {'#5D86C9':70,'#4567A4':70,'#5174BC':70,'#78C7F3':70,'#685DBA':100,'#5A4AA4':100,'#756ABD':100,'#6A5CB0':115,'#7259B3':115,'#A172B0':135,'#95569D':135,'#A96AA9':135,'#AD6597':135}
+    'abb-3-1-ki-kompetenz-modell': {'#5D86C9':70,'#4567A4':70,'#5174BC':70,'#78C7F3':70,'#685DBA':100,'#5A4AA4':100,'#756ABD':100,'#6A5CB0':115,'#7259B3':115,'#A172B0':135,'#95569D':135,'#A96AA9':135,'#AD6597':135}
   };
   function _swMap(html, name){
     var ov = name && _OVERRIDES[name];

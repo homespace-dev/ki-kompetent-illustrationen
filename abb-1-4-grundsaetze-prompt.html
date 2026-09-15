@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Acht Grundsätze eines guten Prompts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  /* Acht Bausteine in zwei Spalten à 236 px (1–4 links, 5–8 rechts), Lücke 16 px; DOM-Reihenfolge 1–8 bleibt */
+  .grid{display:flex;justify-content:space-between;align-items:flex-start;}
+  .col{width:236px;display:flex;flex-direction:column;gap:5px;}
+  .bs{padding:6px 8px 7px;}
+  .bs .top{display:flex;align-items:center;gap:8px;}
+  .bs .q{margin-top:4px;font-size:13px;line-height:1.3;color:var(--text);}
+  /* Beispiel je Baustein: Label + Zitat, Zitat in Tinte */
+  .bs .ex{margin-top:5px;font-size:13px;line-height:1.3;color:var(--ink);}
+  .bs .ex .lbl{margin-right:5px;}
+  /* Zusammengesetzter Prompt: Ziffern-Marker verweisen auf die Bausteine 1–8 */
+  .prompt{margin-top:9px;padding:8px 13px 9px;}
+  .prompt .pt{margin:3px 0 0;font-size:13.5px;line-height:1.35;color:var(--text);}
+  .prompt sup{font-size:10px;font-weight:700;color:var(--ink);line-height:0;vertical-align:baseline;position:relative;top:-0.55em;margin-right:2px;}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <h1 class="title">Acht Grundsätze eines guten Prompts</h1>
+        <p class="subtitle">Acht Elemente, die aus einer vagen Anfrage eine präzise KI-Anweisung machen – mit Beispiel.</p>
+      </div>
+
+      <div class="grid">
+        <div class="col">
+          <div class="panel bs a1">
+            <div class="top"><span class="num">1</span><span class="name">Rolle</span></div>
+            <div class="q">In welcher Rolle soll die KI agieren?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Du bist eine erfahrene Kommunikationsexpertin."</div>
+          </div>
+          <div class="panel bs a1">
+            <div class="top"><span class="num">2</span><span class="name">Aufgabe</span></div>
+            <div class="q">Was genau soll die KI tun?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Beantworte die Beschwerde-E-Mail eines Kunden."</div>
+          </div>
+          <div class="panel bs a2">
+            <div class="top"><span class="num">3</span><span class="name">Kontext</span></div>
+            <div class="q">Welche Hintergrundinformationen sind relevant?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Er wartet seit drei Wochen auf seine Lieferung."</div>
+          </div>
+          <div class="panel bs a2">
+            <div class="top"><span class="num">4</span><span class="name">Zielgruppe</span></div>
+            <div class="q">Für wen ist das Ergebnis gedacht?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Für einen verärgerten Stammkunden."</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="panel bs a3">
+            <div class="top"><span class="num">5</span><span class="name">Format</span></div>
+            <div class="q">Wie soll das Ergebnis strukturiert sein?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Eine fertige E-Mail mit Betreff und Grußformel."</div>
+          </div>
+          <div class="panel bs a4">
+            <div class="top"><span class="num">6</span><span class="name">Tonfall</span></div>
+            <div class="q">In welchem Ton soll geschrieben werden?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Verständnisvoll, lösungsorientiert und professionell."</div>
+          </div>
+          <div class="panel bs a4">
+            <div class="top"><span class="num">7</span><span class="name">Einschränkungen</span></div>
+            <div class="q">Was soll die KI vermeiden oder beachten?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Höchstens 150 Wörter, kein Fachjargon."</div>
+          </div>
+          <div class="panel bs a5">
+            <div class="top"><span class="num">8</span><span class="name">Beispiele</span></div>
+            <div class="q">Wie sieht ein gutes Ergebnis aus?</div>
+            <div class="ex"><span class="lbl">Beispiel</span>„Orientiere dich an einer vorbildlichen Antwort."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel prompt">
+        <div class="lbl">Zusammengesetzt: ein klarer Beispiel-Prompt</div>
+        <p class="pt">„<sup>1</sup>Du bist eine erfahrene Kommunikationsexpertin. <sup>2</sup>Beantworte die Beschwerde-E-Mail eines Kunden, <sup>3</sup>der seit drei Wochen auf seine Lieferung wartet – <sup>4</sup>die Antwort ist für einen verärgerten Stammkunden. <sup>5</sup>Schreibe eine fertige E-Mail mit Betreff und Grußformel, <sup>6</sup>in verständnisvollem, lösungsorientiertem und professionellem Ton. <sup>7</sup>Höchstens 150 Wörter, kein Fachjargon. <sup>8</sup>Orientiere dich an einer vorbildlichen Service-Antwort als Vorlage."</p>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Erklärungsmodell für Künstliche Intelligenz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+  /* Gestaffelte Ebenen: jede Karte schmaler (trägt die Hierarchie in S/W), links 3 px Akzentbalken */
+  .lvl{position:relative;display:flex;align-items:center;gap:10px;height:78px;padding:10px 14px 10px 17px;margin-bottom:9px;}
+  .lvl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);}
+  .ct{flex:1;min-width:0;}
+  .ct-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .desc{font-size:13px;line-height:1.4;color:var(--text);margin-top:2px;}
+  /* Gabelung 6a/6b: zwei gleichwertige Karten */
+  .conn{width:328px;height:22px;margin-bottom:4px;}
+  .fork{display:flex;gap:12px;width:328px;}
+  .fork .lvl{display:block;height:auto;padding:10px 11px 11px 14px;margin-bottom:0;}
+  .fork .fh{display:flex;align-items:center;gap:8px;}
+  .fork .ct-head{display:block;}
+  .fork .ct-head .small{display:block;margin-top:1px;}
+  .fork .desc{margin-top:6px;}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+        <h1 class="title">Erklärungsmodell für Künstliche Intelligenz</h1>
+        <p class="subtitle">Jede Ebene ist ein spezialisierter Teil der darüberliegenden – ab den Sprachmodellen gabelt es sich: ChatGPT und KI-Agenten.</p>
+      </div>
+
+      <div class="panel lvl a1" style="width:488px">
+        <span class="num">1</span>
+        <div class="ct">
+          <div class="ct-head"><span class="name">Artificial Intelligence</span><span class="small">der Oberbegriff</span></div>
+          <div class="desc">Maschinen lösen Aufgaben, die sonst menschliche Intelligenz erfordern.</div>
+        </div>
+      </div>
+      <div class="panel lvl a2" style="width:448px">
+        <span class="num">2</span>
+        <div class="ct">
+          <div class="ct-head"><span class="name">Machine Learning</span></div>
+          <div class="desc">Systeme, die aus Daten lernen, statt fest programmiert zu werden.</div>
+        </div>
+      </div>
+      <div class="panel lvl a3" style="width:408px">
+        <span class="num">3</span>
+        <div class="ct">
+          <div class="ct-head"><span class="name">Neural Networks</span></div>
+          <div class="desc">Lernende Netze nach dem Vorbild des Gehirns.</div>
+        </div>
+      </div>
+      <div class="panel lvl a4" style="width:368px">
+        <span class="num">4</span>
+        <div class="ct">
+          <div class="ct-head"><span class="name">Deep Learning</span></div>
+          <div class="desc">Tiefe neuronale Netze für komplexe Muster.</div>
+        </div>
+      </div>
+      <div class="panel lvl a5" style="width:328px">
+        <span class="num">5</span>
+        <div class="ct">
+          <div class="ct-head"><span class="name">Large Language Models</span></div>
+          <div class="desc">Verstehen und erzeugen menschliche Sprache.</div>
+        </div>
+      </div>
+      <!-- Gabelung ab Ebene 5: ChatGPT und KI-Agenten sind gleichwertig -->
+      <div class="conn">
+        <svg width="328" height="22" viewBox="0 0 328 22" fill="none">
+          <path d="M164 0 V8 Q164 14 158 14 H85 Q79 14 79 20 V22" stroke="#cfd0d8" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M164 8 Q164 14 170 14 H243 Q249 14 249 20 V22" stroke="#cfd0d8" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="fork">
+        <div class="panel lvl a5" style="width:158px">
+          <div class="fh">
+            <span class="num">6a</span>
+            <div class="ct-head"><span class="name">ChatGPT</span><span class="small">das Produkt</span></div>
+          </div>
+          <div class="desc">Sprachmodell mit Chat-Oberfläche.</div>
+        </div>
+        <div class="panel lvl a5" style="width:158px">
+          <div class="fh">
+            <span class="num">6b</span>
+            <div class="ct-head"><span class="name">KI-Agenten</span><span class="small">ein System</span></div>
+          </div>
+          <div class="desc">Nutzen Werkzeuge und handeln selbst.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>

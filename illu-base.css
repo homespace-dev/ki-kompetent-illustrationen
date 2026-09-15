@@ -1,0 +1,84 @@
+/* ============================================================
+   illu-base.css – gemeinsames Designsystem aller Buch-Illustrationen
+   Buch „KI kompetent“ (Wiley), 140 × 216 mm, Satzspiegel 110 mm.
+   Capture-Breite 520 px → 1 px = 0,6 pt im Druck. Wird S/W gedruckt:
+   Hierarchie über Gewicht, Größe, Fläche und Linie – nie nur über Farbe.
+   ============================================================ */
+
+:root{
+  --ink:#16171D;          /* Titel, Namen, Zahlen-Kacheln */
+  --text:#2b2c33;         /* Fließtext in Zellen */
+  --muted:#5c5d66;        /* Untertitel, Labels, Tabellenköpfe (min. Kontrast für 7 pt) */
+  --line:#cfd0d8;         /* Rahmen/Trennlinien – im Druck sichtbar */
+  --line-soft:#e3e4ea;    /* Zeilen-Trenner innerhalb von Panels */
+  --fill:#f4f4f7;         /* Kopfzeilen, Chips */
+  --page-bg:#eceef3;
+  /* Aura-Akzente (Web-Farbe; in S/W über illu-export.js in Grauwerte gestuft) */
+  --aura-1:#5174BC; --aura-2:#675FB6; --aura-3:#7E5BA4; --aura-4:#9F5E92; --aura-5:#BD6C85;
+  --aura-gradient:linear-gradient(135deg,#5174BC 0%,#6A5CB0 52%,#BD6C85 100%);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+
+/* Seite / Toolbar (nicht Teil des Exports) */
+.toolbar{display:flex;justify-content:center;padding:26px 16px 0;}
+.btn{display:inline-flex;align-items:center;font-family:inherit;font-size:14px;font-weight:500;color:#fff;background:var(--ink);
+  border:none;border-radius:9px;padding:10px 16px;cursor:pointer;}
+.btn:hover{background:#000;} .btn svg{width:16px;height:16px;margin-right:8px;}
+.wrap{display:flex;justify-content:center;align-items:flex-start;padding:34px 24px 60px;min-height:100vh;
+  background:radial-gradient(1200px 600px at 50% -10%,#ffffff 0%,var(--page-bg) 60%);}
+
+/* Capture: immer 520 px, Innenbreite 488 px */
+.card{background:transparent;padding:16px;width:520px;}
+
+/* Kopf – in jeder Grafik identisch, linksbündig */
+.hd{margin:0 0 14px;}
+.hd .title{margin:0;font-size:22px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;color:var(--ink);}
+.hd .subtitle{margin:5px 0 0;font-size:13.5px;font-weight:400;line-height:1.4;color:var(--muted);}
+
+/* Panel – weiße Fläche mit sichtbarem Rahmen, kein Schatten (Druck) */
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+
+/* Tabelle */
+.tbl{width:488px;table-layout:fixed;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.tbl th{text-align:left;background:var(--fill);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  padding:9px 12px;border-bottom:1px solid var(--line);line-height:1.3;vertical-align:middle;}
+.tbl td{padding:10px 12px;font-size:13px;line-height:1.4;color:var(--text);vertical-align:middle;border-bottom:1px solid var(--line-soft);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl .sep td{background:var(--fill);border-bottom:1px solid var(--line);padding:7px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+
+/* Typo-Bausteine */
+.name{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.3;}
+.small{font-size:12.5px;color:var(--muted);line-height:1.35;}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);line-height:1.3;}
+.kv b{color:var(--ink);font-weight:700;}
+
+/* Zahlen-Kachel – immer Tinte, dadurch in S/W eindeutig */
+.num{display:inline-flex;align-items:center;justify-content:center;flex:none;width:26px;height:26px;border-radius:7px;
+  background:var(--ink);color:#fff;font-size:13px;font-weight:700;letter-spacing:-0.02em;}
+
+/* Icon-Kachel – getönte Fläche mit Kontur, Icon als Strich */
+.ico{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;border-radius:8px;
+  background:var(--acc-soft,#eef0f6);border:1px solid var(--acc-line,#d7dae6);color:var(--accent,#5174BC);}
+.ico svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ico.dark{background:var(--ink);border-color:var(--ink);color:#fff;}
+.ico.lg{width:34px;height:34px;border-radius:10px;} .ico.lg svg{width:19px;height:19px;}
+
+/* Chip */
+.chip{display:inline-block;font-size:12px;font-weight:700;line-height:1;padding:5px 9px;border-radius:999px;
+  background:var(--fill);color:var(--muted);border:1px solid var(--line);white-space:nowrap;}
+.chip.acc{background:var(--acc-soft,#eef0f6);color:var(--acc-deep,#2f4f9a);border-color:var(--acc-line,#d7dae6);}
+
+/* Listen-Zeile: Nummer/Icon + Überschrift + eine Zeile Erklärung */
+.row{display:grid;grid-template-columns:26px 1fr;column-gap:10px;row-gap:2px;align-items:center;padding:9px 14px;border-top:1px solid var(--line-soft);}
+.row:first-child{border-top:none;}
+.row .rh{font-size:14px;font-weight:700;letter-spacing:-0.01em;line-height:1.3;color:var(--ink);}
+.row .rd{grid-column:2;font-size:13px;line-height:1.35;color:var(--text);}
+
+/* Akzent-Sets je Zeile/Element (Aura-Farben – Hex-Werte nicht ändern) */
+.a1{--accent:#5174BC;--acc-soft:#ecf1fb;--acc-line:#cfddf5;--acc-deep:#2f5fa8}
+.a2{--accent:#675FB6;--acc-soft:#f0effa;--acc-line:#dbd9f2;--acc-deep:#4c47a0}
+.a3{--accent:#7E5BA4;--acc-soft:#f3eef8;--acc-line:#e2d6ee;--acc-deep:#634283}
+.a4{--accent:#9F5E92;--acc-soft:#f7eef5;--acc-line:#ead7e6;--acc-deep:#7d4571}
+.a5{--accent:#BD6C85;--acc-soft:#fbeff2;--acc-line:#f1d6de;--acc-deep:#994d64}

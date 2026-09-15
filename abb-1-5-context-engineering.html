@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Einordnung Context Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="illu-base.css" />
+<style>
+  /* nur Datei-spezifisches */
+
+  /* Drei verschachtelte Ebenen: weiße Panels, nach innen kräftigerer Rahmen + kleinerer Innenabstand (S/W-Stufung) */
+  .nest{width:488px;}
+  .lvl{padding:14px;}
+  .lvl.l2{margin-top:14px;padding:12px;border:1.5px solid var(--accent);}
+  .lvl.l3{margin-top:12px;padding:11px;border:1.5px solid var(--ink);}
+  .lhead{display:flex;align-items:center;gap:11px;}
+  .lname{font-size:16px;font-weight:800;letter-spacing:-0.015em;line-height:1.2;color:var(--ink);}
+  .lhead .chip{margin-left:auto;}
+  .what{font-size:13px;color:var(--text);line-height:1.42;margin:10px 0 0;}
+  .what b{font-weight:700;color:var(--ink);}
+  .ana{font-size:13px;color:var(--muted);line-height:1.4;margin:6px 0 0;}
+  .ana b{font-weight:700;color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" id="downloadBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Als PNG herunterladen
+    </button>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="capture">
+      <div class="hd">
+          <h1 class="title">Einordnung Context Engineering</h1>
+          <p class="subtitle">Drei Ebenen, auf denen Unternehmen KI steuern – von der einzelnen Eingabe bis zum ganzen Umfeld der KI.</p>
+      </div>
+
+      <div class="nest">
+        <div class="panel lvl l1 a1">
+          <div class="lhead">
+            <span class="ico lg"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span>
+            <div class="lname">Context Engineering</div>
+            <span class="chip acc">Führung + Architekten</span>
+          </div>
+          <div class="what">Alles, <b>worauf die KI zugreifen kann</b> – Dokumente, Datenbanken, Werkzeuge, Gesprächsverlauf und Erinnerungen, <b>bevor jemand etwas eintippt</b>.</div>
+          <div class="ana"><b>Wie das Büro einrichten:</b> Welche Akten stehen im Regal? Welche Systeme sind angeschlossen?</div>
+
+          <div class="panel lvl l2 a2">
+            <div class="lhead">
+              <span class="ico lg"><svg viewBox="0 0 24 24"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg></span>
+              <div class="lname">System Prompt</div>
+              <span class="chip acc">Entwickler &amp; Architekten</span>
+            </div>
+            <div class="what">Die <b>unsichtbare Grundkonfiguration</b> – Rolle, Regeln und Grenzen, die <b>vor jeder Nutzung</b> gesetzt werden.</div>
+            <div class="ana"><b>Wie die Arbeitsanweisung,</b> die ein neuer Mitarbeiter am ersten Tag bekommt.</div>
+
+            <div class="panel lvl l3 a5">
+              <div class="lhead">
+                <span class="ico lg"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                <div class="lname">Prompt</div>
+                <span class="chip acc">Jede Person</span>
+              </div>
+              <div class="what">Was ich der KI <b>in diesem Moment</b> sage – die <b>8 Bausteine</b> eines guten Prompts.</div>
+              <div class="ana"><b>Wie eine gute E-Mail schreiben.</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="illu-export.js"></script>
+</body>
+</html>
