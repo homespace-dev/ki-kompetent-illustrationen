@@ -24,7 +24,7 @@ Referenz-Implementierungen: `abb-1-3-datenarten.html` (Tabelle), `abb-4-3-fuehru
 | Kopf | `.hd` > `h1.title` + `p.subtitle` | 22 px/800 + 13,5 px muted, linksbündig, Abstand 14 px zum Inhalt |
 | Panel | `.panel` | weiß, 1 px `--line` (#cfd0d8), Radius 12, **kein Schatten** |
 | Tabelle | `table.tbl` | 488 px, Kopf 12 px uppercase, Zellen 13 px, nur horizontale Linien |
-| Zahlen-Kachel | `.num` | 26 px, **immer Tinte** (#16171D), weiß 13 px/700 |
+| Zahlen-Kachel | `.num` | 26 px, Palettenfarbe des Akzent-Sets (`.a1`–`.a5`), weiß 13 px/700 |
 | Icon-Kachel | `.ico` (+ `.lg` 34 px, `.dark`) | 28 px, getönt + Kontur, Icon 16 px Strich |
 | Chip | `.chip` (+ `.acc`) | 12 px/700, Pille |
 | Listen-Zeile | `.row` > `.num`/`.ico` + `.rh` + `.rd` | Überschrift 14 px/700, Erklärung 13 px (voller Wortlaut, Schlüsselbegriffe fett) |
@@ -38,10 +38,14 @@ Nichts unter 12 px. Textfarben nur `--ink`, `--text`, `--muted` (kein helleres G
 (Ausnahme: bestehende Band-/Hub-Flächen wie Wirkungsebenen, Dreieck, Blüte – dort Text weiß, ≥ 700).
 Gradient-Rahmen und dekorative Verläufe entfernen; Rahmen sind 1 px `--line` oder 1,5 px Akzent.
 
-**S/W-Regeln:** Was sich unterscheiden muss (Gruppen, Ebenen, Typen), unterscheidet sich auch ohne Farbe:
-durch Nummer, Label, Position, Fläche hell/dunkel, Kontur/Voll. Farbige Akzente (Aura-Sets) bleiben für die
-Web-Fassung erlaubt, tragen aber keine Bedeutung allein. Hex-Werte der Akzente nicht erfinden – nur `.a1`–`.a5`
-bzw. die vorhandenen Hex-Codes (S/W-Palette in `illu-export.js` hängt daran).
+**Farbe und S/W – immer beide Varianten:** Jede Grafik gibt es farbig (Web) und in S/W (Druck). Farbige
+Flächen nutzen ausschließlich die Aura-Palette `.a1`–`.a5` (Zahlen-Kacheln, Icon-Kacheln, Bänder, Ränder) oder
+den Aura-Verlauf (`--aura-gradient` bzw. SVG `url(#aura)`) für Hubs und Dächer. Keine reinen Tinte-Flächen als
+Bedeutungsträger. Die S/W-Fassung entsteht automatisch (`?sw=1&gray=1`): `illu-export.js` bildet jede
+Palettenfarbe auf einen **festen Grauwert** ab (a1 dunkel 58 → a5 hell 135), damit derselbe Farbton in jeder
+Grafik denselben Grauton ergibt. Was sich unterscheiden muss, unterscheidet sich zusätzlich durch Nummer,
+Label, Position, Kontur/Voll. Keine neuen Hex-Werte erfinden – nur `.a1`–`.a5` bzw. die in `_FIXED`
+(illu-export.js) hinterlegten Codes.
 
 ## Textregeln – Inhalt bleibt wörtlich
 

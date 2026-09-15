@@ -11,6 +11,7 @@ import { chromium } from '/Users/tobiastroendle/dev/maklermailclub/node_modules/
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import http from 'node:http';
 
 const ROOT = '/Users/tobiastroendle/dev';
 const args = process.argv.slice(2);
@@ -26,13 +27,22 @@ const BOOK_W = 110;               // Satzspiegelbreite im Buch (140 mm − 2 × 
 const PT_PER_MM = 72 / 25.4;
 const PX_PER_MM = 96 / 25.4;
 
+// Lokaler HTTP-Server: über file:// wären die cssRules von illu-base.css nicht lesbar (S/W-Palette in illu-export.js)
+const MIME = { '.html':'text/html; charset=utf-8', '.css':'text/css', '.js':'text/javascript', '.png':'image/png', '.svg':'image/svg+xml' };
+const server = http.createServer((req, res) => {
+  const f = path.join(ROOT, decodeURIComponent(req.url.split('?')[0]));
+  if (!f.startsWith(ROOT) || !fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end(); }
+  res.writeHead(200, { 'Content-Type': MIME[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(res);
+});
+await new Promise(r => server.listen(0, '127.0.0.1', r));
+const BASE = `http://127.0.0.1:${server.address().port}`;
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ deviceScaleFactor: 3, viewport: { width: 1600, height: 1200 } });
 const ctx1 = await browser.newContext({ deviceScaleFactor: 1, viewport: { width: 1600, height: 1200 } });
 
 async function open(name, query, c = ctx) {
   const page = await c.newPage();
-  await page.goto(`file://${ROOT}/${name}.html?${query}`, { waitUntil: 'networkidle' });
+  await page.goto(`${BASE}/${name}.html?${query}`, { waitUntil: 'networkidle' });
   // .wrap ist flex + min-height:100vh → #capture würde sonst auf Viewport-Höhe gestreckt
   await page.addStyleTag({ content: '.wrap{align-items:flex-start!important;min-height:0!important}' });
   await page.evaluate(() => document.fonts.ready);
@@ -119,3 +129,4 @@ for (const name of names) {
   console.log(`${name}: ${info} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);
 }
 await browser.close();
+server.close();
