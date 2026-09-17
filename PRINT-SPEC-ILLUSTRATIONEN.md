@@ -78,7 +78,7 @@ Label, Position, Kontur/Voll. Keine neuen Hex-Werte erfinden – nur `.a1`–`.a
 | 5.1 | Technologie Zielbild | ki-zielbild-tempel |
 | 5.2 | Übersicht der Dimensionen der Datenqualität | datenqualitaet-tabelle |
 | 5.3 | Technologie auf einen Blick | kapitel-5-auf-einen-blick |
-| 6.1 | KI-Organisationsmodell | ki-betriebsmodelle-tabelle |
+| 6.1 | KI-Organisationsmodelle | ki-betriebsmodelle-tabelle |
 | 6.2 | Übersicht der Rollen im Unternehmen | ki-rollen-tabelle |
 | 6.3 | Organisation auf einen Blick | kapitel-6-auf-einen-blick |
 | – | (nicht im Buch, Titel frei, aber gleiches System) | openai-chatgpt-gpt, prompt-bausteine-beispiel, kpi-leading-lagging-tabelle, kpi-adoption-leading-lagging, kpi-markt-leading-lagging |

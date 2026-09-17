@@ -11,7 +11,7 @@ kapitel-4-auf-einen-blick abb-4-3-fuehrung-auf-einen-blick
 ki-zielbild-tempel abb-5-1-technologie-zielbild
 datenqualitaet-tabelle abb-5-2-datenqualitaet
 kapitel-5-auf-einen-blick abb-5-3-technologie-auf-einen-blick
-ki-betriebsmodelle-tabelle abb-6-1-ki-organisationsmodell
+ki-betriebsmodelle-tabelle abb-6-1-ki-organisationsmodelle
 ki-rollen-tabelle abb-6-2-rollen
 ki-rollen-tabelle-teil1 abb-6-2a-rollen-teil1
 ki-rollen-tabelle-teil2 abb-6-2b-rollen-teil2
