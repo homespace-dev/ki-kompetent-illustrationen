@@ -11,14 +11,14 @@
 <link rel="stylesheet" href="illu-base.css" />
 <style>
   /* nur Datei-spezifisches */
-  .thg{display:flex;gap:14px;flex-wrap:wrap;}
-  .tbl td{vertical-align:top;padding:7px 12px 7px 10px;line-height:1.36;}
+  .tbl td{vertical-align:top;padding:5px 12px 6px 10px;line-height:1.33;}
   .tbl td.icoc{padding-right:0;}
   .tbl td.icoc .ico{margin-top:-1px;}
   .q .name{margin-right:4px;}
   .q .chip{margin:0 6px 0 2px;vertical-align:1px;}
-  .rel{margin-top:1px;}
-  .rel .lbl{margin-right:4px;}
+  /* Label-Spalte 100 px, Text mit hängendem Einzug → Umbrüche fluchten */
+  .rel{padding-left:108px;text-indent:-108px;}
+  .rel .lbl{display:inline-block;width:104px;margin:0;text-indent:0;}
   .tbl td b{font-weight:700;color:var(--ink);}
   /* Trennzeile: Satz bleibt Fließtext (kein Versal), Fläche + Linie aus .sep */
   .tbl .sep td span{text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--ink);}
@@ -41,40 +41,37 @@
 
       <table class="tbl">
         <colgroup><col style="width:50px"><col style="width:438px"></colgroup>
-        <thead>
-          <tr><th colspan="2"><span class="thg"><span>Dimension</span><span>Was sie misst</span><span>KI-Relevanz</span></span></th></tr>
-        </thead>
         <tbody>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span></td>
-            <td><div class="q"><span class="name">Vollständigkeit</span> Sind alle Felder und Datensätze vorhanden?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Lücken im Trainingsdatensatz erzeugen <b>blinde Flecken im Modell</b>.</div></td>
+            <td><div class="q"><span class="name">Vollständigkeit</span></div><div class="rel"><span class="lbl">Was sie misst</span> Sind alle Felder und Datensätze vorhanden?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Lücken im Trainingsdatensatz erzeugen <b>blinde Flecken im Modell</b>.</div></td>
           </tr>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg></span></td>
-            <td><div class="q"><span class="name">Richtigkeit</span> Stimmen die Daten mit der Realität überein?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Falsche Labels erzeugen <b>falsche Vorhersagen</b>.</div></td>
+            <td><div class="q"><span class="name">Richtigkeit</span></div><div class="rel"><span class="lbl">Was sie misst</span> Stimmen die Daten mit der Realität überein?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Falsche Labels erzeugen <b>falsche Vorhersagen</b>.</div></td>
           </tr>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg></span></td>
-            <td><div class="q"><span class="name">Konsistenz</span> Sind Daten über Systeme hinweg widerspruchsfrei?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Ein Wert in SAP anders als im CRM erzeugt <b>Chaos beim Training</b> der KI-Modelle.</div></td>
+            <td><div class="q"><span class="name">Konsistenz</span></div><div class="rel"><span class="lbl">Was sie misst</span> Sind Daten über Systeme hinweg widerspruchsfrei?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Ein Wert in SAP anders als im CRM erzeugt <b>Chaos beim Training</b> der KI-Modelle.</div></td>
           </tr>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span></td>
-            <td><div class="q"><span class="name">Aktualität</span> Sind die Daten aktuell genug für den Zweck?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Ein Modell auf 5 Jahre alten Daten <b>kennt die heutige Realität nicht</b>.</div></td>
+            <td><div class="q"><span class="name">Aktualität</span></div><div class="rel"><span class="lbl">Was sie misst</span> Sind die Daten aktuell genug für den Zweck?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Ein Modell auf 5 Jahre alten Daten <b>kennt die heutige Realität nicht</b>.</div></td>
           </tr>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span></td>
-            <td><div class="q"><span class="name">Eindeutigkeit</span> Gibt es Duplikate?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Doppelte Datensätze gewichten bestimmte Muster <b>künstlich stärker</b>.</div></td>
+            <td><div class="q"><span class="name">Eindeutigkeit</span></div><div class="rel"><span class="lbl">Was sie misst</span> Gibt es Duplikate?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Doppelte Datensätze gewichten bestimmte Muster <b>künstlich stärker</b>.</div></td>
           </tr>
           <tr class="a1">
             <td class="icoc"><span class="ico"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span></td>
-            <td><div class="q"><span class="name">Gültigkeit</span> Entsprechen Daten den definierten Regeln und Formaten?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Falsche Einheiten oder Formate <b>verfälschen die zu verarbeitenden Rohdaten</b>.</div></td>
+            <td><div class="q"><span class="name">Gültigkeit</span></div><div class="rel"><span class="lbl">Was sie misst</span> Entsprechen Daten den definierten Regeln und Formaten?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Falsche Einheiten oder Formate <b>verfälschen die zu verarbeitenden Rohdaten</b>.</div></td>
           </tr>
           <tr class="sep">
             <td colspan="2"><span>Für KI kommt eine 7. Dimension hinzu, die in klassischen Modellen fehlt:</span></td>
           </tr>
           <tr class="a3">
             <td class="icoc"><span class="ico dark"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></td>
-            <td><div class="q"><span class="name">Repräsentativität</span><span class="chip acc">Neu für KI</span> Bildet der Datensatz die Realität fair und ausgewogen ab?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Fehlende Gruppen oder Szenarien im Training führen zu <b>Bias im Modell</b>.</div></td>
+            <td><div class="q"><span class="name">Repräsentativität</span><span class="chip acc">Neu für KI</span></div><div class="rel"><span class="lbl">Was sie misst</span> Bildet der Datensatz die Realität fair und ausgewogen ab?</div><div class="rel"><span class="lbl">KI-Relevanz</span> Fehlende Gruppen oder Szenarien im Training führen zu <b>Bias im Modell</b>.</div></td>
           </tr>
         </tbody>
       </table>
